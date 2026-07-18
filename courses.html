@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses — AcademeKey</title>
+  <meta name="description" content="Discover and purchase professional development courses from AcademeKey. Leadership, communication, sales, HR, compliance, and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <style>
+  /* ═══════════════════════════════════════════════════════════════
+     COURSES PAGE — Premium course discovery & purchase
+     Dual-tone: Orange = brand / Knowledge Path
+                Emerald = course purchase CTAs only
+  ═══════════════════════════════════════════════════════════════ */
+
+  :root {
+    --emerald:       #10B981;
+    --emerald-dark:  #059669;
+    --emerald-pale:  rgba(16,185,129,.08);
+    --emerald-mid:   rgba(16,185,129,.15);
+    --border:        #E8ECF3;
+    --text-primary:  #111827;
+    --text-secondary:#6B7280;
+    --surface:       #F7F9FC;
+  }
+
+  /* ── HERO ──────────────────────────────────────────────────── */
+  .co-hero {
+    background: #071A33;
+    padding: 180px 0 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  .co-hero-geo {
+    position: absolute;
+    right: -40px; top: 50%;
+    transform: translateY(-50%);
+    width: 700px; height: 700px;
+    opacity: 0.022;
+    pointer-events: none;
+  }
+  .co-hero-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 60px;
+    position: relative;
+    z-index: 1;
+  }
+  .co-hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: rgba(245,166,35,.72);
+    margin-bottom: 28px;
+  }
+  .co-hero-label::before {
+    content: '';
+    width: 28px; height: 1px;
+    background: rgba(245,166,35,.4);
+  }
+  .co-hero-h1 {
+    font-size: clamp(44px, 5.5vw, 80px);
+    font-weight: 900;
+    letter-spacing: -3.5px;
+    line-height: 0.9;
+    color: #fff;
+    max-width: 680px;
+    margin-bottom: 32px;
+  }
+  .co-hero-h1 em { color: #F5A623; font-style: normal; }
+  .co-hero-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,.45);
+    line-height: 1.8;
+    max-width: 500px;
+    margin-bottom: 52px;
+  }
+
+  /* Search bar */
+  .co-search-wrap {
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,.06);
+    border: 1.5px solid rgba(255,255,255,.12);
+    border-radius: 16px;
+    padding: 6px 6px 6px 22px;
+    max-width: 540px;
+    gap: 10px;
+    transition: border-color 220ms ease, background 220ms ease;
+  }
+  .co-search-wrap:focus-within {
+    background: rgba(255,255,255,.1);
+    border-color: rgba(255,255,255,.24);
+  }
+  .co-search-icon {
+    color: rgba(255,255,255,.4);
+    flex-shrink: 0;
+  }
+  .co-search-input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 15px;
+    color: #fff;
+    min-width: 0;
+  }
+  .co-search-input::placeholder { color: rgba(255,255,255,.3); }
+  .co-search-btn {
+    height: 44px;
+    padding: 0 22px;
+    background: #10B981;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 180ms ease, transform 180ms ease;
+  }
+  .co-search-btn:hover {
+    background: #059669;
+    transform: translateY(-1px);
+  }
+
+  /* KP stat strip */
+  .co-hero-stats {
+    display: flex;
+    gap: 48px;
+    margin-top: 52px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,.07);
+  }
+  .co-stat-num {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .co-stat-num em { color: #F5A623; font-style: normal; }
+  .co-stat-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.32);
+  }
+
+  /* ── FILTER BAR ────────────────────────────────────────────── */
+  .co-filter {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 72px;
+    z-index: 90;
+  }
+  .co-filter-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 60px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .co-filter-inner::-webkit-scrollbar { display: none; }
+  .co-filter-btn {
+    height: 36px;
+    padding: 0 18px;
+    border-radius: 100px;
+    border: 1.5px solid var(--border);
+    background: #fff;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 200ms ease;
+    flex-shrink: 0;
+  }
+  .co-filter-btn:hover {
+    border-color: rgba(245,150,31,.4);
+    color: var(--text-primary);
+  }
+  .co-filter-btn.active {
+    background: #071A33;
+    border-color: #071A33;
+    color: #fff;
+  }
+  .co-filter-count {
+    height: 18px;
+    padding: 0 6px;
+    border-radius: 100px;
+    background: rgba(11,22,41,.08);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    display: inline-flex;
+    align-items: center;
+    margin-left: 4px;
+  }
+  .co-filter-btn.active .co-filter-count {
+    background: rgba(255,255,255,.15);
+    color: rgba(255,255,255,.7);
+  }
+
+  /* ── CATALOG ────────────────────────────────────────────────── */
+  .co-catalog {
+    background: var(--surface);
+    padding: 80px 0 140px;
+  }
+  .co-catalog-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+
+  /* Category group */
+  .co-category {
+    margin-bottom: 80px;
+  }
+  .co-category:last-child { margin-bottom: 0; }
+
+  .co-cat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .co-cat-title-wrap { display: flex; align-items: center; gap: 14px; }
+  .co-cat-gem {
+    width: 28px; height: 28px;
+    flex-shrink: 0;
+    opacity: 0.45;
+  }
+  .co-cat-name {
+    font-size: clamp(18px, 2vw, 24px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--text-primary);
+  }
+  .co-cat-count {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-left: 2px;
+  }
+  .co-cat-see-all {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(245,150,31,.85);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 200ms ease;
+  }
+  .co-cat-see-all:hover { gap: 10px; }
+
+  /* Course grid — 3 columns */
+  .co-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  /* ── COURSE CARD ──────────────────────────────────────────── */
+  .co-card {
+    background: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(7,26,51,.04), 0 8px 28px rgba(7,26,51,.06);
+    display: flex;
+    flex-direction: column;
+    /* reveal */
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 550ms cubic-bezier(0.22,1,0.36,1),
+      transform 550ms cubic-bezier(0.22,1,0.36,1),
+      box-shadow 280ms ease;
+  }
+  .co-card.card-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .co-card:hover {
+    box-shadow: 0 4px 16px rgba(7,26,51,.05), 0 20px 52px rgba(7,26,51,.10);
+    transform: translateY(-6px);
+  }
+  .co-card.card-in:hover {
+    transform: translateY(-6px);
+  }
+
+  /* Image */
+  .co-card-img-wrap {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+  }
+  .co-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1.04);
+    transition: transform 600ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .co-card.card-in .co-card-img { transform: scale(1.0); }
+  .co-card:hover .co-card-img { transform: scale(1.03); }
+
+  /* Category tag on image */
+  .co-card-tag {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(7,26,51,.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 100px;
+    padding: 5px 12px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.85);
+  }
+
+  /* Format badge */
+  .co-card-format {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: rgba(16,185,129,.15);
+    border: 1px solid rgba(16,185,129,.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 100px;
+    padding: 5px 12px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #10B981;
+  }
+
+  /* Card body */
+  .co-card-body {
+    padding: 24px 24px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .co-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+    color: var(--text-primary);
+    line-height: 1.35;
+    margin-bottom: 10px;
+  }
+  .co-card-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    flex: 1;
+    margin-bottom: 20px;
+  }
+
+  /* Card footer */
+  .co-card-foot {
+    padding: 0 24px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-top: 1px solid var(--border);
+    padding-top: 18px;
+    margin-top: auto;
+  }
+  .co-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .co-card-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+  .co-card-meta-item svg { flex-shrink: 0; color: rgba(11,22,41,.3); }
+
+  /* Emerald purchase button */
+  .co-enrol-btn {
+    height: 40px;
+    padding: 0 20px;
+    background: #10B981;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    flex-shrink: 0;
+  }
+  .co-enrol-btn:hover {
+    background: #059669;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(16,185,129,.3);
+  }
+  .co-enrol-btn:active { transform: scale(0.98); }
+  .co-enrol-btn svg { transition: transform 200ms ease; }
+  .co-enrol-btn:hover svg { transform: translateX(3px); }
+
+  /* ── PLACEHOLDER CARD (no image) ─────────────────────────── */
+  .co-card--placeholder .co-card-img-wrap {
+    background: linear-gradient(135deg, #071A33 0%, #0F2444 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .co-card--placeholder .co-card-img-wrap svg {
+    width: 64px; height: 64px;
+    opacity: 0.12;
+  }
+
+  /* ── COMING SOON BAND ────────────────────────────────────── */
+  .co-coming-soon {
+    background: #fff;
+    border: 1.5px dashed var(--border);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: 48px 24px;
+    opacity: 0.65;
+  }
+  .co-coming-soon-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  /* ── EMPTY STATE ─────────────────────────────────────────── */
+  .co-empty {
+    text-align: center;
+    padding: 100px 40px;
+    display: none;
+  }
+  .co-empty.visible { display: block; }
+  .co-empty-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+  }
+  .co-empty-sub {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  /* ── CTA BAND ────────────────────────────────────────────── */
+  .co-cta {
+    background: #071A33;
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .co-cta-geo {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px; height: 700px;
+    opacity: 0.018;
+    pointer-events: none;
+  }
+  .co-cta-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .co-cta-rule {
+    width: 40px; height: 1.5px;
+    background: rgba(245,166,35,.35);
+    margin: 0 auto 32px;
+  }
+  .co-cta-h2 {
+    font-size: clamp(26px, 3.2vw, 42px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 18px;
+  }
+  .co-cta-h2 em { color: #F5A623; font-style: normal; }
+  .co-cta-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,.42);
+    line-height: 1.75;
+    margin-bottom: 44px;
+  }
+  /* Emerald primary CTA + orange secondary */
+  .co-cta-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .co-btn-emerald {
+    height: 56px;
+    padding: 0 32px;
+    background: #10B981;
+    color: #fff;
+    border: none;
+    border-radius: 16px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+  }
+  .co-btn-emerald:hover {
+    background: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(16,185,129,.35);
+  }
+  .co-btn-ghost {
+    height: 56px;
+    padding: 0 28px;
+    background: transparent;
+    color: rgba(255,255,255,.65);
+    border: 1.5px solid rgba(255,255,255,.15);
+    border-radius: 16px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: border-color 200ms ease, color 200ms ease;
+  }
+  .co-btn-ghost:hover {
+    border-color: rgba(255,255,255,.3);
+    color: #fff;
+  }
+
+  /* ── RESPONSIVE ─────────────────────────────────────────── */
+  @media (max-width: 1100px) {
+    .co-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 1024px) {
+    .co-hero-inner, .co-catalog-inner, .co-filter-inner { padding-left: 40px; padding-right: 40px; }
+  }
+  @media (max-width: 768px) {
+    .co-hero { padding: 140px 0 80px; }
+    .co-hero-stats { gap: 32px; flex-wrap: wrap; }
+    .co-grid { grid-template-columns: 1fr; }
+    .co-catalog-inner { padding: 0 20px; }
+    .co-filter-inner { padding-left: 20px; padding-right: 20px; }
+  }
+  @media (max-width: 640px) {
+    .co-search-wrap { flex-wrap: nowrap; }
+    .co-hero-inner { padding-left: 24px; padding-right: 24px; }
+    .co-cta-actions { flex-direction: column; align-items: stretch; }
+  }
+  </style>
+</head>
+<body>
+<div id="pageVeil"></div>
+<div id="readProgress"></div>
+
+<!-- ─────────────────────── HEADER ─────────────────────────── -->
+<header id="mainHeader">
+  <div id="navKPath" aria-hidden="true"></div>
+  <div class="nav-floater">
+    <a href="index.html" class="nav-logo" aria-label="AcademeKey — The Key to Success">
+      <div class="nav-logo-mark">
+        <svg width="38" height="38" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <rect width="40" height="40" rx="11" fill="#F5961F"/>
+          <path d="M10 31L20 10L30 31" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="14.5" y1="24.5" x2="25.5" y2="24.5" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="nav-logo-text">
+        <span class="nav-wordmark">Academe<em>Key</em></span>
+        <span class="nav-tagline">The Key to Success</span>
+      </div>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+      <a href="courses.html">Courses</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="courses.html" class="nav-cta-btn" aria-label="Browse our courses">
+      Browse Courses
+      <svg class="cta-arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu" aria-hidden="true">
+  <div class="mob-inner">
+    <div class="mob-header">
+      <div class="nav-logo-mark">
+        <svg width="34" height="34" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <rect width="40" height="40" rx="11" fill="#F5961F"/>
+          <path d="M10 31L20 10L30 31" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="14.5" y1="24.5" x2="25.5" y2="24.5" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+    <nav class="mob-nav" aria-label="Mobile navigation">
+      <a href="index.html" class="mob-link">Home</a>
+      <a href="courses.html" class="mob-link">Courses</a>
+      <a href="about.html" class="mob-link">About</a>
+      <a href="contact.html" class="mob-link">Contact</a>
+    </nav>
+    <div class="mob-cta-wrap">
+      <a href="courses.html" class="mob-cta-btn">
+        Browse Courses
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────────────── HERO ──────────────────────────── -->
+<section class="co-hero">
+  <div class="co-hero-geo" aria-hidden="true">
+    <svg viewBox="0 0 700 700" fill="none">
+      <path d="M70 630L350 70L630 630" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="196" y1="441" x2="504" y2="441" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+      <circle cx="350" cy="350" r="280" stroke="white" stroke-width="0.8"/>
+      <circle cx="350" cy="350" r="180" stroke="white" stroke-width="0.5" opacity="0.5"/>
+    </svg>
+  </div>
+  <div class="co-hero-inner">
+    <span class="co-hero-label" data-sr data-sr-delay="0">Course Catalog</span>
+    <h1 class="co-hero-h1" data-sr data-sr-delay="80">
+      Every course.<br>One <em>destination.</em>
+    </h1>
+    <p class="co-hero-sub" data-sr data-sr-delay="160">
+      Browse professional development courses across eight program areas. Purchase a course and our team will be in touch within one business day to schedule your session.
+    </p>
+
+    <!-- Search -->
+    <div class="co-search-wrap" data-sr data-sr-delay="240" role="search">
+      <svg class="co-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+      </svg>
+      <input
+        class="co-search-input"
+        type="search"
+        id="courseSearch"
+        placeholder="Search courses…"
+        aria-label="Search courses"
+        autocomplete="off"
+      >
+      <button class="co-search-btn" onclick="runSearch()">Search</button>
+    </div>
+
+    <!-- Stats -->
+    <div class="co-hero-stats" data-sr data-sr-delay="320">
+      <div>
+        <div class="co-stat-num">8<em>+</em></div>
+        <div class="co-stat-label">Program Areas</div>
+      </div>
+      <div>
+        <div class="co-stat-num">5</div>
+        <div class="co-stat-label">Delivery Formats</div>
+      </div>
+      <div>
+        <div class="co-stat-num">2</div>
+        <div class="co-stat-label">Session Lengths</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── FILTER BAR ──────────────────────── -->
+<nav class="co-filter" aria-label="Filter by category">
+  <div class="co-filter-inner" id="filterBar">
+    <button class="co-filter-btn active" data-filter="all" onclick="filterCourses('all', this)">
+      All Courses
+    </button>
+    <button class="co-filter-btn" data-filter="leadership" onclick="filterCourses('leadership', this)">
+      Leadership &amp; Management
+    </button>
+    <button class="co-filter-btn" data-filter="customer-service" onclick="filterCourses('customer-service', this)">
+      Customer Service
+    </button>
+    <button class="co-filter-btn" data-filter="communication" onclick="filterCourses('communication', this)">
+      Communication
+    </button>
+    <button class="co-filter-btn" data-filter="sales" onclick="filterCourses('sales', this)">
+      Sales
+    </button>
+    <button class="co-filter-btn" data-filter="project-management" onclick="filterCourses('project-management', this)">
+      Project Management
+    </button>
+    <button class="co-filter-btn" data-filter="hr" onclick="filterCourses('hr', this)">
+      Human Resources
+    </button>
+    <button class="co-filter-btn" data-filter="compliance" onclick="filterCourses('compliance', this)">
+      Workplace Compliance
+    </button>
+    <button class="co-filter-btn" data-filter="other" onclick="filterCourses('other', this)">
+      Other Programs
+    </button>
+  </div>
+</nav>
+
+<!-- ─────────────────────── CATALOG ─────────────────────────── -->
+<section class="co-catalog">
+  <div class="co-catalog-inner">
+
+    <!-- Empty state -->
+    <div class="co-empty" id="emptyState">
+      <p class="co-empty-title">No courses found</p>
+      <p class="co-empty-sub">Try a different search term or browse all categories.</p>
+    </div>
+
+    <!-- ① Leadership & Management -->
+    <div class="co-category" data-category="leadership">
+      <div class="co-cat-header">
+        <div class="co-cat-title-wrap">
+          <svg class="co-cat-gem" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L26 14L14 26L2 14Z" stroke="rgba(245,166,35,.6)" stroke-width="0.9"/>
+            <path d="M9 20L14 8L19 20" stroke="rgba(245,166,35,.7)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="11.2" y1="16.5" x2="16.8" y2="16.5" stroke="rgba(245,166,35,.7)" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          <h2 class="co-cat-name">Leadership &amp; Management</h2>
+        </div>
+        <a href="programs.html#leadership" class="co-cat-see-all">
+          View program
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="co-grid">
+        <!-- Card -->
+        <div class="co-card" data-cat="leadership" data-title="Foundations of Leadership">
+          <div class="co-card-img-wrap">
+            <img class="co-card-img" src="assets/img/03_Leadership_Training.png.png" alt="Foundations of Leadership" loading="lazy">
+            <span class="co-card-tag">Leadership</span>
+            <span class="co-card-format">In-Person</span>
+          </div>
+          <div class="co-card-body">
+            <h3 class="co-card-title">Foundations of Leadership</h3>
+            <p class="co-card-desc">Build the core mindset and practical skills that distinguish effective leaders. Covers vision, communication, accountability, and team dynamics.</p>
+          </div>
+          <div class="co-card-foot">
+            <div class="co-card-meta">
+              <span class="co-card-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                8-hour session
+              </span>
+            </div>
+            <a href="contact.html?course=foundations-of-leadership" class="co-enrol-btn">
+              Enquire
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="co-card" data-cat="leadership" data-title="Managing High-Performance Teams">
+          <div class="co-card-img-wrap">
+            <img class="co-card-img" src="assets/img/07_About_Team_Meeting.png" alt="Managing High-Performance Teams" loading="lazy">
+            <span class="co-card-tag">Leadership</span>
+            <span class="co-card-format">Virtual Live</span>
+          </div>
+          <div class="co-card-body">
+            <h3 class="co-card-title">Managing High-Performance Teams</h3>
+            <p class="co-card-desc">Develop the tools to build, lead, and sustain high-performing teams — covering motivation, delegation, feedback, and conflict resolution.</p>
+          </div>
+          <div class="co-card-foot">
+            <div class="co-card-meta">
+              <span class="co-card-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                5-hour session
+              </span>
+            </div>
+            <a href="contact.html?course=managing-high-performance-teams" class="co-enrol-btn">
+              Enquire
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="co-card" data-cat="leadership" data-title="Strategic Thinking for Leaders">
+          <div class="co-card-img-wrap">
+            <img class="co-card-img" src="assets/img/06_Onsite_Workshop.png" alt="Strategic Thinking for Leaders" loading="lazy">
+            <span class="co-card-tag">Leadership</span>
+            <span class="co-card-format">On-Site</span>
+          </div>
+          <div class="co-card-body">
+            <h3 class="co-card-title">Strategic Thinking for Leaders</h3>
+            <p class="co-card-desc">Equip leaders with frameworks for long-term thinking, decision-making under uncertainty, and translating strategy into team action.</p>
+          </div>
+          <div class="co-card-foot">
+            <div class="co-card-meta">
+              <span class="co-card-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                8-hour session
+              </span>
+            </div>
+            <a href="contact.html?course=strategic-thinking-for-leaders" class="co-enrol-btn">
+              Enquire
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② Customer Service -->
+    <div class="co-category" data-category="customer-service">
+      <div class="co-cat-header">
+        <div class="co-cat-title-wrap">
+          <svg class="co-cat-gem" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L26 14L14 26L2 14Z" stroke="rgba(245,166,35,.6)" stroke-width="0.9"/>
+            <path d="M9 20L14 8L19 20" stroke="rgba(245,166,35,.7)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="11.2" y1="16.5" x2="16.8" y2="16.5" stroke="rgba(245,166,35,.7)" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          <h2 class="co-cat-name">Customer Service</h2>
+        </div>
+        <a href="programs.html#customer-service" class="co-cat-see-all">
+          View program
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="co-grid">
+        <div class="co-card" data-cat="customer-service" data-title="Customer Experience Excellence">
+          <div class="co-card-img-wrap">
+            <img class="co-card-img" src="assets/img/07_About_Team_Meeting.png" alt="Customer Experience Excellence" loading="lazy">
+            <span class="co-card-tag">Customer Service</span>
+            <span class="co-card-format">In-Person</span>
+          </div>
+          <div class="co-card-body">
+            <h3 class="co-card-title">Customer Experience Excellence</h3>
+            <p class="co-card-desc">Transform every customer touchpoint. Learn techniques for service recovery, emotional intelligence in service, and building lasting customer relationships.</p>
+          </div>
+          <div class="co-card-foot">
+            <div class="co-card-meta">
+              <span class="co-card-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                5-hour session
+              </span>
+            </div>
+            <a href="contact.html?course=customer-experience-excellence" class="co-enrol-btn">
+              Enquire
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="co-card" data-cat="customer-service" data-title="Handling Difficult Customers">
+          <div class="co-card-img-wrap">
+            <img class="co-card-img" src="assets/img/01_Home_Hero_Speaker.png" alt="Handling Difficult Customers" loading="lazy">
+            <span class="co-card-tag">Customer Service</span>
+            <span class="co-card-format">Virtual Live</span>
+          </div>
+          <div class="co-card-body">
+            <h3 class="co-card-title">Handling Difficult Customers</h3>
+            <p class="co-card-desc">Master de-escalation, active listening, and resolution skills for navigating challenging interactions with professionalism and calm.</p>
+          </div>
+          <div class="co-card-foot">
+            <div class="co-card-meta">
+              <span class="co-card-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                5-hour session
+              </span>
+            </div>
+            <a href="contact.html?course=handling-difficult-customers" class="co-enrol-btn">
+              Enquire
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="co-card co-coming-soon-card" data-cat="customer-service" data-title="">
+          <div class="co-coming-soon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M16 4L28 16L16 28L4 16Z" stroke="rgba(11,22,41,.2)" stroke-width="1"/>
+              <path d="M10 22L16 10L22 22" stroke="rgba(11,22,41,.2)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="12.5" y1="18.5" x2="19.5" y2="18.5" stroke="rgba(11,22,41,.2)" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+            <span class="co-coming-soon-label">More courses coming</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ Communication -->
+    <div class="co-category" data-category="communication">
+      <div class="co-cat-header">
+        <div class="co-cat-title-wrap">
+          <svg class="co-cat-gem" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L26 14L14 26L2 14Z" stroke="rgba(245,166,35,.6)" stroke-width="0.9"/>
+            <path d="M9 20L14 8L19 20" stroke="rgba(245,166,35,.7)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="11.2" y1="16.5" x2="16.8" y2="16.5" stroke="rgba(245,166,35,.7)" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          <h2 class="co-cat-name">Communication Skills</h2>
+        </div>
+        <a href="programs.html#communication" class="co-cat-see-all">
+          View program
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="co-grid">
+        <div class="co-card" data-cat="communication" data-title="Business Communication Essentials">
+          <div class="co-card-img-wrap">
+            <img class="co-card-img" src="assets/img/04_Classroom_Training.png" alt="Business Communication Essentials" loading="lazy">
+            <span class="co-card-tag">Communication</span>
+            <span class="co-card-format">In-Person</span>
+          </div>
+          <div class="co-card-body">
+            <h3 class="co-card-title">Business Communication Essentials</h3>
+            <p class="co-card-desc">Sharpen written, verbal, and non-verbal communication across professional contexts — from emails to executive presentations.</p>
+          </div>
+          <div class="co-card-foot">
+            <div class="co-card-meta">
+              <span class="co-card-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                8-hour session
+              </span>
+            </div>
+            <a href="contact.html?course=business-communication-essentials" class="co-enrol-btn">
+              Enquire
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="co-card" data-cat="communication" data-title="Presentation Skills Masterclass">
+          <div class="co-card-img-wrap">
+            <img class="co-card-img" src="assets/img/01_Home_Hero_Speaker.png" alt="Presentation Skills Masterclass" loading="lazy">
+            <span class="co-card-tag">Communication</span>
+            <span class="co-card-format">Group Session</span>
+          </div>
+          <div class="co-card-body">
+            <h3 class="co-card-title">Presentation Skills Masterclass</h3>
+            <p class="co-card-desc">From structure to delivery — develop confidence and clarity when presenting to any audience, in any room or on any platform.</p>
+          </div>
+          <div class="co-card-foot">
+            <div class="co-card-meta">
+              <span class="co-card-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                5-hour session
+              </span>
+            </div>
+            <a href="contact.html?course=presentation-skills-masterclass" class="co-enrol-btn">
+              Enquire
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="co-card co-coming-soon-card" data-cat="communication" data-title="">
+          <div class="co-coming-soon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 4L28 16L16 28L4 16Z" stroke="rgba(11,22,41,.2)" stroke-width="1"/><path d="M10 22L16 10L22 22" stroke="rgba(11,22,41,.2)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><line x1="12.5" y1="18.5" x2="19.5" y2="18.5" stroke="rgba(11,22,41,.2)" stroke-width="1.4" stroke-linecap="round"/></svg>
+            <span class="co-coming-soon-label">More courses coming</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ④ Sales -->
+    <div class="co-category" data-category="sales">
+      <div class="co-cat-header">
+        <div class="co-cat-title-wrap">
+          <svg class="co-cat-gem" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L26 14L14 26L2 14Z" stroke="rgba(245,166,35,.6)" stroke-width="0.9"/>
+            <path d="M9 20L14 8L19 20" stroke="rgba(245,166,35,.7)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="11.2" y1="16.5" x2="16.8" y2="16.5" stroke="rgba(245,166,35,.7)" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          <h2 class="co-cat-name">Sales Training</h2>
+        </div>
+        <a href="programs.html#sales" class="co-cat-see-all">
+          View program
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="co-grid">
+        <div class="co-card" data-cat="sales" data-title="Consultative Selling">
+          <div class="co-card-img-wrap">
+            <img class="co-card-img" src="assets/img/05_Virtual_Sessions.png.png" alt="Consultative Selling" loading="lazy">
+            <span class="co-card-tag">Sales</span>
+            <span class="co-card-format">In-Person</span>
+          </div>
+          <div class="co-card-body">
+            <h3 class="co-card-title">Consultative Selling</h3>
+            <p class="co-card-desc">Move from product-pushing to problem-solving. Build a sales approach that earns trust, uncovers real needs, and creates long-term client relationships.</p>
+          </div>
+          <div class="co-card-foot">
+            <div class="co-card-meta">
+              <span class="co-card-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                8-hour session
+              </span>
+            </div>
+            <a href="contact.html?course=consultative-selling" class="co-enrol-btn">
+              Enquire
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="co-card" data-cat="sales" data-title="Negotiation Skills for Sales Professionals">
+          <div class="co-card-img-wrap">
+            <img class="co-card-img" src="assets/img/06_Onsite_Workshop.png" alt="Negotiation Skills" loading="lazy">
+            <span class="co-card-tag">Sales</span>
+            <span class="co-card-format">Group Session</span>
+          </div>
+          <div class="co-card-body">
+            <h3 class="co-card-title">Negotiation Skills for Sales Professionals</h3>
+            <p class="co-card-desc">Master the art of principled negotiation — creating value, managing objections, and closing deals that both parties walk away from confident.</p>
+          </div>
+          <div class="co-card-foot">
+            <div class="co-card-meta">
+              <span class="co-card-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                5-hour session
+              </span>
+            </div>
+            <a href="contact.html?course=negotiation-skills" class="co-enrol-btn">
+              Enquire
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="co-card co-coming-soon-card" data-cat="sales" data-title="">
+          <div class="co-coming-soon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 4L28 16L16 28L4 16Z" stroke="rgba(11,22,41,.2)" stroke-width="1"/><path d="M10 22L16 10L22 22" stroke="rgba(11,22,41,.2)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><line x1="12.5" y1="18.5" x2="19.5" y2="18.5" stroke="rgba(11,22,41,.2)" stroke-width="1.4" stroke-linecap="round"/></svg>
+            <span class="co-coming-soon-label">More courses coming</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑤ Project Management -->
+    <div class="co-category" data-category="project-management">
+      <div class="co-cat-header">
+        <div class="co-cat-title-wrap">
+          <svg class="co-cat-gem" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L26 14L14 26L2 14Z" stroke="rgba(245,166,35,.6)" stroke-width="0.9"/>
+            <path d="M9 20L14 8L19 20" stroke="rgba(245,166,35,.7)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="11.2" y1="16.5" x2="16.8" y2="16.5" stroke="rgba(245,166,35,.7)" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          <h2 class="co-cat-name">Project Management</h2>
+        </div>
+        <a href="programs.html#project-management" class="co-cat-see-all">
+          View program
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="co-grid">
+        <div class="co-card" data-cat="project-management" data-title="Project Management Fundamentals">
+          <div class="co-card-img-wrap">
+            <img class="co-card-img" src="assets/img/06_Onsite_Workshop.png" alt="Project Management Fundamentals" loading="lazy">
+            <span class="co-card-tag">Project Management</span>
+            <span class="co-card-format">In-Person</span>
+          </div>
+          <div class="co-card-body">
+            <h3 class="co-card-title">Project Management Fundamentals</h3>
+            <p class="co-card-desc">From scope to delivery — practical frameworks for planning, executing, and closing projects on time, within budget, and to standard.</p>
+          </div>
+          <div class="co-card-foot">
+            <div class="co-card-meta">
+              <span class="co-card-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                8-hour session
+              </span>
+            </div>
+            <a href="contact.html?course=project-management-fundamentals" class="co-enrol-btn">
+              Enquire
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="co-card co-coming-soon-card" data-cat="project-management" data-title=""><div class="co-coming-soon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 4L28 16L16 28L4 16Z" stroke="rgba(11,22,41,.2)" stroke-width="1"/><path d="M10 22L16 10L22 22" stroke="rgba(11,22,41,.2)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><line x1="12.5" y1="18.5" x2="19.5" y2="18.5" stroke="rgba(11,22,41,.2)" stroke-width="1.4" stroke-linecap="round"/></svg><span class="co-coming-soon-label">More courses coming</span></div></div>
+        <div class="co-card co-coming-soon-card" data-cat="project-management" data-title=""><div class="co-coming-soon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 4L28 16L16 28L4 16Z" stroke="rgba(11,22,41,.2)" stroke-width="1"/><path d="M10 22L16 10L22 22" stroke="rgba(11,22,41,.2)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><line x1="12.5" y1="18.5" x2="19.5" y2="18.5" stroke="rgba(11,22,41,.2)" stroke-width="1.4" stroke-linecap="round"/></svg><span class="co-coming-soon-label">More courses coming</span></div></div>
+      </div>
+    </div>
+
+    <!-- ⑥ HR -->
+    <div class="co-category" data-category="hr">
+      <div class="co-cat-header">
+        <div class="co-cat-title-wrap">
+          <svg class="co-cat-gem" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L26 14L14 26L2 14Z" stroke="rgba(245,166,35,.6)" stroke-width="0.9"/>
+            <path d="M9 20L14 8L19 20" stroke="rgba(245,166,35,.7)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="11.2" y1="16.5" x2="16.8" y2="16.5" stroke="rgba(245,166,35,.7)" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          <h2 class="co-cat-name">Human Resources</h2>
+        </div>
+        <a href="programs.html#human-resources" class="co-cat-see-all">
+          View program
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="co-grid">
+        <div class="co-card" data-cat="hr" data-title="Effective Recruitment & Interviewing">
+          <div class="co-card-img-wrap">
+            <img class="co-card-img" src="assets/img/07_About_Team_Meeting.png" alt="Effective Recruitment" loading="lazy">
+            <span class="co-card-tag">Human Resources</span>
+            <span class="co-card-format">In-Person</span>
+          </div>
+          <div class="co-card-body">
+            <h3 class="co-card-title">Effective Recruitment &amp; Interviewing</h3>
+            <p class="co-card-desc">Design structured hiring processes, conduct bias-aware interviews, and make confident selection decisions that bring the right people in.</p>
+          </div>
+          <div class="co-card-foot">
+            <div class="co-card-meta">
+              <span class="co-card-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                5-hour session
+              </span>
+            </div>
+            <a href="contact.html?course=effective-recruitment" class="co-enrol-btn">
+              Enquire
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="co-card co-coming-soon-card" data-cat="hr" data-title=""><div class="co-coming-soon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 4L28 16L16 28L4 16Z" stroke="rgba(11,22,41,.2)" stroke-width="1"/><path d="M10 22L16 10L22 22" stroke="rgba(11,22,41,.2)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><line x1="12.5" y1="18.5" x2="19.5" y2="18.5" stroke="rgba(11,22,41,.2)" stroke-width="1.4" stroke-linecap="round"/></svg><span class="co-coming-soon-label">More courses coming</span></div></div>
+        <div class="co-card co-coming-soon-card" data-cat="hr" data-title=""><div class="co-coming-soon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 4L28 16L16 28L4 16Z" stroke="rgba(11,22,41,.2)" stroke-width="1"/><path d="M10 22L16 10L22 22" stroke="rgba(11,22,41,.2)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><line x1="12.5" y1="18.5" x2="19.5" y2="18.5" stroke="rgba(11,22,41,.2)" stroke-width="1.4" stroke-linecap="round"/></svg><span class="co-coming-soon-label">More courses coming</span></div></div>
+      </div>
+    </div>
+
+    <!-- ⑦ Compliance -->
+    <div class="co-category" data-category="compliance">
+      <div class="co-cat-header">
+        <div class="co-cat-title-wrap">
+          <svg class="co-cat-gem" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L26 14L14 26L2 14Z" stroke="rgba(245,166,35,.6)" stroke-width="0.9"/>
+            <path d="M9 20L14 8L19 20" stroke="rgba(245,166,35,.7)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="11.2" y1="16.5" x2="16.8" y2="16.5" stroke="rgba(245,166,35,.7)" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          <h2 class="co-cat-name">Workplace Compliance</h2>
+        </div>
+        <a href="programs.html#compliance" class="co-cat-see-all">
+          View program
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="co-grid">
+        <div class="co-card" data-cat="compliance" data-title="Workplace Health & Safety Essentials">
+          <div class="co-card-img-wrap">
+            <img class="co-card-img" src="assets/img/03_Leadership_Training.png.png" alt="Workplace Health & Safety" loading="lazy">
+            <span class="co-card-tag">Compliance</span>
+            <span class="co-card-format">On-Site</span>
+          </div>
+          <div class="co-card-body">
+            <h3 class="co-card-title">Workplace Health &amp; Safety Essentials</h3>
+            <p class="co-card-desc">Build a compliance-aware workplace culture. Covers legislative obligations, hazard identification, incident reporting, and staff responsibilities.</p>
+          </div>
+          <div class="co-card-foot">
+            <div class="co-card-meta">
+              <span class="co-card-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                5-hour session
+              </span>
+            </div>
+            <a href="contact.html?course=workplace-health-safety" class="co-enrol-btn">
+              Enquire
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="co-card co-coming-soon-card" data-cat="compliance" data-title=""><div class="co-coming-soon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 4L28 16L16 28L4 16Z" stroke="rgba(11,22,41,.2)" stroke-width="1"/><path d="M10 22L16 10L22 22" stroke="rgba(11,22,41,.2)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><line x1="12.5" y1="18.5" x2="19.5" y2="18.5" stroke="rgba(11,22,41,.2)" stroke-width="1.4" stroke-linecap="round"/></svg><span class="co-coming-soon-label">More courses coming</span></div></div>
+        <div class="co-card co-coming-soon-card" data-cat="compliance" data-title=""><div class="co-coming-soon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 4L28 16L16 28L4 16Z" stroke="rgba(11,22,41,.2)" stroke-width="1"/><path d="M10 22L16 10L22 22" stroke="rgba(11,22,41,.2)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><line x1="12.5" y1="18.5" x2="19.5" y2="18.5" stroke="rgba(11,22,41,.2)" stroke-width="1.4" stroke-linecap="round"/></svg><span class="co-coming-soon-label">More courses coming</span></div></div>
+      </div>
+    </div>
+
+    <!-- ⑧ Other -->
+    <div class="co-category" data-category="other">
+      <div class="co-cat-header">
+        <div class="co-cat-title-wrap">
+          <svg class="co-cat-gem" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L26 14L14 26L2 14Z" stroke="rgba(245,166,35,.6)" stroke-width="0.9"/>
+            <path d="M9 20L14 8L19 20" stroke="rgba(245,166,35,.7)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="11.2" y1="16.5" x2="16.8" y2="16.5" stroke="rgba(245,166,35,.7)" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          <h2 class="co-cat-name">Other Professional Development</h2>
+        </div>
+        <a href="programs.html#other" class="co-cat-see-all">
+          View program
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="co-grid">
+        <div class="co-card" data-cat="other" data-title="Emotional Intelligence at Work">
+          <div class="co-card-img-wrap">
+            <img class="co-card-img" src="assets/img/02_Programs_Desk.png" alt="Emotional Intelligence at Work" loading="lazy">
+            <span class="co-card-tag">Professional Dev.</span>
+            <span class="co-card-format">Virtual Live</span>
+          </div>
+          <div class="co-card-body">
+            <h3 class="co-card-title">Emotional Intelligence at Work</h3>
+            <p class="co-card-desc">Understand and develop the self-awareness, empathy, and relational skills that underpin every high-performing professional relationship.</p>
+          </div>
+          <div class="co-card-foot">
+            <div class="co-card-meta">
+              <span class="co-card-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                5-hour session
+              </span>
+            </div>
+            <a href="contact.html?course=emotional-intelligence" class="co-enrol-btn">
+              Enquire
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="co-card co-coming-soon-card" data-cat="other" data-title=""><div class="co-coming-soon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 4L28 16L16 28L4 16Z" stroke="rgba(11,22,41,.2)" stroke-width="1"/><path d="M10 22L16 10L22 22" stroke="rgba(11,22,41,.2)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><line x1="12.5" y1="18.5" x2="19.5" y2="18.5" stroke="rgba(11,22,41,.2)" stroke-width="1.4" stroke-linecap="round"/></svg><span class="co-coming-soon-label">More courses coming</span></div></div>
+        <div class="co-card co-coming-soon-card" data-cat="other" data-title=""><div class="co-coming-soon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 4L28 16L16 28L4 16Z" stroke="rgba(11,22,41,.2)" stroke-width="1"/><path d="M10 22L16 10L22 22" stroke="rgba(11,22,41,.2)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><line x1="12.5" y1="18.5" x2="19.5" y2="18.5" stroke="rgba(11,22,41,.2)" stroke-width="1.4" stroke-linecap="round"/></svg><span class="co-coming-soon-label">More courses coming</span></div></div>
+      </div>
+    </div>
+
+  </div><!-- /co-catalog-inner -->
+</section>
+
+<!-- ─────────────────────── CTA BAND ───────────────────────── -->
+<section class="co-cta">
+  <div class="co-cta-geo" aria-hidden="true">
+    <svg viewBox="0 0 700 700" fill="none">
+      <path d="M70 630L350 70L630 630" stroke="white" stroke-width="1.1" stroke-linecap="round"/>
+      <line x1="196" y1="441" x2="504" y2="441" stroke="white" stroke-width="1.1" stroke-linecap="round"/>
+      <circle cx="350" cy="350" r="280" stroke="white" stroke-width="0.7"/>
+    </svg>
+  </div>
+  <div class="co-cta-inner">
+    <div class="co-cta-rule" data-sr data-sr-delay="0"></div>
+    <h2 class="co-cta-h2" data-sr data-sr-delay="80">
+      Can't find the right course?<br>Let us <em>build it</em> for you.
+    </h2>
+    <p class="co-cta-sub" data-sr data-sr-delay="160">
+      Every program can be customised. Tell us about your team and your goals — we'll design a course that fits your exact situation.
+    </p>
+    <div class="co-cta-actions" data-sr data-sr-delay="240">
+      <a href="contact.html" class="co-btn-emerald">
+        Start a Conversation
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="programs.html" class="co-btn-ghost">
+        Browse Programs
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── FOOTER TRANSITION ─────────────── -->
+<div class="fkp-transition" id="fkpTransition" aria-hidden="true">
+  <div class="fkp-rail">
+    <div class="fkp-arm fkp-arm--left"></div>
+    <div class="fkp-gem">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <path d="M11 1L21 11L11 21L1 11Z" stroke="rgba(245,166,35,.65)" stroke-width="0.8"/>
+        <path d="M8 16L11 8L14 16" stroke="rgba(245,166,35,.65)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="9.2" y1="13.2" x2="12.8" y2="13.2" stroke="rgba(245,166,35,.65)" stroke-width="1" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="fkp-arm fkp-arm--right"></div>
+  </div>
+</div>
+
+<!-- ─────────────────────── FOOTER ─────────────────────────── -->
+<div class="ft-kp-divider" id="ftKpDivider" aria-hidden="true">
+  <div class="ft-kp-line"></div>
+  <span class="ft-kp-gem"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 0.8L15.2 8L8 15.2L0.8 8Z" stroke="rgba(16,185,129,.18)" stroke-width="0.8"/><path d="M8 3.5L12.5 8L8 12.5L3.5 8Z" stroke="rgba(16,185,129,.08)" stroke-width="0.6"/></svg></span>
+  <span class="ft-kp-dot"></span>
+</div>
+<footer class="ft-section" id="siteFooter" aria-label="Site footer">
+  <div class="ft-glow" aria-hidden="true"></div>
+  <div class="ft-container">
+    <div class="ft-main">
+      <div class="ft-brand">
+        <div class="ft-kp-end" aria-hidden="true"></div>
+        <a href="index.html" class="ft-logo-link" aria-label="AcademeKey — home"><img src="assets/img/Academekey logo.png" alt="AcademeKey" class="ft-logo"></a>
+        <p class="ft-tagline">The Key to Success</p>
+      </div>
+      <div class="ft-right">
+        <nav aria-label="Footer navigation"><ul class="ft-nav" role="list">
+          <li><a href="index.html"   class="ft-nav-link">Home</a></li>
+          <li><a href="courses.html" class="ft-nav-link">Courses</a></li>
+          <li><a href="about.html"   class="ft-nav-link">About</a></li>
+          <li><a href="contact.html" class="ft-nav-link">Contact</a></li>
+        </ul></nav>
+        <div class="ft-social" aria-label="Social media">
+          <a href="https://www.linkedin.com/company/academkey/" target="_blank" rel="noopener noreferrer" class="ft-soc" aria-label="AcademeKey on LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="#" class="ft-soc" aria-label="AcademeKey on Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="#" class="ft-soc" aria-label="AcademeKey on Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" class="ft-soc" aria-label="AcademeKey on YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="ft-contact">
+      <div class="ft-contact-item"><span class="ft-contact-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span><span class="ft-contact-text">Email</span></div>
+      <div class="ft-contact-item"><span class="ft-contact-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.16a16 16 0 006.93 6.93l1.42-1.42a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></span><span class="ft-contact-text">Phone</span></div>
+      <div class="ft-contact-item"><span class="ft-contact-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span><span class="ft-contact-text">Address</span></div>
+    </div>
+    <div class="ft-bottom">
+      <div class="ft-bottom-rule"></div>
+      <div class="ft-bottom-row">
+        <p class="ft-copy">&copy; <span id="ftYear">2025</span> AcademeKey</p>
+        <span class="ft-copy-sep" aria-hidden="true">·</span>
+        <p class="ft-copy">The Key to Success</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+
+<script>
+/* ── Course catalog interactions ────────────────────────────── */
+(function () {
+  const NO_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Card stagger reveal */
+  const cards = document.querySelectorAll('.co-card');
+  if (NO_MOTION) {
+    cards.forEach(c => c.classList.add('card-in'));
+  } else {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(({ isIntersecting, target }, i) => {
+        if (!isIntersecting) return;
+        const siblings = [...target.parentElement.children];
+        const idx = siblings.indexOf(target);
+        setTimeout(() => target.classList.add('card-in'), idx * 80);
+        io.unobserve(target);
+      });
+    }, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
+    cards.forEach(c => io.observe(c));
+  }
+
+  /* Filter */
+  window.filterCourses = function (cat, btn) {
+    /* Update button state */
+    document.querySelectorAll('.co-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const categories = document.querySelectorAll('.co-category');
+    categories.forEach(catEl => {
+      if (cat === 'all' || catEl.dataset.category === cat) {
+        catEl.style.display = '';
+      } else {
+        catEl.style.display = 'none';
+      }
+    });
+
+    /* Scroll filter into view */
+    document.querySelector('.co-catalog').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  /* Search */
+  window.runSearch = function () {
+    const q = document.getElementById('courseSearch').value.trim().toLowerCase();
+    if (!q) { filterCourses('all', document.querySelector('[data-filter="all"]')); return; }
+
+    /* Reset filter buttons */
+    document.querySelectorAll('.co-filter-btn').forEach(b => b.classList.remove('active'));
+
+    let found = 0;
+    document.querySelectorAll('.co-category').forEach(catEl => {
+      catEl.style.display = '';
+      const catCards = catEl.querySelectorAll('.co-card');
+      let catFound = 0;
+      catCards.forEach(card => {
+        const title = (card.dataset.title || '').toLowerCase();
+        const cat   = (card.dataset.cat  || '').toLowerCase();
+        const body  = card.querySelector('.co-card-desc')?.textContent?.toLowerCase() || '';
+        const match = title.includes(q) || cat.includes(q) || body.includes(q);
+        card.style.display = match ? '' : 'none';
+        if (match) { catFound++; found++; }
+      });
+      /* Hide empty categories */
+      const comingCards = catEl.querySelectorAll('.co-coming-soon-card');
+      comingCards.forEach(c => c.style.display = catFound > 0 ? '' : 'none');
+      catEl.style.display = catFound > 0 ? '' : 'none';
+    });
+
+    document.getElementById('emptyState').classList.toggle('visible', found === 0);
+    document.querySelector('.co-catalog').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  /* Enter key triggers search */
+  document.getElementById('courseSearch')?.addEventListener('keydown', e => {
+    if (e.key === 'Enter') runSearch();
+  });
+
+  /* Pre-fill search from URL ?q= param (e.g. from homepage search) */
+  (function () {
+    var q = new URLSearchParams(window.location.search).get('q');
+    if (!q) return;
+    var inp = document.getElementById('courseSearch');
+    if (inp) { inp.value = q; runSearch(); }
+  })();
+
+  /* Clear search resets */
+  document.getElementById('courseSearch')?.addEventListener('search', e => {
+    if (!e.target.value) filterCourses('all', document.querySelector('[data-filter="all"]'));
+  });
+
+})();
+</script>
+
+<script src="js/motion.js"></script>
+</body>
+</html>

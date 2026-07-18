@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Formats — AcademeKey</title>
+  <meta name="description" content="Five ways to experience AcademeKey: Classroom, Virtual Live, Onsite Workshops, 1-on-1 Coaching, and Group Sessions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    /* ── HERO ────────────────────────────────────────────────────────── */
+    .lf-hero { background:#071A33; padding:200px 0 140px; position:relative; overflow:hidden; }
+    .lf-hero-geo { position:absolute; right:-80px; top:50%; transform:translateY(-50%); width:660px; height:660px; opacity:0.022; pointer-events:none; }
+    .lf-hero-geo svg { width:100%; height:100%; }
+    .lf-hero-inner { max-width:1320px; margin:0 auto; padding:0 40px; position:relative; z-index:1; }
+    .lf-hero-label { display:inline-flex; align-items:center; gap:14px; font-size:10px; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; color:rgba(245,166,35,.72); margin-bottom:28px; }
+    .lf-hero-label::before { content:''; width:28px; height:1px; background:rgba(245,166,35,.4); }
+    .lf-hero-h1 { font-size:clamp(52px,6.5vw,92px); font-weight:900; letter-spacing:-4px; line-height:0.88; color:#fff; }
+    .lf-hero-h1 em { color:#F5A623; font-style:normal; }
+    .lf-hero-sub { font-size:17px; color:rgba(255,255,255,.45); line-height:1.75; max-width:520px; margin-top:36px; }
+
+    /* ── INTRO ───────────────────────────────────────────────────────── */
+    .lf-intro { background:#fff; padding:140px 0 100px; }
+    .lf-intro-inner { max-width:1320px; margin:0 auto; padding:0 40px; display:grid; grid-template-columns:280px 1fr; gap:80px; align-items:start; }
+    .lf-intro-rule { width:40px; height:1.5px; background:#F5A623; margin-bottom:20px; }
+    .lf-intro-note { font-size:12px; line-height:1.75; color:rgba(11,22,41,.36); letter-spacing:0.02em; }
+    .lf-intro-quote { font-size:clamp(22px,2.5vw,32px); font-weight:700; letter-spacing:-1px; line-height:1.35; color:#0B1629; }
+    .lf-intro-quote em { color:#F5A623; font-style:normal; }
+
+    /* ── FORMATS — alternating sections ─────────────────────────────── */
+    .lf-fmt { padding:120px 0; }
+    .lf-fmt:nth-child(even) { background:#F4F4F2; }
+    .lf-fmt:nth-child(odd) { background:#fff; }
+    .lf-fmt-inner { max-width:1320px; margin:0 auto; padding:0 40px; display:grid; grid-template-columns:1fr 1fr; gap:100px; align-items:center; }
+    .lf-fmt-inner--rev { direction:rtl; }
+    .lf-fmt-inner--rev > * { direction:ltr; }
+    .lf-fmt-img-wrap { position:relative; border-radius:28px; overflow:hidden; }
+    .lf-fmt-img-wrap img { width:100%; height:480px; object-fit:cover; display:block; }
+    .lf-fmt-img-wrap::after { content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(7,26,51,.3) 0%, transparent 60%); }
+    .lf-fmt-num { font-size:10px; font-weight:700; letter-spacing:0.2em; color:rgba(245,166,35,.6); text-transform:uppercase; margin-bottom:14px; }
+    .lf-fmt-title { font-size:clamp(26px,3vw,40px); font-weight:800; letter-spacing:-1.5px; color:#0B1629; line-height:1.05; margin-bottom:20px; }
+    .lf-fmt-desc { font-size:15px; line-height:1.85; color:rgba(11,22,41,.55); margin-bottom:32px; }
+    .lf-fmt-tags { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:36px; }
+    .lf-fmt-tag { background:rgba(245,150,31,.08); border:1px solid rgba(245,150,31,.2); border-radius:100px; padding:5px 14px; font-size:12px; font-weight:500; color:#F5961F; }
+    .lf-fmt-rule { width:40px; height:1.5px; background:#F5A623; margin-bottom:24px; }
+
+    /* ── COMPARISON TABLE ────────────────────────────────────────────── */
+    .lf-compare { background:#071A33; padding:140px 0; }
+    .lf-compare-inner { max-width:1320px; margin:0 auto; padding:0 40px; }
+    .lf-compare-header { margin-bottom:60px; }
+    .lf-compare-title { font-size:clamp(28px,3.2vw,44px); font-weight:800; letter-spacing:-1.5px; color:#fff; line-height:1.05; margin-top:14px; }
+    .lf-table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+    .lf-table { width:100%; border-collapse:collapse; }
+    .lf-table th { font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,.28); padding:0 20px 16px; text-align:left; border-bottom:1px solid rgba(255,255,255,.07); white-space:nowrap; }
+    .lf-table th:first-child { padding-left:0; }
+    .lf-table td { padding:20px 20px; font-size:14px; color:rgba(255,255,255,.55); border-bottom:1px solid rgba(255,255,255,.05); vertical-align:middle; white-space:nowrap; }
+    .lf-table td:first-child { padding-left:0; font-weight:600; color:rgba(255,255,255,.85); white-space:normal; min-width:160px; }
+    .lf-table .lf-check { color:#F5A623; }
+    .lf-table .lf-dash { color:rgba(255,255,255,.15); }
+    .lf-table tr:last-child td { border-bottom:none; }
+
+    /* ── CTA ─────────────────────────────────────────────────────────── */
+    .lf-cta { background:#fff; padding:160px 0; text-align:center; }
+    .lf-cta-inner { max-width:680px; margin:0 auto; padding:0 40px; }
+    .lf-cta-h2 { font-size:clamp(28px,3.5vw,48px); font-weight:800; letter-spacing:-2px; color:#0B1629; line-height:1.05; margin-bottom:20px; }
+    .lf-cta-sub { font-size:16px; color:rgba(11,22,41,.5); line-height:1.75; margin-bottom:44px; }
+
+    @media (max-width:1024px) {
+      .lf-fmt-inner, .lf-fmt-inner--rev, .lf-intro-inner { grid-template-columns:1fr; gap:48px; direction:ltr; }
+      .lf-fmt-img-wrap img { height:360px; }
+    }
+    @media (max-width:640px) {
+      .lf-hero { padding:140px 0 100px; }
+      .lf-table th, .lf-table td { font-size:12px; padding:14px 12px; }
+    }
+  </style>
+</head>
+<body>
+<div id="pageVeil"></div>
+<div id="readProgress"></div>
+
+<!-- HEADER -->
+<header id="mainHeader">
+  <div id="navKPath" aria-hidden="true"></div>
+  <div class="nav-floater">
+    <a href="index.html" class="nav-logo" aria-label="AcademeKey — The Key to Success">
+      <div class="nav-logo-mark"><svg width="38" height="38" viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#F5961F"/><path d="M10 31L20 10L30 31" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="14.5" y1="24.5" x2="25.5" y2="24.5" stroke="white" stroke-width="3.5" stroke-linecap="round"/></svg></div>
+      <div class="nav-logo-text"><span class="nav-wordmark">Academe<em>Key</em></span><span class="nav-tagline">The Key to Success</span></div>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+      <a href="courses.html">Courses</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="courses.html" class="nav-cta-btn" aria-label="Browse our courses">Browse Courses <svg class="cta-arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
+    <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu" aria-hidden="true">
+  <div class="mob-inner">
+    <div class="mob-header"><div class="nav-logo-mark"><svg width="34" height="34" viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#F5961F"/><path d="M10 31L20 10L30 31" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="14.5" y1="24.5" x2="25.5" y2="24.5" stroke="white" stroke-width="3.5" stroke-linecap="round"/></svg></div></div>
+    <nav class="mob-nav" aria-label="Mobile navigation">
+      <a href="index.html" class="mob-link">Home</a>
+      <a href="courses.html" class="mob-link">Courses</a>
+      <a href="about.html" class="mob-link">About</a>
+      <a href="contact.html" class="mob-link">Contact</a>
+    </nav>
+    <div class="mob-cta-wrap">
+      <a href="courses.html" class="mob-cta-btn">Browse Courses <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="lf-hero">
+  <div class="lf-hero-geo" aria-hidden="true"><svg viewBox="0 0 600 600" fill="none"><path d="M60 540L300 60L540 540" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="168" y1="390" x2="432" y2="390" stroke="white" stroke-width="1.5" stroke-linecap="round"/><circle cx="300" cy="300" r="240" stroke="white" stroke-width="1"/></svg></div>
+  <div class="lf-hero-inner">
+    <div class="lf-hero-label" data-sr data-sr-delay="0">Learning Formats</div>
+    <h1 class="lf-hero-h1" data-sr data-sr-delay="80">Five ways to<br>learn with<br><em>AcademeKey.</em></h1>
+    <p class="lf-hero-sub" data-sr data-sr-delay="200">Same programs. Same facilitators. Same standard. The format changes to fit your team — not the other way around.</p>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="lf-intro">
+  <div class="lf-intro-inner">
+    <div data-sr data-sr-delay="0">
+      <div class="lf-intro-rule"></div>
+      <p class="lf-intro-note">Why format matters as<br>much as content.</p>
+    </div>
+    <blockquote class="lf-intro-quote" data-sr data-sr-delay="100">
+      The right content delivered in the wrong format creates friction. We offer five delivery modes so your team can learn in the way that works best for them — without compromising depth, quality, or <em>impact.</em>
+    </blockquote>
+  </div>
+</section>
+
+<!-- FORMAT 01 — Classroom -->
+<section class="lf-fmt" id="classroom">
+  <div class="lf-fmt-inner">
+    <div class="lf-fmt-img-wrap" data-sr data-sr-delay="0" data-sweep>
+      <img src="assets/img/03_Classroom_Training.png.png" alt="Classroom Training">
+    </div>
+    <div>
+      <div class="lf-fmt-rule" data-sr data-sr-delay="0"></div>
+      <div class="lf-fmt-num" data-sr data-sr-delay="40">Format 01</div>
+      <h2 class="lf-fmt-title" data-sr data-sr-delay="80">Classroom<br>Training</h2>
+      <p class="lf-fmt-desc" data-sr data-sr-delay="140">The original learning environment — for a reason. Classroom training puts participants together in a shared space, creating the conditions for real-time collaboration, live practice, and the kind of peer learning that happens when people are fully present with each other.</p>
+      <div class="lf-fmt-tags" data-sr data-sr-delay="180">
+        <span class="lf-fmt-tag">In-person</span>
+        <span class="lf-fmt-tag">5-hour or 8-hour sessions</span>
+        <span class="lf-fmt-tag">Group dynamics</span>
+        <span class="lf-fmt-tag">Hands-on activities</span>
+      </div>
+      <a href="contact.html" class="ak-btn ak-btn--secondary" data-sr data-sr-delay="220">Book Classroom Training <span class="ak-btn-arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FORMAT 02 — Virtual -->
+<section class="lf-fmt" id="virtual">
+  <div class="lf-fmt-inner lf-fmt-inner--rev">
+    <div class="lf-fmt-img-wrap" data-sr data-sr-delay="0" data-sweep>
+      <img src="assets/img/05_Virtual_Sessions.png.png" alt="Virtual Live Sessions">
+    </div>
+    <div>
+      <div class="lf-fmt-rule" data-sr data-sr-delay="0"></div>
+      <div class="lf-fmt-num" data-sr data-sr-delay="40">Format 02</div>
+      <h2 class="lf-fmt-title" data-sr data-sr-delay="80">Virtual<br>Live Sessions</h2>
+      <p class="lf-fmt-desc" data-sr data-sr-delay="140">Not a recording. Not a slide deck emailed over. Virtual Live Sessions are exactly what they sound like — live facilitation, real-time interaction, and active learning, delivered through a screen that doesn't reduce the quality of the experience.</p>
+      <div class="lf-fmt-tags" data-sr data-sr-delay="180">
+        <span class="lf-fmt-tag">Remote-friendly</span>
+        <span class="lf-fmt-tag">Live facilitator</span>
+        <span class="lf-fmt-tag">Interactive</span>
+        <span class="lf-fmt-tag">5-hour or 8-hour sessions</span>
+      </div>
+      <a href="contact.html" class="ak-btn ak-btn--secondary" data-sr data-sr-delay="220">Book Virtual Session <span class="ak-btn-arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FORMAT 03 — Onsite -->
+<section class="lf-fmt" id="onsite">
+  <div class="lf-fmt-inner">
+    <div class="lf-fmt-img-wrap" data-sr data-sr-delay="0" data-sweep>
+      <img src="assets/img/06_Project_Management.png.png" alt="Customized Onsite Workshops">
+    </div>
+    <div>
+      <div class="lf-fmt-rule" data-sr data-sr-delay="0"></div>
+      <div class="lf-fmt-num" data-sr data-sr-delay="40">Format 03</div>
+      <h2 class="lf-fmt-title" data-sr data-sr-delay="80">Customized<br>Onsite Workshops</h2>
+      <p class="lf-fmt-desc" data-sr data-sr-delay="140">We come to you. Onsite workshops bring the training directly into your workplace — which means content can be tailored to your specific environment, your actual challenges, and your team's real dynamics. No decontextualized case studies. Real relevance.</p>
+      <div class="lf-fmt-tags" data-sr data-sr-delay="180">
+        <span class="lf-fmt-tag">At your location</span>
+        <span class="lf-fmt-tag">Fully customized</span>
+        <span class="lf-fmt-tag">Context-specific</span>
+        <span class="lf-fmt-tag">Team-wide impact</span>
+      </div>
+      <a href="contact.html" class="ak-btn ak-btn--secondary" data-sr data-sr-delay="220">Request Onsite Workshop <span class="ak-btn-arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FORMAT 04 — 1-on-1 -->
+<section class="lf-fmt" id="one-on-one">
+  <div class="lf-fmt-inner lf-fmt-inner--rev">
+    <div class="lf-fmt-img-wrap" data-sr data-sr-delay="0" data-sweep>
+      <img src="assets/img/08_HR_Training.png.png" alt="1-on-1 Coaching">
+    </div>
+    <div>
+      <div class="lf-fmt-rule" data-sr data-sr-delay="0"></div>
+      <div class="lf-fmt-num" data-sr data-sr-delay="40">Format 04</div>
+      <h2 class="lf-fmt-title" data-sr data-sr-delay="80">1-on-1<br>Coaching Sessions</h2>
+      <p class="lf-fmt-desc" data-sr data-sr-delay="140">Some development is too personal for a group. Our 1-on-1 coaching sessions give individuals dedicated time with a skilled facilitator to work through specific challenges, build particular skills, and develop at their own pace — with full attention, no distractions.</p>
+      <div class="lf-fmt-tags" data-sr data-sr-delay="180">
+        <span class="lf-fmt-tag">Individual focus</span>
+        <span class="lf-fmt-tag">Personal pace</span>
+        <span class="lf-fmt-tag">Deep skill-building</span>
+        <span class="lf-fmt-tag">Leadership development</span>
+      </div>
+      <a href="contact.html" class="ak-btn ak-btn--secondary" data-sr data-sr-delay="220">Book Coaching Session <span class="ak-btn-arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FORMAT 05 — Group -->
+<section class="lf-fmt" id="group">
+  <div class="lf-fmt-inner">
+    <div class="lf-fmt-img-wrap" data-sr data-sr-delay="0" data-sweep>
+      <img src="assets/img/07_Sales_Training.png.png" alt="Group Sessions">
+    </div>
+    <div>
+      <div class="lf-fmt-rule" data-sr data-sr-delay="0"></div>
+      <div class="lf-fmt-num" data-sr data-sr-delay="40">Format 05</div>
+      <h2 class="lf-fmt-title" data-sr data-sr-delay="80">Group<br>Sessions</h2>
+      <p class="lf-fmt-desc" data-sr data-sr-delay="140">Designed for teams who want to grow together. Group sessions create shared language, aligned thinking, and collective capability-building — so that when participants return to the workplace, they're working from the same foundation. Cohesion through learning.</p>
+      <div class="lf-fmt-tags" data-sr data-sr-delay="180">
+        <span class="lf-fmt-tag">Team cohesion</span>
+        <span class="lf-fmt-tag">Shared language</span>
+        <span class="lf-fmt-tag">Collaborative</span>
+        <span class="lf-fmt-tag">5-hour or 8-hour sessions</span>
+      </div>
+      <a href="contact.html" class="ak-btn ak-btn--secondary" data-sr data-sr-delay="220">Book Group Session <span class="ak-btn-arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="lf-compare">
+  <div class="lf-compare-inner">
+    <div class="lf-compare-header">
+      <span class="ak-label ak-label--inv" data-sr data-sr-delay="0">At a Glance</span>
+      <h2 class="lf-compare-title" data-sr data-sr-delay="80">Compare formats.</h2>
+    </div>
+    <div class="lf-table-wrap" data-sr data-sr-delay="140">
+      <table class="lf-table">
+        <thead>
+          <tr>
+            <th>Format</th>
+            <th>In-person</th>
+            <th>Remote</th>
+            <th>Customizable</th>
+            <th>5-hr option</th>
+            <th>8-hr option</th>
+            <th>Individual</th>
+            <th>Team</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Classroom Training</td>
+            <td class="lf-check">✓</td>
+            <td class="lf-dash">—</td>
+            <td class="lf-check">✓</td>
+            <td class="lf-check">✓</td>
+            <td class="lf-check">✓</td>
+            <td class="lf-dash">—</td>
+            <td class="lf-check">✓</td>
+          </tr>
+          <tr>
+            <td>Virtual Live Sessions</td>
+            <td class="lf-dash">—</td>
+            <td class="lf-check">✓</td>
+            <td class="lf-check">✓</td>
+            <td class="lf-check">✓</td>
+            <td class="lf-check">✓</td>
+            <td class="lf-dash">—</td>
+            <td class="lf-check">✓</td>
+          </tr>
+          <tr>
+            <td>Onsite Workshops</td>
+            <td class="lf-check">✓</td>
+            <td class="lf-dash">—</td>
+            <td class="lf-check">✓</td>
+            <td class="lf-check">✓</td>
+            <td class="lf-check">✓</td>
+            <td class="lf-dash">—</td>
+            <td class="lf-check">✓</td>
+          </tr>
+          <tr>
+            <td>1-on-1 Coaching</td>
+            <td class="lf-check">✓</td>
+            <td class="lf-check">✓</td>
+            <td class="lf-check">✓</td>
+            <td class="lf-check">✓</td>
+            <td class="lf-check">✓</td>
+            <td class="lf-check">✓</td>
+            <td class="lf-dash">—</td>
+          </tr>
+          <tr>
+            <td>Group Sessions</td>
+            <td class="lf-check">✓</td>
+            <td class="lf-check">✓</td>
+            <td class="lf-check">✓</td>
+            <td class="lf-check">✓</td>
+            <td class="lf-check">✓</td>
+            <td class="lf-dash">—</td>
+            <td class="lf-check">✓</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="lf-cta">
+  <div class="lf-cta-inner">
+    <span class="ak-label" data-sr data-sr-delay="0">Next Step</span>
+    <h2 class="lf-cta-h2" data-sr data-sr-delay="80">Not sure which format<br>is right for your team?</h2>
+    <p class="lf-cta-sub" data-sr data-sr-delay="160">Tell us about your team and your goals. We'll recommend the format — or the combination of formats — that will create the most impact for your specific situation.</p>
+    <a href="contact.html" class="ak-btn ak-btn--primary" data-sr data-sr-delay="240">Talk to Us <span class="ak-btn-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+  </div>
+</section>
+
+<!-- FOOTER TRANSITION -->
+<div class="fkp-transition" id="fkpTransition" aria-hidden="true">
+  <div class="fkp-rail">
+    <div class="fkp-arm fkp-arm--left"></div>
+    <div class="fkp-gem"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 1L21 11L11 21L1 11Z" stroke="rgba(245,166,35,.65)" stroke-width="0.8"/><path d="M8 16L11 8L14 16" stroke="rgba(245,166,35,.65)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><line x1="9.2" y1="13.2" x2="12.8" y2="13.2" stroke="rgba(245,166,35,.65)" stroke-width="1" stroke-linecap="round"/></svg></div>
+    <div class="fkp-arm fkp-arm--right"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="ft-kp-divider" id="ftKpDivider" aria-hidden="true">
+  <div class="ft-kp-line"></div>
+  <span class="ft-kp-gem"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 0.8L15.2 8L8 15.2L0.8 8Z" stroke="rgba(16,185,129,.18)" stroke-width="0.8"/><path d="M8 3.5L12.5 8L8 12.5L3.5 8Z" stroke="rgba(16,185,129,.08)" stroke-width="0.6"/></svg></span>
+  <span class="ft-kp-dot"></span>
+</div>
+<footer class="ft-section" id="siteFooter" aria-label="Site footer">
+  <div class="ft-glow" aria-hidden="true"></div>
+  <div class="ft-container">
+    <div class="ft-main">
+      <div class="ft-brand">
+        <div class="ft-kp-end" aria-hidden="true"></div>
+        <a href="index.html" class="ft-logo-link" aria-label="AcademeKey — home"><img src="assets/img/Academekey logo.png" alt="AcademeKey" class="ft-logo"></a>
+        <p class="ft-tagline">The Key to Success</p>
+      </div>
+      <div class="ft-right">
+        <nav aria-label="Footer navigation"><ul class="ft-nav" role="list">
+          <li><a href="index.html"   class="ft-nav-link">Home</a></li>
+          <li><a href="courses.html" class="ft-nav-link">Courses</a></li>
+          <li><a href="about.html"   class="ft-nav-link">About</a></li>
+          <li><a href="contact.html" class="ft-nav-link">Contact</a></li>
+        </ul></nav>
+        <div class="ft-social" aria-label="Social media">
+          <a href="https://www.linkedin.com/company/academkey/" target="_blank" rel="noopener noreferrer" class="ft-soc" aria-label="AcademeKey on LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="#" class="ft-soc" aria-label="AcademeKey on Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="#" class="ft-soc" aria-label="AcademeKey on Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" class="ft-soc" aria-label="AcademeKey on YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="ft-contact">
+      <div class="ft-contact-item"><span class="ft-contact-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span><span class="ft-contact-text">Email</span></div>
+      <div class="ft-contact-item"><span class="ft-contact-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.16a16 16 0 006.93 6.93l1.42-1.42a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></span><span class="ft-contact-text">Phone</span></div>
+      <div class="ft-contact-item"><span class="ft-contact-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span><span class="ft-contact-text">Address</span></div>
+    </div>
+    <div class="ft-bottom">
+      <div class="ft-bottom-rule"></div>
+      <div class="ft-bottom-row">
+        <p class="ft-copy">&copy; <span id="ftYear">2025</span> AcademeKey</p>
+        <span class="ft-copy-sep" aria-hidden="true">·</span>
+        <p class="ft-copy">The Key to Success</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/motion.js"></script>
+</body>
+</html>

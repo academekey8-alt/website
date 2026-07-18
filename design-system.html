@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design System — AcademeKey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    /* ── Page chrome ── */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--ak-font); background: var(--ak-white); color: var(--ak-navy); -webkit-font-smoothing: antialiased; }
+
+    /* Sticky sidebar nav */
+    .ds-layout { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
+    .ds-sidebar {
+      position: sticky; top: 0; height: 100vh; overflow-y: auto;
+      background: var(--ak-navy-dark); padding: 40px 0;
+      scrollbar-width: none;
+    }
+    .ds-sidebar::-webkit-scrollbar { display: none; }
+    .ds-sidebar-logo {
+      padding: 0 24px 32px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      margin-bottom: 24px;
+    }
+    .ds-sidebar-logo img { height: 36px; width: auto; }
+    .ds-sidebar-title {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: rgba(255,255,255,.22);
+      padding: 0 24px 12px;
+    }
+    .ds-sidebar-link {
+      display: block; padding: 9px 24px;
+      font-size: 13px; font-weight: 500;
+      color: rgba(255,255,255,.45);
+      text-decoration: none;
+      transition: color 160ms ease, background 160ms ease;
+      border-left: 2px solid transparent;
+    }
+    .ds-sidebar-link:hover { color: rgba(255,255,255,.85); background: rgba(255,255,255,.04); }
+    .ds-sidebar-link.active { color: var(--ak-gold); border-left-color: var(--ak-gold); background: rgba(245,166,35,.04); }
+
+    /* Main content */
+    .ds-main { padding: 80px 80px 120px; max-width: 1100px; }
+
+    /* Section header */
+    .ds-section { margin-bottom: 100px; }
+    .ds-section-title {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--ak-gold);
+      margin-bottom: 8px;
+    }
+    .ds-section-heading {
+      font-size: 32px; font-weight: 800; letter-spacing: -1.5px;
+      color: var(--ak-navy); margin-bottom: 12px; line-height: 1.1;
+    }
+    .ds-section-desc {
+      font-size: 14px; line-height: 1.75; color: var(--ak-gray-700);
+      max-width: 560px; margin-bottom: 48px;
+    }
+    .ds-section-rule {
+      height: 1px; background: rgba(11,22,41,.07);
+      margin-bottom: 48px;
+    }
+
+    /* Component frame */
+    .ds-frame {
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .ds-frame--white { background: #fff; padding: 48px; border: 1px solid rgba(11,22,41,.06); }
+    .ds-frame--gray  { background: var(--ak-gray-100); padding: 48px; }
+    .ds-frame--navy  { background: var(--ak-navy-deep); padding: 48px; }
+    .ds-frame--dark  { background: var(--ak-navy-dark); padding: 48px; }
+    .ds-frame-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--ak-gray-500);
+      margin-bottom: 6px;
+    }
+
+    /* Row helpers */
+    .ds-row { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 20px; }
+    .ds-row--top { align-items: flex-start; }
+    .ds-col-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .ds-col-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .ds-col-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+    /* Color swatch */
+    .ds-swatch { border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+    .ds-swatch-color { height: 72px; }
+    .ds-swatch-info { background: #fff; padding: 10px 14px; border-top: 1px solid rgba(0,0,0,.05); }
+    .ds-swatch-name { font-size: 12px; font-weight: 600; color: var(--ak-navy); }
+    .ds-swatch-hex  { font-size: 11px; color: var(--ak-gray-500); font-family: 'SF Mono', monospace; margin-top: 2px; }
+
+    /* Type specimen */
+    .ds-type-row {
+      display: flex; align-items: baseline; gap: 24px;
+      padding: 20px 0; border-bottom: 1px solid rgba(11,22,41,.06);
+    }
+    .ds-type-row:last-child { border-bottom: none; }
+    .ds-type-label { width: 80px; flex-shrink: 0; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ak-gray-500); }
+    .ds-type-meta  { width: 130px; flex-shrink: 0; font-size: 11px; color: var(--ak-gray-500); font-family: 'SF Mono', monospace; }
+
+    /* Shadow demo */
+    .ds-shadow-box {
+      background: #fff; border-radius: 16px; padding: 28px;
+      text-align: center; font-size: 12px; font-weight: 600;
+      color: var(--ak-gray-500); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+
+    /* Radius demo */
+    .ds-radius-box {
+      background: var(--ak-gray-100); padding: 28px;
+      text-align: center; font-size: 12px; font-weight: 600;
+      color: var(--ak-gray-500); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+
+    /* Icon grid */
+    .ds-icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px; }
+    .ds-icon-cell {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 10px; padding: 20px 12px; border-radius: 14px;
+      background: var(--ak-gray-100); text-align: center;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--ak-gray-500);
+      transition: background 180ms ease;
+    }
+    .ds-icon-cell:hover { background: var(--ak-gold-pale); }
+
+    /* Spacing demo */
+    .ds-space-row { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+    .ds-space-bar  { background: var(--ak-gold); height: 12px; border-radius: 4px; }
+    .ds-space-label { font-size: 11px; font-family: 'SF Mono', monospace; color: var(--ak-gray-500); white-space: nowrap; }
+
+    /* Page title */
+    .ds-hero {
+      background: var(--ak-navy-dark);
+      padding: 72px 80px 64px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .ds-hero-eyebrow {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--ak-gold); margin-bottom: 16px;
+    }
+    .ds-hero-title {
+      font-size: clamp(40px, 5vw, 64px); font-weight: 900;
+      letter-spacing: -3px; line-height: 0.95; color: #fff;
+      margin-bottom: 20px;
+    }
+    .ds-hero-sub {
+      font-size: 15px; color: rgba(255,255,255,.44); line-height: 1.7; max-width: 480px;
+    }
+    .ds-hero-meta {
+      display: flex; gap: 32px; margin-top: 36px;
+    }
+    .ds-hero-meta-item { font-size: 11px; color: rgba(255,255,255,.26); letter-spacing: 0.06em; }
+    .ds-hero-meta-val  { font-size: 18px; font-weight: 800; color: rgba(255,255,255,.7); display: block; margin-bottom: 2px; }
+
+    @media (max-width: 900px) {
+      .ds-layout { grid-template-columns: 1fr; }
+      .ds-sidebar { display: none; }
+      .ds-main { padding: 40px 24px 80px; }
+      .ds-hero { padding: 48px 24px; }
+      .ds-col-2, .ds-col-3, .ds-col-4 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="ds-layout">
+
+  <!-- ─── Sidebar navigation ─── -->
+  <aside class="ds-sidebar">
+    <div class="ds-sidebar-logo">
+      <img src="assets/img/Academekey logo.png" alt="AcademeKey">
+    </div>
+    <div class="ds-sidebar-title">Design System</div>
+    <a href="#tokens"      class="ds-sidebar-link active">Design Tokens</a>
+    <a href="#typography"  class="ds-sidebar-link">Typography</a>
+    <a href="#buttons"     class="ds-sidebar-link">Buttons</a>
+    <a href="#cards"       class="ds-sidebar-link">Cards</a>
+    <a href="#forms"       class="ds-sidebar-link">Forms & Inputs</a>
+    <a href="#dropdowns"   class="ds-sidebar-link">Dropdowns</a>
+    <a href="#badges"      class="ds-sidebar-link">Badges</a>
+    <a href="#icons"       class="ds-sidebar-link">Icon System</a>
+    <a href="#dividers"    class="ds-sidebar-link">Dividers</a>
+    <a href="#alerts"      class="ds-sidebar-link">Alerts</a>
+    <a href="#steps"       class="ds-sidebar-link">Progress & Steps</a>
+    <a href="#shadows"     class="ds-sidebar-link">Shadows & Radius</a>
+    <a href="#spacing"     class="ds-sidebar-link">Spacing</a>
+    <a href="#backgrounds" class="ds-sidebar-link">Backgrounds</a>
+  </aside>
+
+  <!-- ─── Main content ─── -->
+  <div>
+
+    <!-- Hero -->
+    <div class="ds-hero">
+      <div class="ds-hero-eyebrow">AcademeKey</div>
+      <h1 class="ds-hero-title">Design System<br><em style="color:var(--ak-gold);font-style:normal">v1.0</em></h1>
+      <p class="ds-hero-sub">A complete library of tokens, components, and patterns. Every element handcrafted for luxury editorial precision.</p>
+      <div class="ds-hero-meta">
+        <div class="ds-hero-meta-item"><span class="ds-hero-meta-val">17</span>Components</div>
+        <div class="ds-hero-meta-item"><span class="ds-hero-meta-val">60+</span>Variants</div>
+        <div class="ds-hero-meta-item"><span class="ds-hero-meta-val">Inter</span>Typeface</div>
+        <div class="ds-hero-meta-item"><span class="ds-hero-meta-val">.ak-</span>Prefix</div>
+      </div>
+    </div>
+
+    <div class="ds-main">
+
+      <!-- ═══════════════════════ DESIGN TOKENS ═══════════════════════ -->
+      <section class="ds-section" id="tokens">
+        <div class="ds-section-title">01 — Foundation</div>
+        <h2 class="ds-section-heading">Design Tokens</h2>
+        <p class="ds-section-desc">All values are defined as CSS custom properties under the <code style="font-size:13px;background:var(--ak-gray-100);padding:2px 7px;border-radius:5px">:root</code> scope with the <strong>--ak-</strong> prefix. Change a token and it propagates everywhere.</p>
+        <div class="ds-section-rule"></div>
+
+        <!-- Colors -->
+        <div class="ds-frame-label">Color Palette</div>
+        <div class="ds-col-4" style="margin-bottom:40px">
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background:#0B1629"></div>
+            <div class="ds-swatch-info"><div class="ds-swatch-name">Navy</div><div class="ds-swatch-hex">--ak-navy / #0B1629</div></div>
+          </div>
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background:#071A33"></div>
+            <div class="ds-swatch-info"><div class="ds-swatch-name">Navy Deep</div><div class="ds-swatch-hex">--ak-navy-deep / #071A33</div></div>
+          </div>
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background:#060F1E"></div>
+            <div class="ds-swatch-info"><div class="ds-swatch-name">Navy Dark</div><div class="ds-swatch-hex">--ak-navy-dark / #060F1E</div></div>
+          </div>
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background:#F5A623"></div>
+            <div class="ds-swatch-info"><div class="ds-swatch-name">Gold</div><div class="ds-swatch-hex">--ak-gold / #F5A623</div></div>
+          </div>
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background:#F5961F"></div>
+            <div class="ds-swatch-info"><div class="ds-swatch-name">Gold Warm</div><div class="ds-swatch-hex">--ak-gold-warm / #F5961F</div></div>
+          </div>
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background:#F8F8F6;border:1px solid #e8e8e4"></div>
+            <div class="ds-swatch-info"><div class="ds-swatch-name">Off White</div><div class="ds-swatch-hex">--ak-off-white / #F8F8F6</div></div>
+          </div>
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background:#F4F4F2;border:1px solid #e8e8e4"></div>
+            <div class="ds-swatch-info"><div class="ds-swatch-name">Gray 100</div><div class="ds-swatch-hex">--ak-gray-100 / #F4F4F2</div></div>
+          </div>
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background:#8A8F9B"></div>
+            <div class="ds-swatch-info"><div class="ds-swatch-name">Gray 500</div><div class="ds-swatch-hex">--ak-gray-500 / #8A8F9B</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════ TYPOGRAPHY ═══════════════════════ -->
+      <section class="ds-section" id="typography">
+        <div class="ds-section-title">02 — Typography</div>
+        <h2 class="ds-section-heading">Type System</h2>
+        <p class="ds-section-desc">Inter at optical kerning. Editorial weight contrast. Maximum heading width three lines. Body text capped at 620px for comfortable reading.</p>
+        <div class="ds-section-rule"></div>
+
+        <div class="ds-frame ds-frame--white" style="margin-bottom:32px">
+          <div class="ds-type-row">
+            <span class="ds-type-label">Display</span>
+            <span class="ds-type-meta">900 / –3.5px / 0.88lh</span>
+            <span style="font-size:clamp(52px,7vw,80px);font-weight:900;letter-spacing:-3.5px;line-height:.9;color:var(--ak-navy)">Learn.</span>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-type-label">H1</span>
+            <span class="ds-type-meta">800 / –2.5px / 1.05lh</span>
+            <span class="ak-h1">Grow. Succeed.</span>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-type-label">H2</span>
+            <span class="ds-type-meta">800 / –2px / 1.02lh</span>
+            <span class="ak-h2">Professional Development</span>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-type-label">H3</span>
+            <span class="ds-type-meta">700 / –1.5px / 1.2lh</span>
+            <span class="ak-h3">Leadership & Management</span>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-type-label">H4</span>
+            <span class="ds-type-meta">700 / –0.4px / 1.25lh</span>
+            <span class="ak-h4">Experienced Trainers</span>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-type-label">H5</span>
+            <span class="ds-type-meta">600 / –0.2px / 1.35lh</span>
+            <span class="ak-h5">Interactive Learning Sessions</span>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-type-label">Body LG</span>
+            <span class="ds-type-meta">400 / 17px / 1.75lh</span>
+            <span class="ak-body ak-body--lg ak-body--full">Practical, engaging, industry-relevant training that develops the skills professionals need to excel in today's workplace.</span>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-type-label">Body</span>
+            <span class="ds-type-meta">400 / 15px / 1.8lh</span>
+            <span class="ak-body ak-body--full">We deliver handcrafted training experiences — not templates, not off-the-shelf solutions. Every program is built around real workplace challenges.</span>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-type-label">Caption</span>
+            <span class="ds-type-meta">500 / 12px / 1.5lh</span>
+            <span class="ak-caption">Professional Training & Development · Est. 2020</span>
+          </div>
+        </div>
+
+        <!-- Labels & eyebrows -->
+        <div class="ds-frame-label">Section Labels</div>
+        <div class="ds-frame ds-frame--white">
+          <div class="ds-row">
+            <span class="ak-label">Why AcademeKey</span>
+            <span class="ak-label ak-label--muted">Our Programs</span>
+            <span class="ak-label ak-label--navy">Our Mission</span>
+          </div>
+          <div class="ds-frame ds-frame--navy" style="padding:24px;border-radius:14px;margin-top:16px">
+            <span class="ak-label ak-label--inv">Leadership</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════ BUTTONS ═══════════════════════ -->
+      <section class="ds-section" id="buttons">
+        <div class="ds-section-title">03 — Interaction</div>
+        <h2 class="ds-section-heading">Button System</h2>
+        <p class="ds-section-desc">56px base height. 16px radius. Shimmer sweep on primary hover. Arrow translation of 5px. Press scale 98%. Every state is intentional.</p>
+        <div class="ds-section-rule"></div>
+
+        <div class="ds-frame-label">Primary — Light Backgrounds</div>
+        <div class="ds-frame ds-frame--white" style="margin-bottom:20px">
+          <div class="ds-row">
+            <a class="ak-btn ak-btn--primary" href="#">
+              Get Started
+              <span class="ak-btn-arrow">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </a>
+            <a class="ak-btn ak-btn--primary ak-btn--sm" href="#">Explore Programs</a>
+            <a class="ak-btn ak-btn--cta" href="#">
+              Start Learning
+              <span class="ak-btn-arrow">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <div class="ds-frame-label">Secondary & Ghost</div>
+        <div class="ds-frame ds-frame--white" style="margin-bottom:20px">
+          <div class="ds-row">
+            <a class="ak-btn ak-btn--secondary" href="#">View All Programs</a>
+            <a class="ak-btn ak-btn--secondary ak-btn--sm" href="#">Learn More</a>
+            <a class="ak-btn ak-btn--ghost" href="#">Watch Introduction →</a>
+          </div>
+        </div>
+
+        <div class="ds-frame-label">On Dark Backgrounds</div>
+        <div class="ds-frame ds-frame--navy" style="margin-bottom:20px">
+          <div class="ds-row">
+            <a class="ak-btn ak-btn--primary" href="#">Get Started</a>
+            <a class="ak-btn ak-btn--secondary-inv" href="#">Learn More</a>
+            <button class="ak-btn ak-btn--icon ak-btn--icon-gold" aria-label="Play">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="ds-frame-label">Icon Buttons</div>
+        <div class="ds-frame ds-frame--white">
+          <div class="ds-row">
+            <button class="ak-btn ak-btn--icon" aria-label="Arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <button class="ak-btn ak-btn--icon ak-btn--icon-gold" aria-label="Bookmark">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
+            </button>
+            <button class="ak-btn ak-btn--icon" aria-label="Share">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════ CARDS ═══════════════════════ -->
+      <section class="ds-section" id="cards">
+        <div class="ds-section-title">04 — Content</div>
+        <h2 class="ds-section-heading">Card System</h2>
+        <p class="ds-section-desc">No borders. Soft ambient shadow. Images dominate. On hover: 8px lift, image scales to 104%, gold accent bar sweeps across the top.</p>
+        <div class="ds-section-rule"></div>
+
+        <!-- Feature cards -->
+        <div class="ds-frame-label" style="margin-bottom:12px">Feature Card — Image-forward</div>
+        <div class="ds-col-2" style="margin-bottom:32px">
+          <div class="ak-card ak-card--feature" style="min-height:360px">
+            <div class="ak-card-bg">
+              <img src="assets/img/01_Leadership_Training.png.png" alt="Leadership Training">
+            </div>
+            <div class="ak-card-overlay"></div>
+            <div class="ak-card-body">
+              <span class="ak-card-label">Leadership & Management</span>
+              <h3 class="ak-card-title" style="font-size:22px">Lead With Clarity and Purpose</h3>
+              <p class="ak-card-text">Build the leadership instincts that drive teams forward.</p>
+            </div>
+          </div>
+          <div class="ak-card ak-card--feature" style="min-height:360px">
+            <div class="ak-card-bg">
+              <img src="assets/img/02_Customer_Service.png.png" alt="Customer Service">
+            </div>
+            <div class="ak-card-overlay"></div>
+            <div class="ak-card-body">
+              <span class="ak-card-label">Customer Service</span>
+              <h3 class="ak-card-title" style="font-size:22px">Deliver Exceptional Experiences</h3>
+              <p class="ak-card-text">Service skills that build lasting client relationships.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stat + Testimonial -->
+        <div class="ds-frame-label" style="margin-bottom:12px">Stat Card &amp; Testimonial Card</div>
+        <div class="ds-col-3" style="margin-bottom:32px">
+          <div class="ak-card ak-card--stat">
+            <div class="ak-stat-value">150<span class="ak-stat-sup">+</span></div>
+            <div class="ak-stat-label">Professional Courses</div>
+          </div>
+          <div class="ak-card ak-card--stat">
+            <div class="ak-stat-value">8<span class="ak-stat-sup">+</span></div>
+            <div class="ak-stat-label">Training Categories</div>
+          </div>
+          <div class="ak-card ak-card--stat">
+            <div class="ak-stat-value">5</div>
+            <div class="ak-stat-label">Learning Formats</div>
+          </div>
+        </div>
+
+        <div class="ds-frame-label" style="margin-bottom:12px">Testimonial Card</div>
+        <div class="ds-col-2" style="margin-bottom:32px">
+          <div class="ak-card ak-card--testimonial">
+            <p class="ak-testimonial-quote">The training transformed how our team communicates under pressure. Results were visible within two weeks.</p>
+            <div class="ak-testimonial-author">
+              <div class="ak-testimonial-avatar" style="background:var(--ak-gold-pale);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--ak-gold)">JS</div>
+              <div>
+                <div class="ak-testimonial-name">James S.</div>
+                <div class="ak-testimonial-role">Operations Director</div>
+              </div>
+            </div>
+          </div>
+          <div class="ak-card ak-card--testimonial">
+            <p class="ak-testimonial-quote">AcademeKey understood exactly what our team needed. Practical, focused, and immediately applicable.</p>
+            <div class="ak-testimonial-author">
+              <div class="ak-testimonial-avatar" style="background:rgba(11,22,41,.06);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--ak-navy)">MR</div>
+              <div>
+                <div class="ak-testimonial-name">Maria R.</div>
+                <div class="ak-testimonial-role">HR Manager</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Icon card -->
+        <div class="ds-frame-label" style="margin-bottom:12px">Icon Card — Feature list</div>
+        <div class="ds-col-3">
+          <div class="ak-card ak-card--icon ak-card--minimal">
+            <div class="ak-icon-box ak-icon-box--lg">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L22 7v5c0 5.25-4.35 10.15-10 11.4C6.35 22.15 2 17.25 2 12V7z"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
+            <h4 class="ak-card-title" style="font-size:17px">Certified Trainers</h4>
+            <p class="ak-card-text">Every trainer holds industry credentials and brings real-world expertise to every session.</p>
+          </div>
+          <div class="ak-card ak-card--icon ak-card--minimal">
+            <div class="ak-icon-box ak-icon-box--lg">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 6v6l4 2"/>
+              </svg>
+            </div>
+            <h4 class="ak-card-title" style="font-size:17px">Flexible Scheduling</h4>
+            <p class="ak-card-text">Choose from multiple formats and session lengths designed around your team's calendar.</p>
+          </div>
+          <div class="ak-card ak-card--icon ak-card--minimal">
+            <div class="ak-icon-box ak-icon-box--lg">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+              </svg>
+            </div>
+            <h4 class="ak-card-title" style="font-size:17px">Group or Individual</h4>
+            <p class="ak-card-text">Tailored programs for teams of any size, from one-on-one coaching to full cohorts.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════ FORMS ═══════════════════════ -->
+      <section class="ds-section" id="forms">
+        <div class="ds-section-title">05 — Data Entry</div>
+        <h2 class="ds-section-heading">Forms & Inputs</h2>
+        <p class="ds-section-desc">56px height. 22px horizontal padding. Gold focus ring. Minimal 1.5px border. Custom select arrow. Every state distinctly communicated.</p>
+        <div class="ds-section-rule"></div>
+
+        <div class="ds-frame ds-frame--white" style="max-width:680px">
+          <div class="ak-form-group" style="margin-bottom:20px">
+            <label class="ak-label-text">Full Name</label>
+            <input class="ak-input" type="text" placeholder="Your full name">
+          </div>
+          <div class="ak-form-group" style="margin-bottom:20px">
+            <label class="ak-label-text">Email Address</label>
+            <div class="ak-input-wrap">
+              <span class="ak-input-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </span>
+              <input class="ak-input" type="email" placeholder="you@company.com">
+            </div>
+          </div>
+          <div class="ak-form-group" style="margin-bottom:20px">
+            <label class="ak-label-text">Training Interest</label>
+            <div class="ak-select-wrap">
+              <select class="ak-select">
+                <option value="" disabled selected>Select a program area</option>
+                <option>Leadership & Management</option>
+                <option>Customer Service Excellence</option>
+                <option>Communication Skills</option>
+                <option>Sales Training</option>
+              </select>
+            </div>
+          </div>
+          <div class="ak-form-group" style="margin-bottom:28px">
+            <label class="ak-label-text">Message</label>
+            <textarea class="ak-textarea" placeholder="Tell us about your team and training goals…"></textarea>
+          </div>
+          <button class="ak-btn ak-btn--primary">
+            Send Message
+            <span class="ak-btn-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════ DROPDOWNS ═══════════════════════ -->
+      <section class="ds-section" id="dropdowns">
+        <div class="ds-section-title">06 — Navigation</div>
+        <h2 class="ds-section-heading">Dropdowns</h2>
+        <p class="ds-section-desc">Floating white panel. 24px radius. Large ambient shadow. Soft fade + scale entrance. Section labels and dividers for grouping.</p>
+        <div class="ds-section-rule"></div>
+
+        <div class="ds-frame ds-frame--gray">
+          <div style="display:flex;gap:32px;align-items:flex-start">
+            <div class="ak-dropdown-wrap">
+              <a class="ak-btn ak-btn--secondary" href="#" style="position:relative;z-index:201">Programs ↓</a>
+              <div class="ak-dropdown open" style="position:relative;top:8px;left:0;transform:none;opacity:1;pointer-events:auto">
+                <div class="ak-dropdown-section-label">Development Areas</div>
+                <a class="ak-dropdown-item" href="#">
+                  <span class="ak-icon ak-icon--sm" style="color:var(--ak-gold)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></span>
+                  Leadership & Management
+                </a>
+                <a class="ak-dropdown-item" href="#">
+                  <span class="ak-icon ak-icon--sm" style="color:var(--ak-gold)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></span>
+                  Communication Skills
+                </a>
+                <div class="ak-dropdown-divider"></div>
+                <a class="ak-dropdown-item" href="#">View All Programs →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════ BADGES ═══════════════════════ -->
+      <section class="ds-section" id="badges">
+        <div class="ds-section-title">07 — Metadata</div>
+        <h2 class="ds-section-heading">Badges & Tags</h2>
+        <p class="ds-section-desc">Pill shape. 26px height. Used to communicate status, category, or emphasis at a glance. Never decorative alone.</p>
+        <div class="ds-section-rule"></div>
+
+        <div class="ds-frame ds-frame--white" style="margin-bottom:16px">
+          <div class="ds-row">
+            <span class="ak-badge ak-badge--gold">New Program</span>
+            <span class="ak-badge ak-badge--navy">Leadership</span>
+            <span class="ak-badge ak-badge--green">Enrolling Now</span>
+            <span class="ak-badge ak-badge--red">Limited Seats</span>
+            <span class="ak-badge ak-badge--outline-gold">Featured</span>
+          </div>
+        </div>
+        <div class="ds-frame ds-frame--navy">
+          <div class="ds-row">
+            <span class="ak-badge ak-badge--white">Online</span>
+            <span class="ak-badge ak-badge--white">In-Person</span>
+            <span class="ak-badge ak-badge--outline-gold">5-Hour Session</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════ ICONS ═══════════════════════ -->
+      <section class="ds-section" id="icons">
+        <div class="ds-section-title">08 — Visual Language</div>
+        <h2 class="ds-section-heading">Icon System</h2>
+        <p class="ds-section-desc">Custom geometric icons derived from the AcademeKey A-shape and crossbar. No graduation caps. No generic metaphors. Every mark is architectural and intentional.</p>
+        <div class="ds-section-rule"></div>
+
+        <div class="ds-frame ds-frame--gray" style="margin-bottom:24px">
+          <div class="ds-icon-grid">
+
+            <!-- Growth / Ascend -->
+            <div class="ds-icon-cell">
+              <div class="ak-icon-box ak-icon-box--lg">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--ak-gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+                  <polyline points="16 7 22 7 22 13"/>
+                </svg>
+              </div>
+              Growth
+            </div>
+
+            <!-- Precision / Target -->
+            <div class="ds-icon-cell">
+              <div class="ak-icon-box ak-icon-box--lg">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--ak-gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <circle cx="12" cy="12" r="4"/>
+                  <line x1="12" y1="2" x2="12" y2="6"/>
+                  <line x1="12" y1="18" x2="12" y2="22"/>
+                  <line x1="2" y1="12" x2="6" y2="12"/>
+                  <line x1="18" y1="12" x2="22" y2="12"/>
+                </svg>
+              </div>
+              Precision
+            </div>
+
+            <!-- Path / Journey -->
+            <div class="ds-icon-cell">
+              <div class="ak-icon-box ak-icon-box--lg">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--ak-gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 17c3-3 5-5 7-5s4 2 7 2 4-2 4-2"/>
+                  <path d="M3 7c3-3 5-5 7-5s4 2 7 2 4-2 4-2"/>
+                  <line x1="12" y1="7" x2="12" y2="17"/>
+                </svg>
+              </div>
+              Knowledge Path
+            </div>
+
+            <!-- Connect / Network -->
+            <div class="ds-icon-cell">
+              <div class="ak-icon-box ak-icon-box--lg">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--ak-gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="18" cy="5" r="3"/>
+                  <circle cx="6" cy="12" r="3"/>
+                  <circle cx="18" cy="19" r="3"/>
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                </svg>
+              </div>
+              Connect
+            </div>
+
+            <!-- Certificate / Shield -->
+            <div class="ds-icon-cell">
+              <div class="ak-icon-box ak-icon-box--lg">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--ak-gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.4C17.25 22.15 21 17.25 21 12V7z"/>
+                  <path d="M9 12l2 2 4-4"/>
+                </svg>
+              </div>
+              Certified
+            </div>
+
+            <!-- Peak / Summit -->
+            <div class="ds-icon-cell">
+              <div class="ak-icon-box ak-icon-box--lg">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--ak-gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 20l5-9 4 6 3-4 6 7"/>
+                  <line x1="7" y1="14.5" x2="13" y2="14.5"/>
+                </svg>
+              </div>
+              Peak
+            </div>
+
+            <!-- Compass / Direction -->
+            <div class="ds-icon-cell">
+              <div class="ak-icon-box ak-icon-box--lg">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--ak-gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+                </svg>
+              </div>
+              Direction
+            </div>
+
+            <!-- Key / Unlock -->
+            <div class="ds-icon-cell">
+              <div class="ak-icon-box ak-icon-box--lg">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--ak-gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.78 7.78 5.5 5.5 0 017.78-7.78zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+                </svg>
+              </div>
+              The Key
+            </div>
+
+            <!-- Layers / Depth -->
+            <div class="ds-icon-cell">
+              <div class="ak-icon-box ak-icon-box--lg">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--ak-gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                  <polyline points="2 17 12 22 22 17"/>
+                  <polyline points="2 12 12 17 22 12"/>
+                </svg>
+              </div>
+              Depth
+            </div>
+
+            <!-- Velocity / Forward -->
+            <div class="ds-icon-cell">
+              <div class="ak-icon-box ak-icon-box--lg">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--ak-gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </div>
+              Forward
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Icon boxes -->
+        <div class="ds-frame-label">Icon Containers</div>
+        <div class="ds-frame ds-frame--white">
+          <div class="ds-row">
+            <div class="ak-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.4C17.25 22.15 21 17.25 21 12V7z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <div class="ak-icon-box ak-icon-box--navy">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
+            </div>
+            <div class="ak-icon-box ak-icon-box--outline">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ak-gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+            <div class="ak-icon-box ak-icon-box--circle">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            </div>
+            <div class="ak-icon-box ak-icon-box--lg ak-icon-box--circle">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L22 7v5c0 5.25-4.35 10.15-10 11.4C6.35 22.15 2 17.25 2 12V7z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+          </div>
+          <div style="margin-top:16px;font-size:12px;color:var(--ak-gray-500);font-family:monospace">.ak-icon-box &nbsp; .ak-icon-box--navy &nbsp; .ak-icon-box--outline &nbsp; .ak-icon-box--circle &nbsp; .ak-icon-box--lg.circle</div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════ DIVIDERS ═══════════════════════ -->
+      <section class="ds-section" id="dividers">
+        <div class="ds-section-title">09 — Rhythm</div>
+        <h2 class="ds-section-heading">Dividers</h2>
+        <p class="ds-section-desc">Hairline only. Never more than 1px. Used to segment, not decorate. The animated variant grows from left on scroll enter.</p>
+        <div class="ds-section-rule"></div>
+
+        <div class="ds-frame ds-frame--white" style="margin-bottom:16px">
+          <div class="ds-frame-label" style="margin-bottom:16px">Standard — rgba(11,22,41,.07)</div>
+          <hr class="ak-divider">
+          <div style="margin-top:32px" class="ds-frame-label" style="margin-bottom:16px">Gold Accent — 56px gradient</div>
+          <hr class="ak-divider ak-divider--gold">
+          <div style="margin-top:32px" class="ds-frame-label" style="margin-bottom:16px">Centered gradient</div>
+          <hr class="ak-divider ak-divider--center">
+          <div style="margin-top:32px" class="ds-frame-label" style="margin-bottom:16px">Decorative with diamond</div>
+          <div class="ak-divider ak-divider--deco"></div>
+        </div>
+        <div class="ds-frame ds-frame--dark">
+          <div class="ds-frame-label" style="margin-bottom:16px;color:rgba(255,255,255,.3)">Dark background variant</div>
+          <hr class="ak-divider ak-divider--dark">
+        </div>
+      </section>
+
+      <!-- ═══════════════════════ ALERTS ═══════════════════════ -->
+      <section class="ds-section" id="alerts">
+        <div class="ds-section-title">10 — Feedback</div>
+        <h2 class="ds-section-heading">Alerts & Notifications</h2>
+        <p class="ds-section-desc">Soft tinted backgrounds. 1.5px border. Aligned icon. Used exclusively for system feedback, never for decorative callouts.</p>
+        <div class="ds-section-rule"></div>
+
+        <div class="ds-frame ds-frame--white">
+          <div style="display:flex;flex-direction:column;gap:14px;max-width:580px">
+            <div class="ak-alert ak-alert--success">
+              <span class="ak-alert-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
+              <div><div class="ak-alert-title">Enrollment confirmed</div>Your place in the Leadership & Management program has been reserved.</div>
+            </div>
+            <div class="ak-alert ak-alert--info">
+              <span class="ak-alert-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+              <div><div class="ak-alert-title">Limited availability</div>Only 4 seats remain in the upcoming Customer Service cohort.</div>
+            </div>
+            <div class="ak-alert ak-alert--warning">
+              <span class="ak-alert-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+              <div><div class="ak-alert-title">Session rescheduled</div>Your upcoming session has been moved to the following Thursday.</div>
+            </div>
+            <div class="ak-alert ak-alert--error">
+              <span class="ak-alert-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></span>
+              <div><div class="ak-alert-title">Submission failed</div>Please review the highlighted fields and try again.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════ STEPS ═══════════════════════ -->
+      <section class="ds-section" id="steps">
+        <div class="ds-section-title">11 — Progress</div>
+        <h2 class="ds-section-heading">Steps & Progress</h2>
+        <p class="ds-section-desc">Gold active state. Navy completed state. Connecting line between steps fades naturally. Responsive: stacks vertically on mobile.</p>
+        <div class="ds-section-rule"></div>
+
+        <div class="ds-frame ds-frame--white">
+          <div class="ak-steps">
+            <div class="ak-step ak-step--done">
+              <div class="ak-step-dot">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span class="ak-step-label">Enquiry</span>
+            </div>
+            <div class="ak-step ak-step--done">
+              <div class="ak-step-dot">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span class="ak-step-label">Consultation</span>
+            </div>
+            <div class="ak-step ak-step--active">
+              <div class="ak-step-dot">3</div>
+              <span class="ak-step-label">Program Design</span>
+            </div>
+            <div class="ak-step">
+              <div class="ak-step-dot">4</div>
+              <span class="ak-step-label">Delivery</span>
+            </div>
+            <div class="ak-step">
+              <div class="ak-step-dot">5</div>
+              <span class="ak-step-label">Follow-up</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════ SHADOWS + RADIUS ═══════════════════════ -->
+      <section class="ds-section" id="shadows">
+        <div class="ds-section-title">12 — Depth</div>
+        <h2 class="ds-section-heading">Shadows & Border Radius</h2>
+        <p class="ds-section-desc">All shadows use a navy tint (#071A33). Never black, never harsh. Radius values define the personality of each element type.</p>
+        <div class="ds-section-rule"></div>
+
+        <div class="ds-frame-label">Shadow Scale</div>
+        <div class="ds-col-4" style="margin-bottom:40px">
+          <div class="ds-shadow-box" style="box-shadow:var(--ak-shadow-xs)">XS<br><span style="font-weight:400;font-family:monospace;font-size:10px">--ak-shadow-xs</span></div>
+          <div class="ds-shadow-box" style="box-shadow:var(--ak-shadow-sm)">SM<br><span style="font-weight:400;font-family:monospace;font-size:10px">--ak-shadow-sm</span></div>
+          <div class="ds-shadow-box" style="box-shadow:var(--ak-shadow-md)">MD<br><span style="font-weight:400;font-family:monospace;font-size:10px">--ak-shadow-md</span></div>
+          <div class="ds-shadow-box" style="box-shadow:var(--ak-shadow-lg)">LG<br><span style="font-weight:400;font-family:monospace;font-size:10px">--ak-shadow-lg</span></div>
+          <div class="ds-shadow-box" style="box-shadow:var(--ak-shadow-xl);grid-column:1/3">XL<br><span style="font-weight:400;font-family:monospace;font-size:10px">--ak-shadow-xl</span></div>
+          <div class="ds-shadow-box" style="box-shadow:var(--ak-shadow-gold)">Gold<br><span style="font-weight:400;font-family:monospace;font-size:10px">--ak-shadow-gold</span></div>
+          <div class="ds-shadow-box" style="box-shadow:var(--ak-shadow-gold-lg)">Gold LG<br><span style="font-weight:400;font-family:monospace;font-size:10px">--ak-shadow-gold-lg</span></div>
+        </div>
+
+        <div class="ds-frame-label">Radius Scale</div>
+        <div class="ds-col-4">
+          <div class="ds-radius-box" style="border-radius:var(--ak-r-xs)">6px<br><span style="font-weight:400;font-family:monospace;font-size:10px">--ak-r-xs</span></div>
+          <div class="ds-radius-box" style="border-radius:var(--ak-r-sm)">10px<br><span style="font-weight:400;font-family:monospace;font-size:10px">--ak-r-sm</span></div>
+          <div class="ds-radius-box" style="border-radius:var(--ak-r-btn)">16px btn<br><span style="font-weight:400;font-family:monospace;font-size:10px">--ak-r-btn</span></div>
+          <div class="ds-radius-box" style="border-radius:var(--ak-r-card)">24px card<br><span style="font-weight:400;font-family:monospace;font-size:10px">--ak-r-card</span></div>
+          <div class="ds-radius-box" style="border-radius:var(--ak-r-img)">28px img<br><span style="font-weight:400;font-family:monospace;font-size:10px">--ak-r-img</span></div>
+          <div class="ds-radius-box" style="border-radius:var(--ak-r-pill)">Pill<br><span style="font-weight:400;font-family:monospace;font-size:10px">--ak-r-pill</span></div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════ SPACING ═══════════════════════ -->
+      <section class="ds-section" id="spacing">
+        <div class="ds-section-title">13 — Rhythm</div>
+        <h2 class="ds-section-heading">Spacing System</h2>
+        <p class="ds-section-desc">4px base unit. Section padding 120–200px fluid. Internal card spacing 40px. Component gap 24px. Typography gap 32–48px.</p>
+        <div class="ds-section-rule"></div>
+
+        <div class="ds-frame ds-frame--white">
+          <div class="ds-space-row"><div class="ds-space-bar" style="width:4px"></div><span class="ds-space-label">--ak-sp-1 · 4px</span></div>
+          <div class="ds-space-row"><div class="ds-space-bar" style="width:8px"></div><span class="ds-space-label">--ak-sp-2 · 8px</span></div>
+          <div class="ds-space-row"><div class="ds-space-bar" style="width:12px"></div><span class="ds-space-label">--ak-sp-3 · 12px</span></div>
+          <div class="ds-space-row"><div class="ds-space-bar" style="width:16px"></div><span class="ds-space-label">--ak-sp-4 · 16px</span></div>
+          <div class="ds-space-row"><div class="ds-space-bar" style="width:20px"></div><span class="ds-space-label">--ak-sp-5 · 20px</span></div>
+          <div class="ds-space-row"><div class="ds-space-bar" style="width:24px"></div><span class="ds-space-label">--ak-sp-6 · 24px</span></div>
+          <div class="ds-space-row"><div class="ds-space-bar" style="width:32px"></div><span class="ds-space-label">--ak-sp-8 · 32px</span></div>
+          <div class="ds-space-row"><div class="ds-space-bar" style="width:40px"></div><span class="ds-space-label">--ak-sp-10 · 40px · Card internal</span></div>
+          <div class="ds-space-row"><div class="ds-space-bar" style="width:48px"></div><span class="ds-space-label">--ak-sp-12 · 48px · Typography gap</span></div>
+          <div class="ds-space-row"><div class="ds-space-bar" style="width:64px"></div><span class="ds-space-label">--ak-sp-16 · 64px</span></div>
+          <div class="ds-space-row"><div class="ds-space-bar" style="width:80px"></div><span class="ds-space-label">--ak-sp-20 · 80px · Section inner gap</span></div>
+          <div class="ds-space-row"><div class="ds-space-bar" style="width:160px;background:linear-gradient(90deg,var(--ak-gold),var(--ak-gold-warm))"></div><span class="ds-space-label">--ak-section · 120–200px fluid · Section padding</span></div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════ BACKGROUNDS ═══════════════════════ -->
+      <section class="ds-section" id="backgrounds">
+        <div class="ds-section-title">14 — Surface</div>
+        <h2 class="ds-section-heading">Background System</h2>
+        <p class="ds-section-desc">Four surfaces alternate naturally through the page. White → Gray → Navy → Dark. No heavy gradients. Very subtle ambient lighting only.</p>
+        <div class="ds-section-rule"></div>
+
+        <div style="display:flex;flex-direction:column;gap:4px;border-radius:20px;overflow:hidden">
+          <div style="background:#ffffff;padding:28px 32px;display:flex;align-items:center;justify-content:space-between">
+            <span style="font-size:14px;font-weight:600;color:var(--ak-navy)">White — .ak-section--white</span>
+            <span style="font-size:11px;font-family:monospace;color:var(--ak-gray-500)">#ffffff</span>
+          </div>
+          <div style="background:var(--ak-gray-100);padding:28px 32px;display:flex;align-items:center;justify-content:space-between">
+            <span style="font-size:14px;font-weight:600;color:var(--ak-navy)">Light Gray — .ak-section--gray</span>
+            <span style="font-size:11px;font-family:monospace;color:var(--ak-gray-500)">#F4F4F2</span>
+          </div>
+          <div style="background:var(--ak-navy-deep);padding:28px 32px;display:flex;align-items:center;justify-content:space-between">
+            <span style="font-size:14px;font-weight:600;color:rgba(255,255,255,.82)">Navy Deep — .ak-section--navy</span>
+            <span style="font-size:11px;font-family:monospace;color:rgba(255,255,255,.3)">#071A33</span>
+          </div>
+          <div style="background:var(--ak-navy-dark);padding:28px 32px;display:flex;align-items:center;justify-content:space-between">
+            <span style="font-size:14px;font-weight:600;color:rgba(255,255,255,.72)">Navy Dark — .ak-section--dark</span>
+            <span style="font-size:11px;font-family:monospace;color:rgba(255,255,255,.25)">#060F1E</span>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /ds-main -->
+  </div>
+</div>
+
+<script>
+/* Sidebar active link on scroll */
+const sections = document.querySelectorAll('.ds-section[id]');
+const links    = document.querySelectorAll('.ds-sidebar-link');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => l.classList.remove('active'));
+      const a = document.querySelector(`.ds-sidebar-link[href="#${e.target.id}"]`);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+sections.forEach(s => io.observe(s));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About AcademeKey — The Key to Success</title>
+  <meta name="description" content="AcademeKey is a professional training and development company passionate about developing people and transforming organizations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    /* ── HERO ────────────────────────────────────────────────────────── */
+    .abt-hero { background:#071A33; padding:200px 0 140px; position:relative; overflow:hidden; }
+    .abt-hero-geo { position:absolute; right:-60px; top:50%; transform:translateY(-50%); width:640px; height:640px; opacity:0.022; pointer-events:none; }
+    .abt-hero-geo svg { width:100%; height:100%; }
+    .abt-hero-inner { max-width:1320px; margin:0 auto; padding:0 40px; position:relative; z-index:1; }
+    .abt-hero-label { display:inline-flex; align-items:center; gap:14px; font-size:10px; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; color:rgba(245,166,35,.72); margin-bottom:28px; }
+    .abt-hero-label::before { content:''; width:28px; height:1px; background:rgba(245,166,35,.4); }
+    .abt-hero-h1 { font-size:clamp(52px,6.5vw,96px); font-weight:900; letter-spacing:-4.5px; line-height:0.88; color:#fff; max-width:760px; }
+    .abt-hero-h1 em { color:#F5A623; font-style:normal; }
+    .abt-hero-sub { font-size:18px; color:rgba(255,255,255,.45); line-height:1.75; max-width:480px; margin-top:36px; }
+
+    /* ── STORY ───────────────────────────────────────────────────────── */
+    .abt-story { background:#fff; padding:160px 0 120px; }
+    .abt-story-inner { max-width:1320px; margin:0 auto; padding:0 40px; display:grid; grid-template-columns:1fr 1fr; gap:100px; align-items:center; }
+    .abt-story-img-wrap { position:relative; border-radius:28px; overflow:hidden; }
+    .abt-story-img-wrap img { width:100%; height:520px; object-fit:cover; display:block; }
+    .abt-story-img-wrap::after { content:''; position:absolute; bottom:0; left:0; right:0; height:60%; background:linear-gradient(to top, rgba(7,26,51,.45), transparent); }
+    .abt-story-corner { position:absolute; bottom:24px; right:24px; z-index:2; }
+    .abt-story-corner svg { width:60px; height:60px; opacity:0.7; }
+    .abt-story-content { }
+    .abt-story-rule { width:40px; height:1.5px; background:#F5A623; margin-bottom:20px; }
+    .abt-story-h2 { font-size:clamp(28px,3.2vw,44px); font-weight:800; letter-spacing:-1.5px; color:#0B1629; line-height:1.05; margin-bottom:28px; }
+    .abt-story-text { font-size:15px; line-height:1.9; color:rgba(11,22,41,.58); margin-bottom:16px; }
+
+    /* ── PHILOSOPHY ──────────────────────────────────────────────────── */
+    .abt-phil { background:#F4F4F2; padding:140px 0; }
+    .abt-phil-inner { max-width:1320px; margin:0 auto; padding:0 40px; }
+    .abt-phil-header { margin-bottom:72px; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:end; }
+    .abt-phil-h2 { font-size:clamp(30px,3.5vw,50px); font-weight:800; letter-spacing:-2px; color:#0B1629; line-height:1.05; }
+    .abt-phil-note { font-size:14px; color:rgba(11,22,41,.42); line-height:1.75; }
+    .abt-phil-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+    .abt-phil-card { background:#fff; padding:44px 36px; position:relative; transition:background 320ms ease; }
+    .abt-phil-card:first-child { border-radius:24px 0 0 24px; }
+    .abt-phil-card:last-child { border-radius:0 24px 24px 0; }
+    .abt-phil-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:transparent; transition:background 320ms ease; }
+    .abt-phil-card:hover::before { background:linear-gradient(90deg,#F5A623,#F5961F); }
+    .abt-phil-icon { width:48px; height:48px; background:rgba(245,150,31,.1); border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:24px; }
+    .abt-phil-icon svg { color:#F5961F; }
+    .abt-phil-title { font-size:18px; font-weight:700; letter-spacing:-0.3px; color:#0B1629; margin-bottom:12px; }
+    .abt-phil-text { font-size:14px; line-height:1.8; color:rgba(11,22,41,.5); }
+
+    /* ── APPROACH ────────────────────────────────────────────────────── */
+    .abt-approach { background:#fff; padding:160px 0; }
+    .abt-approach-inner { max-width:1320px; margin:0 auto; padding:0 40px; display:grid; grid-template-columns:1fr 1fr; gap:100px; align-items:center; }
+    .abt-approach-content { }
+    .abt-approach-h2 { font-size:clamp(28px,3.2vw,44px); font-weight:800; letter-spacing:-1.5px; color:#0B1629; line-height:1.05; margin-bottom:36px; }
+    .abt-approach-steps { }
+    .abt-approach-step { display:flex; gap:24px; padding:28px 0; border-bottom:1px solid rgba(11,22,41,.07); }
+    .abt-approach-step:first-child { border-top:1px solid rgba(11,22,41,.07); }
+    .abt-approach-num { font-size:11px; font-weight:700; color:rgba(245,166,35,.6); letter-spacing:0.12em; flex-shrink:0; padding-top:2px; }
+    .abt-approach-step-title { font-size:16px; font-weight:600; color:#0B1629; margin-bottom:6px; letter-spacing:-0.2px; }
+    .abt-approach-step-text { font-size:13px; line-height:1.75; color:rgba(11,22,41,.5); }
+    .abt-approach-visual { position:relative; border-radius:28px; overflow:hidden; }
+    .abt-approach-visual img { width:100%; height:560px; object-fit:cover; display:block; }
+    .abt-approach-visual::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg, rgba(7,26,51,.12), transparent 60%); }
+
+    /* ── MISSION ECHO ────────────────────────────────────────────────── */
+    .abt-mission { background:#071A33; padding:160px 0; position:relative; overflow:hidden; }
+    .abt-mission-geo { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:800px; height:800px; opacity:0.018; pointer-events:none; }
+    .abt-mission-inner { max-width:960px; margin:0 auto; padding:0 40px; text-align:center; position:relative; z-index:1; }
+    .abt-mission-quote { font-size:clamp(24px,3vw,40px); font-weight:700; letter-spacing:-1.5px; color:#fff; line-height:1.25; margin-bottom:40px; }
+    .abt-mission-quote em { color:#F5A623; font-style:normal; }
+    .abt-mission-sub { font-size:15px; color:rgba(255,255,255,.38); line-height:1.75; margin-bottom:52px; }
+    .abt-mission-rule { width:60px; height:1px; background:rgba(245,166,35,.3); margin:0 auto 52px; }
+
+    @media (max-width:1024px) {
+      .abt-story-inner, .abt-approach-inner, .abt-phil-header { grid-template-columns:1fr; gap:48px; }
+      .abt-phil-grid { grid-template-columns:1fr; gap:2px; }
+      .abt-phil-card:first-child { border-radius:24px 24px 0 0; }
+      .abt-phil-card:last-child { border-radius:0 0 24px 24px; }
+      .abt-story-img-wrap img, .abt-approach-visual img { height:360px; }
+    }
+    @media (max-width:640px) {
+      .abt-hero { padding:140px 0 100px; }
+    }
+  </style>
+</head>
+<body>
+<div id="pageVeil"></div>
+<div id="readProgress"></div>
+
+<!-- HEADER -->
+<header id="mainHeader">
+  <div id="navKPath" aria-hidden="true"></div>
+  <div class="nav-floater">
+    <a href="index.html" class="nav-logo" aria-label="AcademeKey — The Key to Success">
+      <div class="nav-logo-mark"><svg width="38" height="38" viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#F5961F"/><path d="M10 31L20 10L30 31" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="14.5" y1="24.5" x2="25.5" y2="24.5" stroke="white" stroke-width="3.5" stroke-linecap="round"/></svg></div>
+      <div class="nav-logo-text"><span class="nav-wordmark">Academe<em>Key</em></span><span class="nav-tagline">The Key to Success</span></div>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+      <a href="courses.html">Courses</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="courses.html" class="nav-cta-btn" aria-label="Browse our courses">Browse Courses <svg class="cta-arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
+    <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu" aria-hidden="true">
+  <div class="mob-inner">
+    <div class="mob-header"><div class="nav-logo-mark"><svg width="34" height="34" viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#F5961F"/><path d="M10 31L20 10L30 31" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="14.5" y1="24.5" x2="25.5" y2="24.5" stroke="white" stroke-width="3.5" stroke-linecap="round"/></svg></div></div>
+    <nav class="mob-nav" aria-label="Mobile navigation">
+      <a href="index.html" class="mob-link">Home</a>
+      <a href="courses.html" class="mob-link">Courses</a>
+      <a href="about.html" class="mob-link">About</a>
+      <a href="contact.html" class="mob-link">Contact</a>
+    </nav>
+    <div class="mob-cta-wrap">
+      <a href="courses.html" class="mob-cta-btn">Browse Courses <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO — Curiosity -->
+<section class="abt-hero">
+  <div class="abt-hero-geo" aria-hidden="true"><svg viewBox="0 0 600 600" fill="none"><path d="M60 540L300 60L540 540" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="168" y1="390" x2="432" y2="390" stroke="white" stroke-width="1.5" stroke-linecap="round"/><circle cx="300" cy="300" r="240" stroke="white" stroke-width="1"/></svg></div>
+  <div class="abt-hero-inner">
+    <div class="abt-hero-label" data-sr data-sr-delay="0">About AcademeKey</div>
+    <h1 class="abt-hero-h1" data-sr data-sr-delay="80">We develop<br>people.<br><em>On purpose.</em></h1>
+    <p class="abt-hero-sub" data-sr data-sr-delay="200">Behind every training program is a conviction: that professional development, done right, changes not just what people know — but who they become at work.</p>
+  </div>
+</section>
+
+<!-- STORY — Understanding -->
+<section class="abt-story">
+  <div class="abt-story-inner">
+    <div data-sr data-sr-delay="0">
+      <div class="abt-story-img-wrap" data-sweep>
+        <img src="assets/img/01_Leadership_Training.png.png" alt="AcademeKey training session">
+        <div class="abt-story-corner"><svg viewBox="0 0 60 60" fill="none"><path d="M10 55 L10 10 L55 10" stroke="rgba(245,166,35,.5)" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+      </div>
+    </div>
+    <div>
+      <div class="abt-story-rule" data-sr data-sr-delay="80"></div>
+      <h2 class="abt-story-h2" data-sr data-sr-delay="120">Our story starts<br>with a question.</h2>
+      <p class="abt-story-text" data-sr data-sr-delay="180">Why do so many training programs fail to create lasting change? We asked this question and refused to accept the standard answers. AcademeKey was founded to do training differently — to build programs where participants leave changed, not just informed.</p>
+      <p class="abt-story-text" data-sr data-sr-delay="220">We work with organizations across industries to design professional development experiences that connect to real work, real challenges, and real outcomes. Not theory on a slide deck. Not a certificate that gathers dust. Real growth.</p>
+      <p class="abt-story-text" data-sr data-sr-delay="260">Every program we deliver carries the same standard: if it doesn't create meaningful change, it doesn't meet our bar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY — Confidence -->
+<section class="abt-phil">
+  <div class="abt-phil-inner">
+    <div class="abt-phil-header">
+      <div>
+        <span class="ak-label" data-sr data-sr-delay="0">What We Believe</span>
+        <h2 class="abt-phil-h2" data-sr data-sr-delay="80">Three principles.<br>Every program.</h2>
+      </div>
+      <p class="abt-phil-note" data-sr data-sr-delay="160">These aren't values on a wall. They're the decisions we make in every program design, every facilitation, every follow-up.</p>
+    </div>
+    <div class="abt-phil-grid">
+      <div class="abt-phil-card" data-sr data-sr-delay="0">
+        <div class="abt-phil-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+        <h3 class="abt-phil-title">People Before Content</h3>
+        <p class="abt-phil-text">The best training starts with deep understanding of the people in the room — their context, their challenges, their goals. We design around them, not around a fixed curriculum.</p>
+      </div>
+      <div class="abt-phil-card" data-sr data-sr-delay="120">
+        <div class="abt-phil-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+        <h3 class="abt-phil-title">Application Over Knowledge</h3>
+        <p class="abt-phil-text">Information without application creates no change. Every session is designed to bridge the gap between knowing and doing — participants leave with tools they can use the same day.</p>
+      </div>
+      <div class="abt-phil-card" data-sr data-sr-delay="240">
+        <div class="abt-phil-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <h3 class="abt-phil-title">Outcomes Over Activity</h3>
+        <p class="abt-phil-text">We don't measure success by how many hours were delivered. We measure it by what participants can do differently — and by what their organizations look like after the change takes root.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH — Exploration -->
+<section class="abt-approach">
+  <div class="abt-approach-inner">
+    <div>
+      <span class="ak-label" data-sr data-sr-delay="0">How We Work</span>
+      <h2 class="abt-approach-h2" data-sr data-sr-delay="80">Our approach<br>in four steps.</h2>
+      <div class="abt-approach-steps">
+        <div class="abt-approach-step" data-sr data-sr-delay="120">
+          <span class="abt-approach-num">01</span>
+          <div><div class="abt-approach-step-title">Discover &amp; Diagnose</div><p class="abt-approach-step-text">We begin by listening. Understanding your organization, your team, and the specific change you need to create.</p></div>
+        </div>
+        <div class="abt-approach-step" data-sr data-sr-delay="180">
+          <span class="abt-approach-num">02</span>
+          <div><div class="abt-approach-step-title">Design with Purpose</div><p class="abt-approach-step-text">We craft a curriculum and delivery plan built around real outcomes — not a generic off-the-shelf program with your logo on it.</p></div>
+        </div>
+        <div class="abt-approach-step" data-sr data-sr-delay="240">
+          <span class="abt-approach-num">03</span>
+          <div><div class="abt-approach-step-title">Deliver with Excellence</div><p class="abt-approach-step-text">Our facilitators bring energy, expertise, and sensitivity to every room — whether that's a classroom, a screen, or a boardroom.</p></div>
+        </div>
+        <div class="abt-approach-step" data-sr data-sr-delay="300">
+          <span class="abt-approach-num">04</span>
+          <div><div class="abt-approach-step-title">Measure &amp; Reinforce</div><p class="abt-approach-step-text">After every engagement, we track progress and provide reinforcement strategies so the learning sticks long past the final session.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="abt-approach-visual" data-sr data-sr-delay="0" data-sweep>
+      <img src="assets/img/04_Communication_Skills.png.png" alt="AcademeKey approach in practice">
+    </div>
+  </div>
+</section>
+
+<!-- MISSION ECHO — Purpose & Completion -->
+<section class="abt-mission">
+  <div class="abt-mission-geo" aria-hidden="true"><svg viewBox="0 0 800 800" fill="none"><path d="M80 720L400 80L720 720" stroke="white" stroke-width="1.2" stroke-linecap="round"/><line x1="224" y1="520" x2="576" y2="520" stroke="white" stroke-width="1.2" stroke-linecap="round"/><circle cx="400" cy="400" r="320" stroke="white" stroke-width="0.8"/></svg></div>
+  <div class="abt-mission-inner">
+    <div class="abt-mission-rule" data-sr data-sr-delay="0"></div>
+    <blockquote class="abt-mission-quote" data-sr data-sr-delay="80">"The Key to Success is not a tagline. It's a standard we hold ourselves to — every program, every participant, <em>every time.</em>"</blockquote>
+    <p class="abt-mission-sub" data-sr data-sr-delay="200">If you're ready to invest in your people with a training partner who takes that investment as seriously as you do, we'd love to talk.</p>
+    <a href="contact.html" class="ak-btn ak-btn--primary" data-sr data-sr-delay="280">Start a Conversation <span class="ak-btn-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+  </div>
+</section>
+
+<!-- FOOTER TRANSITION -->
+<div class="fkp-transition" id="fkpTransition" aria-hidden="true">
+  <div class="fkp-rail">
+    <div class="fkp-arm fkp-arm--left"></div>
+    <div class="fkp-gem"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 1L21 11L11 21L1 11Z" stroke="rgba(245,166,35,.65)" stroke-width="0.8"/><path d="M8 16L11 8L14 16" stroke="rgba(245,166,35,.65)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><line x1="9.2" y1="13.2" x2="12.8" y2="13.2" stroke="rgba(245,166,35,.65)" stroke-width="1" stroke-linecap="round"/></svg></div>
+    <div class="fkp-arm fkp-arm--right"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="ft-kp-divider" id="ftKpDivider" aria-hidden="true">
+  <div class="ft-kp-line"></div>
+  <span class="ft-kp-gem"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 0.8L15.2 8L8 15.2L0.8 8Z" stroke="rgba(16,185,129,.18)" stroke-width="0.8"/><path d="M8 3.5L12.5 8L8 12.5L3.5 8Z" stroke="rgba(16,185,129,.08)" stroke-width="0.6"/></svg></span>
+  <span class="ft-kp-dot"></span>
+</div>
+<footer class="ft-section" id="siteFooter" aria-label="Site footer">
+  <div class="ft-glow" aria-hidden="true"></div>
+  <div class="ft-container">
+    <div class="ft-main">
+      <div class="ft-brand">
+        <div class="ft-kp-end" aria-hidden="true"></div>
+        <a href="index.html" class="ft-logo-link" aria-label="AcademeKey — home"><img src="assets/img/Academekey logo.png" alt="AcademeKey" class="ft-logo"></a>
+        <p class="ft-tagline">The Key to Success</p>
+      </div>
+      <div class="ft-right">
+        <nav aria-label="Footer navigation"><ul class="ft-nav" role="list">
+          <li><a href="index.html"   class="ft-nav-link">Home</a></li>
+          <li><a href="courses.html" class="ft-nav-link">Courses</a></li>
+          <li><a href="about.html"   class="ft-nav-link">About</a></li>
+          <li><a href="contact.html" class="ft-nav-link">Contact</a></li>
+        </ul></nav>
+        <div class="ft-social" aria-label="Social media">
+          <a href="https://www.linkedin.com/company/academkey/" target="_blank" rel="noopener noreferrer" class="ft-soc" aria-label="AcademeKey on LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="#" class="ft-soc" aria-label="AcademeKey on Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="#" class="ft-soc" aria-label="AcademeKey on Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" class="ft-soc" aria-label="AcademeKey on YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="ft-contact">
+      <div class="ft-contact-item"><span class="ft-contact-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span><span class="ft-contact-text">Email</span></div>
+      <div class="ft-contact-item"><span class="ft-contact-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.16a16 16 0 006.93 6.93l1.42-1.42a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></span><span class="ft-contact-text">Phone</span></div>
+      <div class="ft-contact-item"><span class="ft-contact-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span><span class="ft-contact-text">Address</span></div>
+    </div>
+    <div class="ft-bottom">
+      <div class="ft-bottom-rule"></div>
+      <div class="ft-bottom-row">
+        <p class="ft-copy">&copy; <span id="ftYear">2025</span> AcademeKey</p>
+        <span class="ft-copy-sep" aria-hidden="true">·</span>
+        <p class="ft-copy">The Key to Success</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/motion.js"></script>
+</body>
+</html>

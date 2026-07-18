@@ -1,0 +1,3156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AcademeKey – Learn. Grow. Succeed.</title>
+  <meta name="description" content="AcademeKey offers practical, engaging, and industry-relevant professional training programs for individuals and organizations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <style>
+  /* ═══════════════════════ HOMEPAGE HERO ═══════════════════════ */
+
+  .hm-hero {
+    min-height: 100vh;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 0 110px;
+  }
+
+  /* Background geometry — AK logo shapes at <2% opacity */
+  .hm-bg-geo {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.018;
+  }
+  .hm-bg-geo svg { width: 100%; height: 100%; }
+
+  /* Knowledge Path — thin emerald line at <4% opacity */
+  .hm-kpath-svg {
+    position: absolute;
+    left: 0; top: 0;
+    width: 180px; height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.035;
+  }
+
+  /* Main container — 48 / 52 split */
+  .hm-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 64px;
+    display: grid;
+    grid-template-columns: 48fr 52fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* ── Left column ── */
+  .hm-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Small label */
+  .hm-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: #10B981;
+    margin-bottom: 28px;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 600ms cubic-bezier(0.22,1,0.36,1),
+                transform 600ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .hm-label.hm-in { opacity: 1; transform: none; }
+
+  /* Editorial headline */
+  .hm-h1 {
+    font-size: clamp(52px, 5.8vw, 88px);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 0.92;
+    color: #0B1629;
+    margin: 0 0 36px;
+  }
+  .hm-line {
+    display: block;
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 700ms cubic-bezier(0.22,1,0.36,1),
+                transform 700ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .hm-line.hm-in { opacity: 1; transform: none; }
+
+  /* Supporting paragraph */
+  .hm-sub {
+    font-size: 17px;
+    line-height: 1.78;
+    color: #6B7A90;
+    max-width: 460px;
+    margin: 0 0 48px;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 600ms cubic-bezier(0.22,1,0.36,1),
+                transform 600ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .hm-sub.hm-in { opacity: 1; transform: none; }
+
+  /* CTA row */
+  .hm-ctas {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 600ms cubic-bezier(0.22,1,0.36,1),
+                transform 600ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .hm-ctas.hm-in { opacity: 1; transform: none; }
+
+  /* Primary — Emerald */
+  .hm-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    height: 56px;
+    padding: 0 32px;
+    background: #10B981;
+    color: #fff;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    text-decoration: none;
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(16,185,129,.22), 0 1px 4px rgba(16,185,129,.14);
+    transition: background 200ms ease, box-shadow 200ms ease,
+                transform 200ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .hm-btn-primary:hover {
+    background: #059669;
+    box-shadow: 0 8px 28px rgba(16,185,129,.36), 0 2px 8px rgba(16,185,129,.2);
+    transform: translateY(-2px);
+  }
+  .hm-btn-primary:active { transform: scale(0.98); }
+  .hm-btn-arr {
+    transition: transform 200ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .hm-btn-primary:hover .hm-btn-arr { transform: translateX(5px); }
+
+  /* Secondary — ghost outline */
+  .hm-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    height: 56px;
+    padding: 0 28px;
+    background: transparent;
+    color: #0B1629;
+    border: 1.5px solid rgba(11,22,41,.2);
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: background 200ms ease, border-color 200ms ease;
+  }
+  .hm-btn-secondary:hover {
+    background: rgba(11,22,41,.04);
+    border-color: rgba(11,22,41,.35);
+  }
+
+  /* ── Right column ── */
+  .hm-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .hm-composition {
+    position: relative;
+    width: 100%;
+    max-width: 540px;
+    opacity: 0;
+    transition: opacity 900ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .hm-composition.hm-in { opacity: 1; }
+
+  /* Soft architectural background shape */
+  .hm-bg-shape {
+    position: absolute;
+    top: -36px;
+    left: -44px;
+    right: 44px;
+    bottom: -36px;
+    background: #F3F6FB;
+    border-radius: 44px;
+    z-index: 0;
+  }
+
+  /* Main image */
+  .hm-img-wrap {
+    position: relative;
+    z-index: 1;
+    border-radius: 32px;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+  }
+  .hm-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+    transform: scale(1.04);
+    transition: transform 1000ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .hm-composition.hm-in .hm-img { transform: scale(1); }
+
+  /* Geometric accent — AK outline, upper-right */
+  .hm-geo-accent {
+    position: absolute;
+    top: -30px;
+    right: -22px;
+    width: 76px; height: 76px;
+    z-index: 3;
+    opacity: 0.15;
+    pointer-events: none;
+  }
+
+  /* Floating glass card */
+  .hm-glass-card {
+    position: absolute;
+    bottom: -28px;
+    right: -32px;
+    min-width: 192px;
+    background: rgba(255,255,255,.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,.75);
+    border-radius: 24px;
+    padding: 24px 28px;
+    box-shadow: 0 8px 32px rgba(11,22,41,.10), 0 2px 8px rgba(11,22,41,.06);
+    z-index: 4;
+    opacity: 0;
+    transition: opacity 700ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .hm-glass-card.hm-in {
+    opacity: 1;
+    animation: hmFloat 8s ease-in-out infinite;
+  }
+  @keyframes hmFloat {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-6px); }
+  }
+
+  .hm-gc-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .hm-gc-check {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: rgba(16,185,129,.12);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: #10B981;
+  }
+  .hm-gc-verified {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #10B981;
+  }
+  .hm-gc-stat {
+    font-size: 40px;
+    font-weight: 900;
+    letter-spacing: -2px;
+    color: #0B1629;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .hm-gc-stat em { font-style: normal; color: #10B981; }
+  .hm-gc-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #6B7A90;
+  }
+
+  /* ── Scroll indicator ── */
+  .hm-scroll {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0.35;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .hm-scroll-line {
+    width: 1px;
+    height: 52px;
+    background: rgba(11,22,41,.12);
+    position: relative;
+    overflow: hidden;
+  }
+  .hm-scroll-dot {
+    position: absolute;
+    left: 0; right: 0;
+    top: 0;
+    height: 12px;
+    background: linear-gradient(to bottom, transparent, rgba(11,22,41,.55), transparent);
+    animation: hmScrollDot 2.6s ease-in-out infinite;
+  }
+  @keyframes hmScrollDot {
+    0%   { transform: translateY(-12px); opacity: 0; }
+    15%  { opacity: 1; }
+    85%  { opacity: 1; }
+    100% { transform: translateY(52px); opacity: 0; }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 1100px) {
+    .hm-container { gap: 56px; padding: 0 48px; }
+    .hm-h1 { font-size: clamp(44px, 5.5vw, 72px); }
+  }
+  @media (max-width: 900px) {
+    .hm-hero { padding: 110px 0 80px; align-items: flex-start; }
+    .hm-container {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      padding: 0 40px;
+    }
+    .hm-composition { max-width: 100%; }
+    .hm-img-wrap { aspect-ratio: 16 / 10; }
+    .hm-bg-shape { display: none; }
+    .hm-glass-card { right: 16px; bottom: -20px; }
+  }
+  @media (max-width: 600px) {
+    .hm-hero { padding: 100px 0 72px; }
+    .hm-container { padding: 0 24px; gap: 40px; }
+    .hm-h1 { font-size: clamp(38px, 10vw, 56px); }
+    .hm-ctas { flex-direction: column; align-items: stretch; }
+    .hm-btn-primary, .hm-btn-secondary {
+      width: 100%; justify-content: center;
+    }
+    .hm-img-wrap { border-radius: 22px; aspect-ratio: 4/3; }
+    .hm-glass-card { right: 12px; bottom: 12px; padding: 18px 20px; }
+    .hm-gc-stat { font-size: 32px; }
+    .hm-geo-accent { width: 56px; height: 56px; top: -18px; right: -14px; }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .hm-label, .hm-line, .hm-sub, .hm-ctas,
+    .hm-composition, .hm-glass-card {
+      opacity: 1 !important; transform: none !important; transition: none !important;
+    }
+    .hm-scroll-dot { animation: none !important; }
+    .hm-glass-card.hm-in { animation: none !important; }
+    .hm-img { transform: none !important; }
+  }
+  </style>
+
+  <style>
+  /* ═══════════════════════ SEARCH COURSES SECTION ═══════════════════════ */
+
+  .sc-section {
+    background: #fff;
+    padding: 180px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sc-bg-geo {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.016;
+  }
+  .sc-bg-geo svg { width: 100%; height: 100%; }
+
+  .sc-kpath-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.03;
+  }
+
+  .sc-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 64px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── Header ── */
+  .sc-header { text-align: center; margin-bottom: 72px; }
+
+  .sc-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #10B981;
+    margin-bottom: 24px;
+  }
+
+  .sc-heading {
+    font-size: clamp(38px, 4vw, 62px);
+    font-weight: 900;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+    color: #0B1629;
+    max-width: 720px;
+    margin: 0 auto 24px;
+  }
+
+  .sc-sub {
+    font-size: 17px;
+    line-height: 1.78;
+    color: #6B7A90;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  /* ── Search wrap ── */
+  .sc-search-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* Oversized bar */
+  .sc-bar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    height: 72px;
+    padding: 0 24px 0 28px;
+    background: #fff;
+    border: 1.5px solid #E8ECF3;
+    border-radius: 24px;
+    box-shadow: 0 4px 24px rgba(11,22,41,.06), 0 1px 6px rgba(11,22,41,.04);
+    transition: border-color 250ms ease, box-shadow 260ms ease;
+    position: relative;
+    z-index: 2;
+    cursor: text;
+  }
+  .sc-bar.sc-focused {
+    border-color: #10B981;
+    box-shadow: 0 0 0 4px rgba(16,185,129,.10),
+                0 6px 32px rgba(11,22,41,.08);
+  }
+
+  .sc-bar-icon {
+    flex-shrink: 0;
+    color: #C5CDD8;
+    display: flex; align-items: center;
+    transition: color 250ms ease;
+  }
+  .sc-bar.sc-focused .sc-bar-icon { color: #10B981; }
+
+  .sc-input {
+    flex: 1;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 18px;
+    font-weight: 400;
+    color: #0B1629;
+    font-family: inherit;
+    letter-spacing: -0.01em;
+    caret-color: #10B981;
+    min-width: 0;
+  }
+  .sc-input::placeholder { color: #C5CDD8; }
+
+  .sc-kbd {
+    flex-shrink: 0;
+    display: flex; align-items: center; gap: 3px;
+    padding: 5px 10px;
+    background: #F4F6FA;
+    border: 1px solid #E8ECF3;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #C5CDD8;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: opacity 180ms ease;
+  }
+  .sc-bar.sc-focused .sc-kbd,
+  .sc-kbd.sc-hide { opacity: 0; }
+
+  .sc-clear {
+    flex-shrink: 0;
+    display: none;
+    align-items: center; justify-content: center;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: #F4F6FA;
+    border: none; cursor: pointer;
+    color: #8A95A3;
+    transition: background 150ms ease;
+    padding: 0;
+  }
+  .sc-clear:hover { background: #E8ECF3; color: #0B1629; }
+  .sc-clear.sc-vis { display: flex; }
+
+  /* ── Floating panel ── */
+  .sc-panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0; right: 0;
+    background: #fff;
+    border: 1px solid #E8ECF3;
+    border-radius: 24px;
+    box-shadow: 0 12px 48px rgba(11,22,41,.10), 0 2px 12px rgba(11,22,41,.06);
+    z-index: 200;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity 200ms ease, transform 220ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .sc-panel.sc-open {
+    opacity: 1; transform: none; pointer-events: all;
+  }
+
+  .sc-panel-lbl {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: #C5CDD8; padding: 20px 24px 10px;
+  }
+  .sc-panel-sep { height: 1px; background: #F3F5F9; margin: 4px 0; }
+
+  /* Popular search tags */
+  .sc-tags {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    padding: 0 24px 20px;
+  }
+  .sc-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 7px 14px;
+    background: #F4F6FA; border: 1px solid transparent;
+    border-radius: 10px; font-size: 13px; font-weight: 500;
+    color: #4A5568; cursor: pointer; text-decoration: none;
+    transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+  }
+  .sc-tag:hover {
+    background: rgba(16,185,129,.08);
+    border-color: rgba(16,185,129,.22);
+    color: #059669;
+  }
+
+  /* Suggested course rows */
+  .sc-sug {
+    display: flex; align-items: center; gap: 14px;
+    padding: 11px 24px; cursor: pointer;
+    text-decoration: none;
+    transition: background 100ms ease;
+  }
+  .sc-sug:hover { background: #F8F9FB; }
+  .sc-sug:last-of-type { border-radius: 0 0 24px 24px; }
+
+  .sc-sug-thumb {
+    width: 44px; height: 44px; border-radius: 12px;
+    overflow: hidden; flex-shrink: 0; background: #F3F5F9;
+  }
+  .sc-sug-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .sc-sug-name {
+    font-size: 14px; font-weight: 600; color: #0B1629;
+    flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .sc-sug-cat {
+    font-size: 12px; color: #C5CDD8; font-weight: 500; flex-shrink: 0;
+  }
+
+  /* ── Results ── */
+  .sc-results-wrap { padding: 4px 0; }
+  .sc-results-lbl {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: #C5CDD8; padding: 16px 24px 8px;
+  }
+
+  .sc-result {
+    display: flex; align-items: center; gap: 16px;
+    padding: 10px 24px; text-decoration: none; cursor: pointer;
+    opacity: 0; transform: translateY(5px);
+    animation: scIn 180ms cubic-bezier(0.22,1,0.36,1) forwards;
+    transition: background 100ms ease;
+  }
+  @keyframes scIn { to { opacity: 1; transform: none; } }
+  .sc-result:hover, .sc-result.sc-active { background: #F8F9FB; }
+  .sc-result:last-of-type { border-radius: 0; }
+
+  .sc-result-thumb {
+    width: 52px; height: 52px; border-radius: 14px;
+    overflow: hidden; flex-shrink: 0; background: #F3F5F9;
+  }
+  .sc-result-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+  .sc-result-body { flex: 1; min-width: 0; }
+  .sc-result-title {
+    font-size: 15px; font-weight: 600; color: #0B1629;
+    line-height: 1.3; margin-bottom: 3px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .sc-result-title mark {
+    background: rgba(16,185,129,.15); color: #059669;
+    border-radius: 3px; padding: 0 2px; font-weight: 700; font-style: normal;
+  }
+  .sc-result-desc {
+    font-size: 13px; color: #8A95A3;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+
+  .sc-result-tag {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    color: #10B981; background: rgba(16,185,129,.08);
+    padding: 3px 8px; border-radius: 6px; flex-shrink: 0;
+  }
+  .sc-result-arr {
+    flex-shrink: 0; color: #D0D7E2;
+    transition: transform 180ms cubic-bezier(0.22,1,0.36,1), color 180ms ease;
+  }
+  .sc-result:hover .sc-result-arr,
+  .sc-result.sc-active .sc-result-arr { transform: translateX(6px); color: #10B981; }
+
+  /* View all footer */
+  .sc-view-all {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 24px 18px;
+    border-top: 1px solid #F3F5F9;
+    text-decoration: none; cursor: pointer;
+    transition: background 120ms ease;
+  }
+  .sc-view-all:hover { background: #F8F9FB; }
+  .sc-view-all-txt { font-size: 13px; font-weight: 600; color: #10B981; }
+  .sc-view-all-ct { font-size: 13px; color: #C5CDD8; }
+
+  /* ── Empty state ── */
+  .sc-empty {
+    display: none; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 40px 24px; text-align: center;
+  }
+  .sc-empty.sc-vis { display: flex; }
+  .sc-empty-illus { margin-bottom: 18px; opacity: 0.2; }
+  .sc-empty-title { font-size: 15px; font-weight: 600; color: #0B1629; margin-bottom: 6px; }
+  .sc-empty-sub { font-size: 13px; color: #B0BAC9; }
+
+  /* ── Responsive ── */
+  @media (max-width: 1080px) { .sc-container { padding: 0 48px; } }
+  @media (max-width: 768px) {
+    .sc-section { padding: 120px 0; }
+    .sc-container { padding: 0 24px; }
+    .sc-heading { font-size: clamp(30px, 8vw, 44px); }
+    .sc-bar { height: 60px; padding: 0 18px 0 20px; border-radius: 18px; }
+    .sc-input { font-size: 16px; }
+    .sc-kbd { display: none; }
+    .sc-panel { border-radius: 18px; }
+    .sc-result-desc { display: none; }
+    .sc-sug-cat { display: none; }
+  }
+  @media (max-width: 480px) {
+    .sc-section { padding: 100px 0; }
+    .sc-result-tag { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sc-panel { transition: none; }
+    .sc-result { animation: none; opacity: 1; transform: none; }
+  }
+  </style>
+
+  <style>
+  /* ═══════════════════════ FEATURED COURSES SECTION ═══════════════════════ */
+
+  .fc-section {
+    background: #F7F9FC;
+    padding: 200px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Knowledge Path — thin emerald line beneath cards, <3% opacity */
+  .fc-kpath {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #10B981 30%, #10B981 70%, transparent 100%);
+    opacity: 0.028;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .fc-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 64px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── Header row ── */
+  .fc-header-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 72px;
+  }
+  .fc-header-text { flex: 1; }
+
+  .fc-label {
+    display: inline-block;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: #10B981; margin-bottom: 24px;
+  }
+
+  .fc-heading {
+    font-size: clamp(36px, 3.8vw, 58px);
+    font-weight: 900;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+    color: #0B1629;
+    max-width: 720px;
+    margin: 0 0 20px;
+  }
+
+  .fc-sub {
+    font-size: 17px; line-height: 1.78;
+    color: #6B7A90; max-width: 620px; margin: 0;
+  }
+
+  /* View All CTA */
+  .fc-view-all {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 15px; font-weight: 600;
+    color: #0B1629; text-decoration: none;
+    white-space: nowrap; flex-shrink: 0;
+    padding-bottom: 6px;
+    border-bottom: 1.5px solid rgba(11,22,41,.15);
+    transition: color 200ms ease, border-color 200ms ease, gap 200ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .fc-view-all:hover {
+    color: #10B981;
+    border-color: #10B981;
+    gap: 14px;
+  }
+
+  /* ── Course grid ── */
+  .fc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  /* ── Card ── */
+  .fc-card {
+    background: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(11,22,41,.06), 0 1px 4px rgba(11,22,41,.04);
+    position: relative;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 600ms cubic-bezier(0.22,1,0.36,1),
+                transform 600ms cubic-bezier(0.22,1,0.36,1),
+                box-shadow 320ms cubic-bezier(0.22,1,0.36,1),
+                top 0ms;
+    top: 0;
+    will-change: transform, opacity;
+  }
+  .fc-card.fc-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .fc-card:hover {
+    box-shadow: 0 8px 40px rgba(11,22,41,.12), 0 2px 12px rgba(11,22,41,.08);
+    transform: translateY(-8px) !important;
+  }
+
+  /* Full-card link */
+  .fc-card-link {
+    display: flex; flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    outline-offset: 3px;
+  }
+  .fc-card-link:focus-visible {
+    outline: 2px solid #10B981;
+    border-radius: 24px;
+  }
+
+  /* Image */
+  .fc-card-img-wrap {
+    overflow: hidden;
+    flex-shrink: 0;
+    aspect-ratio: 16 / 10;
+    background: #F3F5F9;
+  }
+  .fc-card-img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    display: block;
+    transform: scale(1);
+    transition: transform 320ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .fc-card:hover .fc-card-img { transform: scale(1.03); }
+
+  /* Card body */
+  .fc-card-body {
+    padding: 28px 28px 24px;
+    display: flex; flex-direction: column;
+    flex: 1;
+  }
+
+  .fc-card-cat {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: #10B981; margin-bottom: 10px;
+  }
+
+  .fc-card-title {
+    font-size: 18px; font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.28;
+    color: #0B1629;
+    margin: 0 0 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .fc-card-desc {
+    font-size: 14px; line-height: 1.65;
+    color: #6B7A90; margin: 0 0 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1;
+  }
+
+  /* Footer: price + arrow */
+  .fc-card-foot {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    margin-top: auto; padding-top: 16px;
+    border-top: 1px solid #F3F5F9;
+  }
+
+  .fc-card-price {
+    font-size: 16px; font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #10B981;
+  }
+  .fc-card-price-empty { color: #B0BAC9; font-weight: 500; font-size: 14px; }
+
+  .fc-card-arr {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: #F4F6FA;
+    display: flex; align-items: center; justify-content: center;
+    color: #8A95A3; flex-shrink: 0;
+    transition: background 320ms ease, color 320ms ease,
+                transform 320ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .fc-card:hover .fc-card-arr {
+    background: #10B981;
+    color: #fff;
+    transform: translateX(4px);
+  }
+
+  /* Emerald bottom accent line */
+  .fc-card-accent {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: #10B981;
+    border-radius: 0 0 24px 24px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 320ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .fc-card:hover .fc-card-accent { transform: scaleX(1); }
+
+  /* ── Skeleton loading state ── */
+  .fc-skeleton-card {
+    background: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(11,22,41,.06);
+  }
+  .fc-skel-img {
+    aspect-ratio: 16/10;
+    background: linear-gradient(90deg, #edf0f5 25%, #e4e8ef 50%, #edf0f5 75%);
+    background-size: 800px 100%;
+    animation: fcShimmer 1.6s infinite linear;
+  }
+  .fc-skel-body { padding: 28px; }
+  .fc-skel-line {
+    border-radius: 6px;
+    background: linear-gradient(90deg, #edf0f5 25%, #e4e8ef 50%, #edf0f5 75%);
+    background-size: 800px 100%;
+    animation: fcShimmer 1.6s infinite linear;
+    margin-bottom: 12px;
+  }
+  .fc-skel-line--title { height: 20px; width: 80%; }
+  .fc-skel-line--title2 { height: 20px; width: 55%; margin-bottom: 16px; }
+  .fc-skel-line--desc { height: 13px; width: 100%; }
+  .fc-skel-line--desc2 { height: 13px; width: 88%; }
+  .fc-skel-line--desc3 { height: 13px; width: 72%; margin-bottom: 24px; }
+  .fc-skel-line--price { height: 18px; width: 36%; }
+  @keyframes fcShimmer {
+    0%   { background-position: -400px 0; }
+    100% { background-position: 400px 0; }
+  }
+
+  /* ── Empty state ── */
+  .fc-empty {
+    text-align: center;
+    padding: 80px 40px;
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 2px 12px rgba(11,22,41,.06);
+  }
+  .fc-empty-icon { margin-bottom: 24px; opacity: 0.18; }
+  .fc-empty-title {
+    font-size: 22px; font-weight: 700;
+    letter-spacing: -0.02em; color: #0B1629;
+    margin-bottom: 10px;
+  }
+  .fc-empty-sub {
+    font-size: 16px; color: #6B7A90;
+    margin-bottom: 32px;
+  }
+  .fc-empty-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    height: 52px; padding: 0 28px;
+    background: #10B981; color: #fff;
+    border-radius: 14px; font-size: 15px; font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(16,185,129,.22);
+    transition: background 200ms ease, transform 200ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .fc-empty-btn:hover { background: #059669; transform: translateY(-2px); }
+
+  /* ── Responsive ── */
+  @media (max-width: 1100px) {
+    .fc-container { padding: 0 48px; }
+    .fc-grid { gap: 22px; }
+  }
+  @media (max-width: 960px) {
+    .fc-grid { grid-template-columns: repeat(2, 1fr); }
+    .fc-header-row { flex-direction: column; align-items: flex-start; gap: 24px; }
+  }
+  @media (max-width: 768px) {
+    .fc-section { padding: 120px 0; }
+    .fc-container { padding: 0 24px; }
+    .fc-grid { grid-template-columns: 1fr; gap: 20px; }
+    .fc-heading { font-size: clamp(30px, 8vw, 44px); }
+    .fc-header-row { margin-bottom: 48px; }
+    .fc-card-body { padding: 22px 22px 18px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fc-card {
+      opacity: 1 !important; transform: none !important;
+      transition: box-shadow 200ms ease !important;
+    }
+    .fc-card:hover { transform: none !important; }
+    .fc-card-img { transition: none !important; }
+    .fc-card-accent { transition: none !important; }
+    .fc-skel-img, .fc-skel-line { animation: none !important; }
+  }
+  </style>
+
+  <style>
+  /* ═══════════════════════ WHY CHOOSE ACADEMEKEY ═══════════════════════ */
+
+  .wca-section {
+    background: #fff;
+    padding: 220px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Background geometry <2% opacity */
+  .wca-bg-geo {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.014;
+  }
+  .wca-bg-geo svg { width: 100%; height: 100%; }
+
+  /* Knowledge Path — meanders through section <3% opacity */
+  .wca-kpath-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.026;
+  }
+
+  .wca-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 64px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── Section header ── */
+  .wca-header { margin-bottom: 120px; }
+
+  .wca-header-label {
+    display: block;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    color: #10B981; margin-bottom: 28px;
+  }
+
+  .wca-header-heading {
+    font-size: clamp(40px, 4.2vw, 64px);
+    font-weight: 900;
+    letter-spacing: -0.038em;
+    line-height: 0.93;
+    color: #0B1629;
+    max-width: 700px;
+    margin: 0 0 28px;
+  }
+
+  .wca-header-sub {
+    font-size: 17px;
+    line-height: 1.78;
+    color: #6B7A90;
+    max-width: 620px;
+    margin: 0;
+  }
+
+  /* ── Panel ── */
+  .wca-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 88px;
+    align-items: center;
+    margin-bottom: 140px;
+    /* reveal */
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 700ms cubic-bezier(0.22,1,0.36,1),
+                transform 700ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .wca-panel:last-child { margin-bottom: 0; }
+  .wca-panel.wca-vis { opacity: 1; transform: none; }
+
+  /* Image side — default left */
+  .wca-panel-img  { order: 1; margin-left: -40px; }
+  .wca-panel-text { order: 2; }
+
+  /* Reversed — image right */
+  .wca-panel--rev .wca-panel-img  { order: 2; margin-left: 0; margin-right: -40px; }
+  .wca-panel--rev .wca-panel-text { order: 1; }
+
+  /* Image wrap */
+  .wca-img-wrap {
+    position: relative;
+    border-radius: 28px;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    box-shadow: 0 12px 48px rgba(11,22,41,.10), 0 2px 16px rgba(11,22,41,.06);
+  }
+
+  .wca-img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    display: block;
+    transform: scale(1.04);
+    transition: transform 1000ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .wca-panel.wca-vis .wca-img  { transform: scale(1); }
+  .wca-img-wrap:hover .wca-img { transform: scale(1.04) !important; }
+
+  /* Panel text — delayed reveal */
+  .wca-panel-text {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 650ms cubic-bezier(0.22,1,0.36,1) 160ms,
+                transform 650ms cubic-bezier(0.22,1,0.36,1) 160ms;
+  }
+  .wca-panel.wca-vis .wca-panel-text { opacity: 1; transform: none; }
+
+  .wca-panel-label {
+    display: block;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    color: #10B981; margin-bottom: 20px;
+  }
+
+  .wca-panel-heading {
+    font-size: clamp(28px, 2.8vw, 42px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.07;
+    color: #0B1629;
+    max-width: 420px;
+    margin: 0 0 22px;
+  }
+
+  .wca-panel-p {
+    font-size: 17px;
+    line-height: 1.78;
+    color: #6B7A90;
+    max-width: 440px;
+    margin: 0 0 36px;
+  }
+  .wca-panel-p:last-child { margin-bottom: 0; }
+
+  /* Arrow link */
+  .wca-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px; font-weight: 600;
+    color: #0B1629; text-decoration: none;
+    position: relative; padding-bottom: 4px;
+    transition: color 200ms ease;
+  }
+  .wca-link::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 1.5px; background: #10B981;
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 220ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .wca-link:hover { color: #10B981; }
+  .wca-link:hover::after { transform: scaleX(1); }
+  .wca-link-arr {
+    transition: transform 220ms cubic-bezier(0.22,1,0.36,1);
+    flex-shrink: 0;
+  }
+  .wca-link:hover .wca-link-arr { transform: translateX(6px); }
+
+  /* ── Responsive ── */
+  @media (max-width: 1100px) {
+    .wca-container { padding: 0 48px; }
+    .wca-panel { gap: 64px; }
+    .wca-panel-img { margin-left: -20px; }
+    .wca-panel--rev .wca-panel-img { margin-right: -20px; }
+  }
+  @media (max-width: 880px) {
+    .wca-section { padding: 140px 0; }
+    .wca-panel {
+      grid-template-columns: 1fr;
+      gap: 40px; margin-bottom: 100px;
+    }
+    .wca-panel-img,
+    .wca-panel--rev .wca-panel-img { order: 1; margin: 0; }
+    .wca-panel-text,
+    .wca-panel--rev .wca-panel-text { order: 2; }
+    .wca-img-wrap { aspect-ratio: 16 / 10; }
+  }
+  @media (max-width: 600px) {
+    .wca-section { padding: 100px 0; }
+    .wca-container { padding: 0 24px; }
+    .wca-header { margin-bottom: 72px; }
+    .wca-panel { margin-bottom: 80px; }
+    .wca-img-wrap { border-radius: 20px; aspect-ratio: 4 / 3; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .wca-panel { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .wca-panel-text { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .wca-img { transform: none !important; transition: none !important; }
+  }
+  </style>
+
+  <style>
+  /* ═══════════════════════ ABOUT ACADEMEKEY ═══════════════════════ */
+
+  .ab-section {
+    background: #F7F9FC;
+    padding: 220px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Knowledge Path — enters from above, wraps behind image, exits below */
+  .ab-kpath-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.026;
+  }
+
+  .ab-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 64px;
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 45fr 55fr;
+    gap: 96px;
+    align-items: center;
+  }
+
+  /* ── Left column — image ── */
+  .ab-img-col {
+    position: relative;
+    margin-left: -48px;  /* extends slightly toward section edge */
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 700ms cubic-bezier(0.22,1,0.36,1),
+                transform 700ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .ab-section.ab-vis .ab-img-col { opacity: 1; transform: none; }
+
+  .ab-img-wrap {
+    border-radius: 32px;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    box-shadow: 0 16px 56px rgba(11,22,41,.11), 0 2px 16px rgba(11,22,41,.07);
+    position: relative;
+    z-index: 2;
+  }
+
+  .ab-img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center 15%;
+    display: block;
+    transform: scale(1.04);
+    transition: transform 1000ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .ab-section.ab-vis .ab-img { transform: scale(1); }
+
+  /* ── Right column — editorial text ── */
+  .ab-text-col { position: relative; }
+
+  /* Subtle geometric accent behind heading */
+  .ab-geo {
+    position: absolute;
+    top: -40px; right: -20px;
+    width: 340px; height: 340px;
+    pointer-events: none;
+    opacity: 0.016;
+    z-index: 0;
+  }
+
+  .ab-label {
+    display: block;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    color: #10B981; margin-bottom: 28px;
+    position: relative; z-index: 1;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 600ms cubic-bezier(0.22,1,0.36,1) 80ms,
+                transform 600ms cubic-bezier(0.22,1,0.36,1) 80ms;
+  }
+  .ab-section.ab-vis .ab-label { opacity: 1; transform: none; }
+
+  .ab-heading {
+    font-size: clamp(42px, 4.4vw, 68px);
+    font-weight: 900;
+    letter-spacing: -0.038em;
+    line-height: 0.93;
+    color: #0B1629;
+    max-width: 600px;
+    margin: 0 0 40px;
+    position: relative; z-index: 1;
+  }
+  /* Heading reveals line by line */
+  .ab-heading .ab-hline {
+    display: block;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 700ms cubic-bezier(0.22,1,0.36,1),
+                transform 700ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .ab-section.ab-vis .ab-hline:nth-child(1) {
+    opacity: 1; transform: none;
+    transition-delay: 160ms;
+  }
+  .ab-section.ab-vis .ab-hline:nth-child(2) {
+    opacity: 1; transform: none;
+    transition-delay: 280ms;
+  }
+
+  /* Divider */
+  .ab-rule {
+    width: 48px; height: 2px;
+    background: linear-gradient(90deg, #10B981, transparent);
+    border: none; margin: 0 0 36px;
+    opacity: 0;
+    transition: opacity 500ms ease 360ms;
+  }
+  .ab-section.ab-vis .ab-rule { opacity: 1; }
+
+  /* Body paragraphs */
+  .ab-body {
+    font-size: 18px;
+    line-height: 1.80;
+    color: #4A5568;
+    max-width: 520px;
+    margin: 0 0 24px;
+    position: relative; z-index: 1;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 650ms cubic-bezier(0.22,1,0.36,1),
+                transform 650ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .ab-body:last-of-type { margin-bottom: 0; }
+  .ab-section.ab-vis .ab-body:nth-of-type(1) {
+    opacity: 1; transform: none; transition-delay: 400ms;
+  }
+  .ab-section.ab-vis .ab-body:nth-of-type(2) {
+    opacity: 1; transform: none; transition-delay: 520ms;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 1100px) {
+    .ab-container { padding: 0 48px; gap: 72px; }
+    .ab-img-col { margin-left: -20px; }
+  }
+  @media (max-width: 880px) {
+    .ab-section { padding: 140px 0; }
+    .ab-container {
+      grid-template-columns: 1fr;
+      gap: 52px;
+    }
+    .ab-img-col { margin-left: 0; }
+    .ab-img-wrap { aspect-ratio: 16 / 10; }
+    .ab-geo { display: none; }
+  }
+  @media (max-width: 600px) {
+    .ab-section { padding: 100px 0; }
+    .ab-container { padding: 0 24px; gap: 40px; }
+    .ab-img-wrap { border-radius: 22px; aspect-ratio: 4 / 3; }
+    .ab-body { font-size: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ab-img-col, .ab-label, .ab-hline, .ab-rule, .ab-body {
+      opacity: 1 !important; transform: none !important;
+      transition: none !important;
+    }
+    .ab-img { transform: none !important; transition: none !important; }
+  }
+  </style>
+
+  <style>
+  /* ═══════════════════════ OUR MISSION ═══════════════════════ */
+
+  /* Cinematic transition — KP exits About, thins to a line, dissolves into navy */
+  .ms-transition {
+    display: block;
+    height: 160px;
+    background: linear-gradient(to bottom, #F7F9FC 0%, #071A33 100%);
+    position: relative;
+    z-index: 0;
+    margin-bottom: -2px;
+  }
+  .ms-transition::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 1.5px; height: 80px;
+    background: linear-gradient(to bottom, rgba(16,185,129,.32), transparent);
+    border-radius: 1px;
+  }
+
+  .ms-section {
+    background: #071A33;
+    padding: 240px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Ambient radial lighting — <5% opacity */
+  .ms-glow {
+    position: absolute;
+    top: -20%; left: -10%;
+    width: 80%; height: 120%;
+    background: radial-gradient(ellipse at center,
+      rgba(16,185,129,.035) 0%,
+      transparent 65%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Knowledge Path logo moment — AK outline, peaks at 3% opacity, one-time */
+  .ms-kp-logo {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 640px; height: 640px;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 2;
+  }
+  .ms-section.ms-kp-fired .ms-kp-logo {
+    animation: msKpMoment 1100ms cubic-bezier(0.22,1,0.36,1) forwards;
+  }
+  @keyframes msKpMoment {
+    0%   { opacity: 0; }
+    25%  { opacity: 0.028; }
+    65%  { opacity: 0.028; }
+    100% { opacity: 0; }
+  }
+
+  .ms-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 64px;
+    position: relative;
+    z-index: 3;
+  }
+
+  /* 42 / 58 grid */
+  .ms-grid {
+    display: grid;
+    grid-template-columns: 42fr 58fr;
+    gap: 96px;
+    align-items: start;
+  }
+
+  /* ── Left: heading ── */
+  .ms-left {
+    position: relative;
+    padding-top: 8px;
+  }
+
+  /* Emerald edge glow behind heading <4% opacity */
+  .ms-left::before {
+    content: '';
+    position: absolute;
+    top: -80px; left: -120px;
+    width: 560px; height: 560px;
+    background: radial-gradient(ellipse at center,
+      rgba(16,185,129,.04) 0%, transparent 68%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .ms-label {
+    display: block;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    color: #10B981; margin-bottom: 32px;
+    position: relative; z-index: 1;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 600ms cubic-bezier(0.22,1,0.36,1) 80ms,
+                transform 600ms cubic-bezier(0.22,1,0.36,1) 80ms;
+  }
+  .ms-section.ms-vis .ms-label { opacity: 1; transform: none; }
+
+  .ms-heading {
+    font-size: clamp(52px, 6vw, 96px);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 0.90;
+    color: #fff;
+    max-width: 560px;
+    margin: 0;
+    position: relative; z-index: 1;
+  }
+
+  .ms-hline {
+    display: block;
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 700ms cubic-bezier(0.22,1,0.36,1),
+                transform 700ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .ms-section.ms-vis .ms-hline:nth-child(1) { opacity:1; transform:none; transition-delay: 180ms; }
+  .ms-section.ms-vis .ms-hline:nth-child(2) { opacity:1; transform:none; transition-delay: 300ms; }
+  .ms-section.ms-vis .ms-hline:nth-child(3) { opacity:1; transform:none; transition-delay: 420ms; }
+
+  /* ── Right: mission text + photograph ── */
+  .ms-right {
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  .ms-mission-text {
+    font-size: 20px;
+    line-height: 1.82;
+    color: rgba(255,255,255,.68);
+    max-width: 540px;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 700ms cubic-bezier(0.22,1,0.36,1) 360ms,
+                transform 700ms cubic-bezier(0.22,1,0.36,1) 360ms;
+  }
+  .ms-section.ms-vis .ms-mission-text { opacity: 1; transform: none; }
+
+  /* Editorial photograph */
+  .ms-img-wrap {
+    border-radius: 32px;
+    overflow: hidden;
+    aspect-ratio: 16 / 11;
+    box-shadow: 0 24px 64px rgba(0,0,0,.36), 0 4px 16px rgba(0,0,0,.2);
+    margin-right: -64px;        /* bleeds outside container */
+    opacity: 0;
+    transform: translateY(20px) scale(1.03);
+    transition: opacity 900ms cubic-bezier(0.22,1,0.36,1) 480ms,
+                transform 900ms cubic-bezier(0.22,1,0.36,1) 480ms;
+    position: relative; z-index: 1;
+  }
+  .ms-section.ms-vis .ms-img-wrap { opacity: 1; transform: none; }
+
+  .ms-img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    display: block;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 1100px) {
+    .ms-container { padding: 0 48px; }
+    .ms-img-wrap { margin-right: -48px; }
+  }
+  @media (max-width: 880px) {
+    .ms-section { padding: 140px 0; }
+    .ms-grid { grid-template-columns: 1fr; gap: 56px; }
+    .ms-img-wrap { margin-right: 0; aspect-ratio: 16 / 10; }
+  }
+  @media (max-width: 600px) {
+    .ms-section { padding: 100px 0; }
+    .ms-container { padding: 0 24px; }
+    .ms-heading { font-size: clamp(44px, 11vw, 72px); }
+    .ms-mission-text { font-size: 17px; }
+    .ms-img-wrap { border-radius: 22px; aspect-ratio: 4 / 3; }
+    .ms-transition { height: 100px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ms-label, .ms-hline, .ms-mission-text, .ms-img-wrap {
+      opacity: 1 !important; transform: none !important;
+      transition: none !important;
+    }
+    .ms-section.ms-kp-fired .ms-kp-logo { animation: none !important; opacity: 0 !important; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- Page veil + reading progress -->
+<div id="pageVeil"></div>
+<div id="readProgress"></div>
+
+<!-- ═══════════════════════ HEADER ═══════════════════════ -->
+<header id="mainHeader">
+  <div id="navKPath" aria-hidden="true"></div>
+  <div class="nav-floater">
+
+    <a href="index.html" class="nav-logo" aria-label="AcademeKey — The Key to Success">
+      <div class="nav-logo-mark">
+        <svg width="38" height="38" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <rect width="40" height="40" rx="11" fill="#F5961F"/>
+          <path d="M10 31L20 10L30 31" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="14.5" y1="24.5" x2="25.5" y2="24.5" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="nav-logo-text">
+        <span class="nav-wordmark">Academe<em>Key</em></span>
+        <span class="nav-tagline">The Key to Success</span>
+      </div>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+      <a href="courses.html">Courses</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <a href="courses.html" class="nav-cta-btn" aria-label="Browse our courses">
+      Browse Courses
+      <svg class="cta-arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu" aria-hidden="true">
+  <div class="mob-inner">
+    <div class="mob-header">
+      <div class="nav-logo-mark">
+        <svg width="34" height="34" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <rect width="40" height="40" rx="11" fill="#F5961F"/>
+          <path d="M10 31L20 10L30 31" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="14.5" y1="24.5" x2="25.5" y2="24.5" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+    <nav class="mob-nav" aria-label="Mobile navigation">
+      <a href="index.html" class="mob-link">Home</a>
+      <a href="courses.html" class="mob-link">Courses</a>
+      <a href="about.html" class="mob-link">About</a>
+      <a href="contact.html" class="mob-link">Contact</a>
+    </nav>
+    <div class="mob-cta-wrap">
+      <a href="courses.html" class="mob-cta-btn">
+        Browse Courses
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section class="hm-hero" id="homeHero" aria-label="AcademeKey — Hero">
+
+  <!-- Background: AK logo geometry at <2% opacity on white -->
+  <div class="hm-bg-geo" aria-hidden="true">
+    <svg viewBox="0 0 1440 900" fill="none" preserveAspectRatio="xMidYMid slice">
+      <!-- Large A-shape, centred -->
+      <path d="M480 820L720 100L960 820" stroke="#0B1629" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="595" y1="590" x2="845" y2="590" stroke="#0B1629" stroke-width="1.2" stroke-linecap="round"/>
+      <!-- Outer architectural circle -->
+      <circle cx="720" cy="460" r="350" stroke="#0B1629" stroke-width="0.7"/>
+      <!-- Secondary inner circle -->
+      <circle cx="720" cy="460" r="220" stroke="#0B1629" stroke-width="0.5"/>
+      <!-- Diamond outline -->
+      <path d="M720 90L980 460L720 830L460 460Z" stroke="#0B1629" stroke-width="0.5"/>
+    </svg>
+  </div>
+
+  <!-- Knowledge Path — thin emerald line at <4% opacity -->
+  <svg class="hm-kpath-svg" viewBox="0 0 180 900" fill="none" aria-hidden="true" preserveAspectRatio="none">
+    <path d="M72 0 C72 120 56 260 64 420 C70 540 52 660 62 900"
+          stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+
+  <!-- Main container -->
+  <div class="hm-container">
+
+    <!-- ── LEFT COLUMN ── -->
+    <div class="hm-left">
+
+      <span class="hm-label">ACADEMEKEY</span>
+
+      <h1 class="hm-h1">
+        <span class="hm-line">Build Skills.</span>
+        <span class="hm-line">Shape Your</span>
+        <span class="hm-line">Future.</span>
+      </h1>
+
+      <p class="hm-sub">
+        Discover professional courses designed to help you build practical skills,
+        knowledge and confidence for today's workplace.
+      </p>
+
+      <div class="hm-ctas">
+        <a href="courses.html" class="hm-btn-primary">
+          Browse Courses
+          <svg class="hm-btn-arr" width="16" height="16" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="about.html" class="hm-btn-secondary">About AcademeKey</a>
+      </div>
+
+    </div><!-- /hm-left -->
+
+    <!-- ── RIGHT COLUMN ── -->
+    <div class="hm-right">
+      <div class="hm-composition" id="hmComposition">
+
+        <!-- Soft architectural background shape -->
+        <div class="hm-bg-shape" aria-hidden="true"></div>
+
+        <!-- Main image -->
+        <div class="hm-img-wrap">
+          <img src="assets/img/01_Home_Hero_Speaker.png"
+               alt="Professional in a modern training and development session"
+               class="hm-img">
+        </div>
+
+        <!-- Geometric accent — AK logo outline -->
+        <div class="hm-geo-accent" aria-hidden="true">
+          <svg viewBox="0 0 80 80" fill="none">
+            <path d="M40 4L76 40L40 76L4 40Z" stroke="#0B1629" stroke-width="0.9"/>
+            <path d="M24 64L40 16L56 64" stroke="#0B1629" stroke-width="1.2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="30" y1="48" x2="50" y2="48" stroke="#0B1629"
+                  stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <!-- Floating glass card — 150+ Professional Courses only -->
+        <div class="hm-glass-card" id="hmGlassCard"
+             aria-label="150 or more professional courses available">
+          <div class="hm-gc-badge">
+            <div class="hm-gc-check" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+            </div>
+            <span class="hm-gc-verified">Verified</span>
+          </div>
+          <div class="hm-gc-stat">150<em>+</em></div>
+          <div class="hm-gc-label">Professional Courses</div>
+        </div>
+
+      </div>
+    </div><!-- /hm-right -->
+
+  </div><!-- /hm-container -->
+
+  <!-- Scroll indicator -->
+  <div class="hm-scroll" aria-hidden="true">
+    <div class="hm-scroll-line">
+      <div class="hm-scroll-dot"></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════ SEARCH COURSES ═══════════════════════ -->
+<section class="sc-section" id="searchCourses" aria-label="Search our course catalog">
+
+  <!-- Background: AK geometry at <2% opacity -->
+  <div class="sc-bg-geo" aria-hidden="true">
+    <svg viewBox="0 0 1440 800" fill="none" preserveAspectRatio="xMidYMid slice">
+      <path d="M540 760L720 80L900 760" stroke="#0B1629" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="625" y1="545" x2="815" y2="545" stroke="#0B1629" stroke-width="1" stroke-linecap="round"/>
+      <circle cx="720" cy="420" r="310" stroke="#0B1629" stroke-width="0.6"/>
+      <circle cx="720" cy="420" r="195" stroke="#0B1629" stroke-width="0.4"/>
+    </svg>
+  </div>
+
+  <!-- Knowledge Path — diagonal continuation at <4% opacity -->
+  <svg class="sc-kpath-svg" viewBox="0 0 1440 800" fill="none" aria-hidden="true" preserveAspectRatio="none">
+    <path d="M120 0 C280 200 600 300 900 400 C1100 460 1300 600 1440 800"
+          stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+
+  <div class="sc-container">
+
+    <!-- Section header -->
+    <header class="sc-header" data-sr data-sr-delay="0">
+      <span class="sc-label">DISCOVER COURSES</span>
+      <h2 class="sc-heading">Find the Right Course<br>for Your Goals</h2>
+      <p class="sc-sub">Search and explore over 150 professional courses designed to help you build practical skills, knowledge and confidence.</p>
+    </header>
+
+    <!-- Search interface -->
+    <div class="sc-search-wrap" role="search" aria-label="Course search">
+
+      <!-- Oversized bar -->
+      <div class="sc-bar" id="scBar" role="combobox"
+           aria-haspopup="listbox" aria-expanded="false" aria-owns="scPanel">
+        <!-- Search icon -->
+        <div class="sc-bar-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+          </svg>
+        </div>
+
+        <input
+          type="search"
+          class="sc-input"
+          id="scInput"
+          placeholder="Search professional courses..."
+          aria-label="Search professional courses"
+          aria-autocomplete="list"
+          aria-controls="scPanel"
+          autocomplete="off"
+          spellcheck="false"
+        >
+
+        <!-- ⌘K / Ctrl K hint -->
+        <div class="sc-kbd" id="scKbd" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+          </svg>
+          <span id="scKbdLabel">⌘ K</span>
+        </div>
+
+        <!-- Clear button -->
+        <button class="sc-clear" id="scClear" aria-label="Clear search" type="button">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.5" stroke-linecap="round">
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Floating panel -->
+      <div class="sc-panel" id="scPanel" role="listbox" aria-label="Search results">
+
+        <!-- Suggestions (shown when focused + empty) -->
+        <div id="scSuggestions">
+          <div class="sc-panel-lbl">Popular Searches</div>
+          <div class="sc-tags" id="scTags" role="group" aria-label="Popular searches">
+            <a class="sc-tag" href="courses.html?q=leadership" data-q="leadership">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              Leadership
+            </a>
+            <a class="sc-tag" href="courses.html?q=communication" data-q="communication">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Communication
+            </a>
+            <a class="sc-tag" href="courses.html?q=sales" data-q="sales">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              Sales
+            </a>
+            <a class="sc-tag" href="courses.html?q=customer+service" data-q="customer service">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              Customer Service
+            </a>
+            <a class="sc-tag" href="courses.html?q=project+management" data-q="project management">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              Project Management
+            </a>
+            <a class="sc-tag" href="courses.html?q=hr" data-q="hr">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              HR & People
+            </a>
+          </div>
+
+          <div class="sc-panel-sep"></div>
+          <div class="sc-panel-lbl">Suggested Courses</div>
+
+          <a class="sc-sug" href="courses.html?q=foundations+of+leadership" data-q="foundations of leadership">
+            <div class="sc-sug-thumb"><img src="assets/img/03_Leadership_Training.png.png" alt="" loading="lazy"></div>
+            <span class="sc-sug-name">Foundations of Leadership</span>
+            <span class="sc-sug-cat">Leadership</span>
+          </a>
+          <a class="sc-sug" href="courses.html?q=business+communication" data-q="business communication">
+            <div class="sc-sug-thumb"><img src="assets/img/01_Home_Hero_Speaker.png" alt="" loading="lazy"></div>
+            <span class="sc-sug-name">Business Communication Essentials</span>
+            <span class="sc-sug-cat">Communication</span>
+          </a>
+          <a class="sc-sug" href="courses.html?q=emotional+intelligence" data-q="emotional intelligence">
+            <div class="sc-sug-thumb"><img src="assets/img/07_About_Team_Meeting.png" alt="" loading="lazy"></div>
+            <span class="sc-sug-name">Emotional Intelligence at Work</span>
+            <span class="sc-sug-cat">Personal Development</span>
+          </a>
+          <a class="sc-sug" href="courses.html?q=workplace+health" data-q="workplace health">
+            <div class="sc-sug-thumb"><img src="assets/img/04_Classroom_Training.png" alt="" loading="lazy"></div>
+            <span class="sc-sug-name">Workplace Health &amp; Safety Essentials</span>
+            <span class="sc-sug-cat">Compliance</span>
+          </a>
+        </div>
+
+        <!-- Results (shown when typing) -->
+        <div id="scResultsWrap" class="sc-results-wrap" style="display:none">
+          <div class="sc-results-lbl" id="scResultsLbl">Courses</div>
+          <div id="scResults" role="group" aria-label="Matching courses"></div>
+          <a class="sc-view-all" id="scViewAll" href="courses.html">
+            <span class="sc-view-all-txt">View all matching courses</span>
+            <span class="sc-view-all-ct" id="scViewAllCt"></span>
+          </a>
+        </div>
+
+        <!-- Empty state -->
+        <div class="sc-empty" id="scEmpty" role="status" aria-live="polite">
+          <div class="sc-empty-illus" aria-hidden="true">
+            <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+              <path d="M36 6L66 36L36 66L6 36Z" stroke="#0B1629" stroke-width="1"/>
+              <path d="M24 58L36 16L48 58" stroke="#0B1629" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="29" y1="43" x2="43" y2="43" stroke="#0B1629"
+                    stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="36" cy="36" r="26" stroke="#0B1629" stroke-width="0.6"/>
+            </svg>
+          </div>
+          <p class="sc-empty-title">No matching courses found.</p>
+          <p class="sc-empty-sub">Try another keyword.</p>
+        </div>
+
+      </div><!-- /sc-panel -->
+    </div><!-- /sc-search-wrap -->
+  </div><!-- /sc-container -->
+</section>
+
+<!-- ═══════════════════════ FEATURED COURSES ═══════════════════════ -->
+<section class="fc-section" id="featuredCourses" aria-label="Featured professional courses">
+
+  <!-- Knowledge Path — emerald line beneath grid, <3% opacity -->
+  <div class="fc-kpath" aria-hidden="true"></div>
+
+  <div class="fc-container">
+
+    <!-- Header row -->
+    <div class="fc-header-row" data-sr data-sr-delay="0">
+      <div class="fc-header-text">
+        <span class="fc-label">FEATURED COURSES</span>
+        <h2 class="fc-heading">Explore Featured<br>Professional Courses</h2>
+        <p class="fc-sub">A curated selection of professional courses chosen to help you build the skills that matter most in today's workplace.</p>
+      </div>
+      <a href="courses.html" class="fc-view-all" aria-label="View all courses">
+        View All Courses
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Course grid — populated by Firestore -->
+    <div class="fc-grid" id="fcGrid" aria-live="polite" aria-label="Featured courses">
+
+      <!-- Skeleton cards shown while loading -->
+      <div class="fc-skeleton-card" aria-hidden="true">
+        <div class="fc-skel-img"></div>
+        <div class="fc-skel-body">
+          <div class="fc-skel-line fc-skel-line--title"></div>
+          <div class="fc-skel-line fc-skel-line--title2"></div>
+          <div class="fc-skel-line fc-skel-line--desc"></div>
+          <div class="fc-skel-line fc-skel-line--desc2"></div>
+          <div class="fc-skel-line fc-skel-line--desc3"></div>
+          <div class="fc-skel-line fc-skel-line--price"></div>
+        </div>
+      </div>
+      <div class="fc-skeleton-card" aria-hidden="true">
+        <div class="fc-skel-img"></div>
+        <div class="fc-skel-body">
+          <div class="fc-skel-line fc-skel-line--title"></div>
+          <div class="fc-skel-line fc-skel-line--title2"></div>
+          <div class="fc-skel-line fc-skel-line--desc"></div>
+          <div class="fc-skel-line fc-skel-line--desc2"></div>
+          <div class="fc-skel-line fc-skel-line--desc3"></div>
+          <div class="fc-skel-line fc-skel-line--price"></div>
+        </div>
+      </div>
+      <div class="fc-skeleton-card" aria-hidden="true">
+        <div class="fc-skel-img"></div>
+        <div class="fc-skel-body">
+          <div class="fc-skel-line fc-skel-line--title"></div>
+          <div class="fc-skel-line fc-skel-line--title2"></div>
+          <div class="fc-skel-line fc-skel-line--desc"></div>
+          <div class="fc-skel-line fc-skel-line--desc2"></div>
+          <div class="fc-skel-line fc-skel-line--desc3"></div>
+          <div class="fc-skel-line fc-skel-line--price"></div>
+        </div>
+      </div>
+
+    </div><!-- /fc-grid -->
+
+    <!-- Empty state (hidden until confirmed no featured courses) -->
+    <div class="fc-empty" id="fcEmpty" hidden aria-live="polite">
+      <div class="fc-empty-icon" aria-hidden="true">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+          <path d="M32 4L60 32L32 60L4 32Z" stroke="#0B1629" stroke-width="0.8"/>
+          <path d="M21 52L32 14L43 52" stroke="#0B1629" stroke-width="1.4"
+                stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="25.5" y1="38" x2="38.5" y2="38" stroke="#0B1629"
+                stroke-width="1.4" stroke-linecap="round"/>
+          <circle cx="32" cy="32" r="24" stroke="#0B1629" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <p class="fc-empty-title">Featured courses coming soon.</p>
+      <p class="fc-empty-sub">Please explore our complete course catalog.</p>
+      <a href="courses.html" class="fc-empty-btn">
+        Browse Courses
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+          <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+
+  </div><!-- /fc-container -->
+</section>
+
+<!-- ═══════════════════════ WHY CHOOSE ACADEMEKEY ═══════════════════════ -->
+<section class="wca-section" id="whyAcademeKey" aria-label="Why choose AcademeKey">
+
+  <!-- Background: AK geometry at <2% opacity -->
+  <div class="wca-bg-geo" aria-hidden="true">
+    <svg viewBox="0 0 1440 2400" fill="none" preserveAspectRatio="xMidYMid slice">
+      <path d="M360 2200L720 200L1080 2200" stroke="#0B1629" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="514" y1="1580" x2="926" y2="1580" stroke="#0B1629" stroke-width="1" stroke-linecap="round"/>
+      <circle cx="720" cy="1200" r="520" stroke="#0B1629" stroke-width="0.6"/>
+      <circle cx="720" cy="1200" r="320" stroke="#0B1629" stroke-width="0.4"/>
+    </svg>
+  </div>
+
+  <!-- Knowledge Path — meanders through each panel at <3% opacity -->
+  <svg class="wca-kpath-svg" viewBox="0 0 1440 2400" fill="none" aria-hidden="true" preserveAspectRatio="none">
+    <path d="M180 0
+             C180 300 900 350 900 600
+             C900 850 160 900 160 1200
+             C160 1500 920 1550 920 1800
+             C920 2100 180 2150 180 2400"
+          stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+
+  <div class="wca-container">
+
+    <!-- Section header -->
+    <header class="wca-header" data-sr data-sr-delay="0">
+      <span class="wca-header-label">WHY ACADEMEKEY</span>
+      <h2 class="wca-header-heading">Learning That Builds<br>Real-World Confidence</h2>
+      <p class="wca-header-sub">AcademeKey is built around one idea: that practical, engaging, industry-relevant training creates professionals who are genuinely ready for what comes next.</p>
+    </header>
+
+    <!-- ── Panel 1: Practical Learning — image left, text right ── -->
+    <div class="wca-panel" data-wca>
+      <div class="wca-panel-img">
+        <div class="wca-img-wrap">
+          <img class="wca-img"
+               src="assets/img/06_Onsite_Workshop.png"
+               alt="Professionals engaged in a hands-on onsite training workshop"
+               loading="lazy">
+        </div>
+      </div>
+      <div class="wca-panel-text">
+        <span class="wca-panel-label">PRACTICAL LEARNING</span>
+        <h3 class="wca-panel-heading">Courses Built for the Real World</h3>
+        <p class="wca-panel-p">Our courses are designed around practical, engaging learning experiences that go beyond theory — giving you skills and knowledge you can apply immediately in your workplace.</p>
+        <a href="courses.html" class="wca-link">
+          Browse Courses
+          <svg class="wca-link-arr" width="15" height="15" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── Panel 2: Industry-Relevant Skills — text left, image right ── -->
+    <div class="wca-panel wca-panel--rev" data-wca>
+      <div class="wca-panel-img">
+        <div class="wca-img-wrap">
+          <img class="wca-img"
+               src="assets/img/02_Programs_Desk.png"
+               alt="Professional working at a desk in a modern office environment"
+               loading="lazy">
+        </div>
+      </div>
+      <div class="wca-panel-text">
+        <span class="wca-panel-label">INDUSTRY-RELEVANT SKILLS</span>
+        <h3 class="wca-panel-heading">Aligned to What Employers Need Today</h3>
+        <p class="wca-panel-p">Every course in our catalog is built around the skills that matter most in today's professional environment — ensuring your development stays relevant, current, and purposeful.</p>
+      </div>
+    </div>
+
+    <!-- ── Panel 3: Knowledge & Confidence — image left, text right ── -->
+    <div class="wca-panel" data-wca>
+      <div class="wca-panel-img">
+        <div class="wca-img-wrap">
+          <img class="wca-img"
+               src="assets/img/01_Home_Hero_Speaker.png"
+               alt="A confident professional presenting to an engaged professional audience"
+               loading="lazy">
+        </div>
+      </div>
+      <div class="wca-panel-text">
+        <span class="wca-panel-label">KNOWLEDGE &amp; CONFIDENCE</span>
+        <h3 class="wca-panel-heading">Learning That Stays With You</h3>
+        <p class="wca-panel-p">AcademeKey's approach helps you build both deep knowledge and the confidence to apply it — transforming professional development from a routine exercise into a genuine shift in capability.</p>
+      </div>
+    </div>
+
+    <!-- ── Panel 4: Continuous Learning — text left, image right ── -->
+    <div class="wca-panel wca-panel--rev" data-wca>
+      <div class="wca-panel-img">
+        <div class="wca-img-wrap">
+          <img class="wca-img"
+               src="assets/img/07_About_Team_Meeting.png"
+               alt="A professional team collaborating in a bright modern workspace"
+               loading="lazy"
+               style="object-position: center 30%;">
+        </div>
+      </div>
+      <div class="wca-panel-text">
+        <span class="wca-panel-label">CONTINUOUS LEARNING</span>
+        <h3 class="wca-panel-heading">A Platform for Your Entire Career</h3>
+        <p class="wca-panel-p">We believe professional growth never stops. AcademeKey is designed to inspire a culture of continuous learning — supporting individuals and organisations to keep growing, adapting, and succeeding at every stage.</p>
+        <a href="about.html" class="wca-link">
+          About AcademeKey
+          <svg class="wca-link-arr" width="15" height="15" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /wca-container -->
+</section>
+
+<!-- ═══════════════════════ ABOUT ACADEMEKEY ═══════════════════════ -->
+<section class="ab-section" id="aboutAcademeKey" aria-label="About AcademeKey" data-ab>
+
+  <!-- Knowledge Path — enters from above, wraps behind image, exits below -->
+  <svg class="ab-kpath-svg" viewBox="0 0 1440 1000" fill="none"
+       aria-hidden="true" preserveAspectRatio="none">
+    <path d="M200 0 C200 180 320 240 280 420
+             C240 600 120 660 160 840
+             C180 940 220 980 260 1000"
+          stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+
+  <div class="ab-container">
+
+    <!-- Left: dominant editorial image -->
+    <div class="ab-img-col">
+      <div class="ab-img-wrap">
+        <img
+          class="ab-img"
+          src="assets/img/03_Leadership_Training.png.png"
+          alt="Professional training and development session at AcademeKey"
+          loading="lazy">
+      </div>
+    </div>
+
+    <!-- Right: editorial text -->
+    <div class="ab-text-col">
+
+      <!-- Geometric accent behind heading -->
+      <div class="ab-geo" aria-hidden="true">
+        <svg viewBox="0 0 340 340" fill="none">
+          <path d="M170 8L332 170L170 332L8 170Z"
+                stroke="#0B1629" stroke-width="0.8"/>
+          <circle cx="170" cy="170" r="150"
+                  stroke="#0B1629" stroke-width="0.5"/>
+          <path d="M110 280L170 60L230 280"
+                stroke="#0B1629" stroke-width="1"
+                stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="135" y1="204" x2="205" y2="204"
+                stroke="#0B1629" stroke-width="1" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <span class="ab-label">ABOUT ACADEMEKEY</span>
+
+      <h2 class="ab-heading">
+        <span class="ab-hline">The Key</span>
+        <span class="ab-hline">to Success</span>
+      </h2>
+
+      <hr class="ab-rule" aria-hidden="true">
+
+      <p class="ab-body">AcademeKey is a professional training and development company dedicated to empowering individuals and organisations through high-quality learning experiences.</p>
+      <p class="ab-body">We deliver practical, engaging, and industry-relevant training programmes that help participants develop the skills, knowledge, and confidence needed to excel in today's dynamic workplace.</p>
+
+    </div><!-- /ab-text-col -->
+  </div><!-- /ab-container -->
+</section>
+
+<!-- ═══════════════════════ OUR MISSION ═══════════════════════ -->
+
+<!-- Cinematic KP transition: About's light bg → navy -->
+<div class="ms-transition" aria-hidden="true"></div>
+
+<section class="ms-section" id="ourMission" aria-label="Our Mission" data-ms>
+
+  <!-- Ambient radial lighting <5% opacity -->
+  <div class="ms-glow" aria-hidden="true"></div>
+
+  <!-- Knowledge Path logo moment — peaks at 3% opacity, one-time -->
+  <div class="ms-kp-logo" aria-hidden="true">
+    <svg viewBox="0 0 640 640" fill="none">
+      <!-- Outer diamond -->
+      <path d="M320 16L624 320L320 624L16 320Z"
+            stroke="#10B981" stroke-width="0.8"/>
+      <!-- Large A-shape — AK logo -->
+      <path d="M152 560L320 64L488 560"
+            stroke="#10B981" stroke-width="1.4"
+            stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Crossbar -->
+      <line x1="218" y1="400" x2="422" y2="400"
+            stroke="#10B981" stroke-width="1.4" stroke-linecap="round"/>
+      <!-- Architectural circles -->
+      <circle cx="320" cy="320" r="290"
+              stroke="#10B981" stroke-width="0.5"/>
+      <circle cx="320" cy="320" r="190"
+              stroke="#10B981" stroke-width="0.4"/>
+    </svg>
+  </div>
+
+  <div class="ms-container">
+    <div class="ms-grid">
+
+      <!-- ── Left: label + editorial heading ── -->
+      <div class="ms-left">
+        <span class="ms-label">OUR MISSION</span>
+        <h2 class="ms-heading">
+          <span class="ms-hline">Inspiring</span>
+          <span class="ms-hline">Continuous</span>
+          <span class="ms-hline">Learning.</span>
+        </h2>
+      </div>
+
+      <!-- ── Right: mission statement + photograph ── -->
+      <div class="ms-right">
+        <p class="ms-mission-text">Our mission is to inspire continuous learning, develop future-ready professionals, and help organisations build high-performing teams through exceptional training experiences.</p>
+
+        <div class="ms-img-wrap">
+          <img
+            class="ms-img"
+            src="assets/img/05_Virtual_Sessions.png.png"
+            alt="Professionals engaged in a modern collaborative learning environment"
+            loading="lazy">
+        </div>
+      </div>
+
+    </div><!-- /ms-grid -->
+  </div><!-- /ms-container -->
+</section>
+
+<!-- ═══════════════════════ PROGRAMS ═══════════════════════ -->
+<!-- (old why/mission sections removed) -->
+<div style="display:none">
+
+    <!-- Section header -->
+    <div class="why-header" id="whyHeader">
+      <span class="why-label">Why AcademeKey</span>
+      <h2 class="why-heading">
+        Designed for Practical Learning.<br>Built for Professional Growth.
+      </h2>
+      <!-- Knowledge Path crossbar rule — evolves the A-shape crossbar motif -->
+      <div class="why-kp-rule" aria-hidden="true"></div>
+    </div>
+
+    <!-- Asymmetric editorial collage -->
+    <div class="why-collage">
+
+      <!-- Block 1 — Large hero card with trainer image -->
+      <div class="why-card why-card--large" data-why-anim style="--delay:0ms">
+        <div class="why-card-img-wrap">
+          <img src="assets/img/03_Leadership_Training.png.png" alt="Experienced professional trainer" class="why-card-img">
+        </div>
+        <div class="why-card-body">
+          <div class="why-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/></svg>
+          </div>
+          <h3 class="why-card-title">Experienced Trainers</h3>
+          <p class="why-card-text">Real-world expertise.</p>
+          <span class="why-card-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <!-- Block 2 — Floating card with image -->
+      <div class="why-card why-card--float" data-why-anim style="--delay:80ms">
+        <div class="why-card-img-wrap">
+          <img src="assets/img/05_Virtual_Sessions.png.png" alt="Interactive virtual learning session" class="why-card-img">
+        </div>
+        <div class="why-card-body">
+          <div class="why-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 010 8h-1"/><path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          </div>
+          <h3 class="why-card-title">Interactive Learning</h3>
+          <p class="why-card-text">Practical engagement.</p>
+          <span class="why-card-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <!-- Block 3 — Tall vertical card -->
+      <div class="why-card why-card--tall" data-why-anim style="--delay:160ms">
+        <div class="why-card-img-wrap">
+          <img src="assets/img/04_Classroom_Training.png" alt="Industry-relevant training session" class="why-card-img">
+        </div>
+        <div class="why-card-body">
+          <div class="why-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3 class="why-card-title">Industry-Relevant Training</h3>
+          <p class="why-card-text">Modern workplace focus.</p>
+          <span class="why-card-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <!-- Block 4 — Wide landscape card -->
+      <div class="why-card why-card--wide" data-why-anim style="--delay:240ms">
+        <div class="why-card-img-wrap">
+          <img src="assets/img/07_About_Team_Meeting.png" alt="Professional development session" class="why-card-img">
+        </div>
+        <div class="why-card-body">
+          <div class="why-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <h3 class="why-card-title">Skills, Knowledge &amp; Confidence</h3>
+          <p class="why-card-text">Professional development.</p>
+          <span class="why-card-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </div>
+
+    </div><!-- .why-collage -->
+  </div><!-- .why-inner -->
+</section>
+
+<!-- ═══════════════════════ MISSION ═══════════════════════ -->
+<section class="mission">
+  <div class="container">
+    <div class="mission-header">
+      <span class="section-label">Our Mission</span>
+      <h2><span data-mission-line>The Key to <span style="color:var(--orange)">Success</span></span></h2>
+      <div class="mission-underline"></div>
+      <p data-mission-para>To inspire continuous learning, develop future-ready professionals, and help organizations build high-performing teams. We believe the right training is the key that unlocks every professional's true potential.</p>
+    </div>
+    <div class="values-grid">
+        <div class="val-card" data-sr data-sr-delay="0">
+          <div class="val-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/></svg>
+          </div>
+          <h4>Experienced Trainers</h4>
+          <p>Learn from skilled professionals with real-world industry expertise.</p>
+        </div>
+        <div class="val-card" data-sr data-sr-delay="80">
+          <div class="val-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          </div>
+          <h4>Interactive Learning</h4>
+          <p>Engaging methods that encourage participation and better understanding.</p>
+        </div>
+        <div class="val-card" data-sr data-sr-delay="160">
+          <div class="val-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h4>Practical &amp; Relevant</h4>
+          <p>Industry-relevant training designed to address current workplace needs.</p>
+        </div>
+        <div class="val-card" data-sr data-sr-delay="240">
+          <div class="val-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <h4>Builds Confidence</h4>
+          <p>Develop the skills, knowledge, and confidence to excel in today's workplace.</p>
+        </div>
+    </div>
+  </div>
+</div><!-- /display:none old content -->
+
+<!-- ═══════════════════════ PROGRAMS ═══════════════════════ -->
+<section class="pms-section" id="programs">
+
+  <!-- Architectural background geometry -->
+  <div class="pms-geo" aria-hidden="true">
+    <svg viewBox="0 0 1320 1100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <rect x="50" y="80" width="260" height="260" stroke="#0B1629" stroke-width="1" transform="rotate(14 180 210)"/>
+      <rect x="980" y="620" width="200" height="200" stroke="#0B1629" stroke-width="1" transform="rotate(-10 1080 720)"/>
+      <line x1="0" y1="500" x2="380" y2="60" stroke="#0B1629" stroke-width="0.8"/>
+      <line x1="1180" y1="80" x2="1400" y2="780" stroke="#0B1629" stroke-width="0.8"/>
+      <circle cx="660" cy="900" r="180" stroke="#0B1629" stroke-width="0.8"/>
+    </svg>
+  </div>
+
+  <div class="pms-inner">
+
+    <!-- Section header -->
+    <div class="pms-header" data-sr>
+      <div class="pms-header-left">
+        <span class="pms-label">Programs</span>
+        <h2 class="pms-heading">Professional Development Programs</h2>
+        <p class="pms-sub">Explore our professional development programs designed to build practical skills, knowledge, and confidence.</p>
+      </div>
+      <a href="programs.html" class="pms-cta">
+        View All Programs
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <!-- Editorial masonry grid -->
+    <div class="pms-masonry">
+
+      <!-- 1: Leadership & Management — LARGE (col 1, rows 1-2) -->
+      <a href="programs/leadership-management.html" class="pcard pcard--1" data-pcard="0">
+        <div class="pcard-img-wrap" data-sweep>
+          <img src="assets/img/03_Leadership_Training.png.png" alt="Leadership and Management training" class="pcard-img">
+        </div>
+        <div class="pcard-overlay"></div>
+        <div class="pcard-geo" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none"><path d="M18 88L50 14L82 88" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="33" y1="66" x2="67" y2="66" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="pcard-content">
+          <h3 class="pcard-title">Leadership &amp;<br>Management</h3>
+          <span class="pcard-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+
+      <!-- 2: Customer Service — MEDIUM (col 2, row 1) -->
+      <a href="programs.html" class="pcard pcard--2" data-pcard="80">
+        <div class="pcard-img-wrap" data-sweep>
+          <img src="assets/img/07_About_Team_Meeting.png" alt="Customer Service training" class="pcard-img">
+        </div>
+        <div class="pcard-overlay"></div>
+        <div class="pcard-geo" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none"><path d="M18 88L50 14L82 88" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="33" y1="66" x2="67" y2="66" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="pcard-content">
+          <h3 class="pcard-title">Customer<br>Service</h3>
+          <span class="pcard-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+
+      <!-- 3: Communication — TALL (col 3, rows 1-2) -->
+      <a href="programs.html" class="pcard pcard--3" data-pcard="160">
+        <div class="pcard-img-wrap" data-sweep>
+          <img src="assets/img/01_Home_Hero_Speaker.png" alt="Communication skills training" class="pcard-img">
+        </div>
+        <div class="pcard-overlay"></div>
+        <div class="pcard-geo" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none"><path d="M18 88L50 14L82 88" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="33" y1="66" x2="67" y2="66" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="pcard-content">
+          <h3 class="pcard-title">Communication</h3>
+          <span class="pcard-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+
+      <!-- 4: Sales — SQUARE (col 2, row 2) -->
+      <a href="programs.html" class="pcard pcard--4" data-pcard="240">
+        <div class="pcard-img-wrap" data-sweep>
+          <img src="assets/img/02_Programs_Desk.png" alt="Sales training" class="pcard-img">
+        </div>
+        <div class="pcard-overlay"></div>
+        <div class="pcard-geo" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none"><path d="M18 88L50 14L82 88" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="33" y1="66" x2="67" y2="66" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="pcard-content">
+          <h3 class="pcard-title">Sales</h3>
+          <span class="pcard-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+
+      <!-- 5: Project Management — WIDE (col 1-2, row 3) -->
+      <a href="programs.html" class="pcard pcard--5" data-pcard="120">
+        <div class="pcard-img-wrap" data-sweep>
+          <img src="assets/img/06_Onsite_Workshop.png" alt="Project Management training" class="pcard-img">
+        </div>
+        <div class="pcard-overlay"></div>
+        <div class="pcard-geo" aria-hidden="true"><svg viewBox="0 0 160 100" fill="none"><path d="M28 88L80 14L132 88" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="51" y1="66" x2="109" y2="66" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="pcard-content">
+          <h3 class="pcard-title">Project Management</h3>
+          <span class="pcard-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+
+      <!-- 6: Human Resources — PORTRAIT (col 3, row 3) -->
+      <a href="programs.html" class="pcard pcard--6" data-pcard="200">
+        <div class="pcard-img-wrap" data-sweep>
+          <img src="assets/img/05_Virtual_Sessions.png.png" alt="Human Resources training" class="pcard-img">
+        </div>
+        <div class="pcard-overlay"></div>
+        <div class="pcard-geo" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none"><path d="M18 88L50 14L82 88" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="33" y1="66" x2="67" y2="66" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="pcard-content">
+          <h3 class="pcard-title">Human Resources</h3>
+          <span class="pcard-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+
+      <!-- 7: Workplace Compliance — SMALL (col 1, row 4) -->
+      <a href="programs.html" class="pcard pcard--7" data-pcard="280">
+        <div class="pcard-img-wrap" data-sweep>
+          <img src="assets/img/04_Classroom_Training.png" alt="Workplace Compliance training" class="pcard-img">
+        </div>
+        <div class="pcard-overlay"></div>
+        <div class="pcard-geo" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none"><path d="M18 88L50 14L82 88" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="33" y1="66" x2="67" y2="66" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="pcard-content">
+          <h3 class="pcard-title">Workplace Compliance</h3>
+          <span class="pcard-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+
+      <!-- 8: Other Professional Development — WIDE ACCENT (col 2-3, row 4) -->
+      <a href="programs.html" class="pcard pcard--8" data-pcard="360">
+        <div class="pcard-img-wrap" data-sweep>
+          <img src="assets/img/07_About_Team_Meeting.png" alt="Other Professional Development programs" class="pcard-img" style="object-position: center 30%;">
+        </div>
+        <div class="pcard-overlay pcard-overlay--accent"></div>
+        <div class="pcard-geo" aria-hidden="true"><svg viewBox="0 0 160 100" fill="none"><path d="M28 88L80 14L132 88" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="51" y1="66" x2="109" y2="66" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="pcard-content">
+          <h3 class="pcard-title">Other Professional<br>Development</h3>
+          <span class="pcard-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+
+    </div><!-- .pms-masonry -->
+  </div><!-- .pms-inner -->
+</section>
+
+
+<!-- ═══════════ KNOWLEDGE PATH TRANSITION ═══════════ -->
+<div class="kpath-wrap" id="kpathDivider" aria-hidden="true">
+  <svg class="kpath-svg" viewBox="0 0 1320 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path class="kpath-line"
+      d="M0,40 L380,40 C410,40 420,14 440,14 L460,14 C466,6 474,6 480,1 C486,6 494,6 500,14 L520,14 C540,14 550,40 580,40 L1320,40"
+      stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════════ OUR MISSION ═══════════════════════ -->
+<section class="omission-section" id="ourMission">
+
+  <!-- Atmospheric elements -->
+  <div class="omission-light" aria-hidden="true"></div>
+  <div class="omission-glow"  aria-hidden="true"></div>
+  <div class="omission-geo"   aria-hidden="true">
+    <svg viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M60 540L300 60L540 540" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="168" y1="390" x2="432" y2="390" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="300" cy="300" r="240" stroke="white" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <!-- Knowledge Path — logo alignment moment: geometry resolves into recognisable logo outline.
+       Triggered once by scroll, peaks at 2.8% opacity, dissolves naturally. -->
+  <div class="omission-logo-mark" aria-hidden="true">
+    <svg viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer architectural circle -->
+      <circle cx="240" cy="240" r="220" stroke="white" stroke-width="0.8"/>
+      <!-- Secondary inner circle -->
+      <circle cx="240" cy="240" r="155" stroke="white" stroke-width="0.5" opacity="0.6"/>
+      <!-- A-shape — the core logo form -->
+      <path d="M72 432L240 56L408 432" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Crossbar — horizontal bar of the A -->
+      <line x1="151" y1="308" x2="329" y2="308" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+      <!-- Corner bracket top-left — architectural accent -->
+      <path d="M48 88 L48 48 L88 48" stroke="#F5A623" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Corner bracket bottom-right -->
+      <path d="M392 432 L432 432 L432 392" stroke="#F5A623" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <div class="omission-inner">
+
+    <!-- Left: editorial typographic heading -->
+    <div class="omission-left">
+      <span class="omission-label">Our Mission</span>
+      <h2 class="omission-heading">
+        <span class="omission-line" data-sr data-sr-delay="0">To inspire</span>
+        <span class="omission-line" data-sr data-sr-delay="80">continuous</span>
+        <span class="omission-line" data-sr data-sr-delay="160">learning.</span>
+      </h2>
+    </div>
+
+    <!-- Right: mission text + cinematic photo -->
+    <div class="omission-right">
+      <p class="omission-body" data-sr data-sr-delay="220">Our mission is to inspire continuous learning, develop future-ready professionals, and help organizations build high-performing teams through exceptional training experiences.</p>
+      <div class="omission-photo-wrap" data-sr data-sr-delay="340" data-sweep>
+        <img src="assets/img/03_Leadership_Training.png.png" alt="AcademeKey professional training" class="omission-photo">
+      </div>
+    </div>
+
+  </div>
+
+
+</section>
+
+<!-- ═══════════════════════ FOOTER TRANSITION ═══════════════════════ -->
+<!-- Knowledge Path resolves into a single gold divider with an A-mark gem at centre -->
+<div class="fkp-transition" id="fkpTransition" aria-hidden="true">
+  <div class="fkp-rail">
+    <div class="fkp-arm fkp-arm--left"></div>
+    <div class="fkp-gem">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11 1L21 11L11 21L1 11Z" stroke="rgba(245,166,35,.65)" stroke-width="0.8"/>
+        <path d="M8 16L11 8L14 16" stroke="rgba(245,166,35,.65)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="9.2" y1="13.2" x2="12.8" y2="13.2" stroke="rgba(245,166,35,.65)" stroke-width="1" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="fkp-arm fkp-arm--right"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+
+<!-- Knowledge Path → horizontal divider -->
+<div class="ft-kp-divider" id="ftKpDivider" aria-hidden="true">
+  <div class="ft-kp-line"></div>
+  <span class="ft-kp-gem">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 0.8L15.2 8L8 15.2L0.8 8Z" stroke="rgba(16,185,129,.18)" stroke-width="0.8"/>
+      <path d="M8 3.5L12.5 8L8 12.5L3.5 8Z" stroke="rgba(16,185,129,.08)" stroke-width="0.6"/>
+    </svg>
+  </span>
+  <span class="ft-kp-dot"></span>
+</div>
+
+<footer class="ft-section" id="siteFooter" aria-label="Site footer">
+
+  <div class="ft-glow" aria-hidden="true"></div>
+
+  <div class="ft-container">
+
+    <!-- ─── Main row ─── -->
+    <div class="ft-main">
+
+      <!-- Brand -->
+      <div class="ft-brand">
+        <div class="ft-kp-end" aria-hidden="true"></div>
+        <a href="index.html" class="ft-logo-link" aria-label="AcademeKey — home">
+          <img src="assets/img/Academekey logo.png" alt="AcademeKey" class="ft-logo">
+        </a>
+        <p class="ft-tagline">The Key to Success</p>
+      </div>
+
+      <!-- Nav + Social -->
+      <div class="ft-right">
+        <nav aria-label="Footer navigation">
+          <ul class="ft-nav" role="list">
+            <li><a href="index.html"   class="ft-nav-link">Home</a></li>
+            <li><a href="courses.html" class="ft-nav-link">Courses</a></li>
+            <li><a href="about.html"   class="ft-nav-link">About</a></li>
+            <li><a href="contact.html" class="ft-nav-link">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="ft-social" aria-label="Social media">
+          <a href="https://www.linkedin.com/company/academkey/" target="_blank" rel="noopener noreferrer" class="ft-soc" aria-label="AcademeKey on LinkedIn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+          <a href="#" class="ft-soc" aria-label="AcademeKey on Facebook">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+            </svg>
+          </a>
+          <a href="#" class="ft-soc" aria-label="AcademeKey on Instagram">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5"/>
+              <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a href="#" class="ft-soc" aria-label="AcademeKey on YouTube">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/>
+              <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /ft-main -->
+
+    <!-- ─── Contact row ─── -->
+    <div class="ft-contact">
+      <div class="ft-contact-item">
+        <span class="ft-contact-icon" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </span>
+        <span class="ft-contact-text">Email</span>
+      </div>
+      <div class="ft-contact-item">
+        <span class="ft-contact-icon" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.16a16 16 0 006.93 6.93l1.42-1.42a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+        </span>
+        <span class="ft-contact-text">Phone</span>
+      </div>
+      <div class="ft-contact-item">
+        <span class="ft-contact-icon" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </span>
+        <span class="ft-contact-text">Address</span>
+      </div>
+    </div><!-- /ft-contact -->
+
+    <!-- ─── Bottom bar ─── -->
+    <div class="ft-bottom">
+      <div class="ft-bottom-rule"></div>
+      <div class="ft-bottom-row">
+        <p class="ft-copy">&copy; <span id="ftYear">2025</span> AcademeKey</p>
+        <span class="ft-copy-sep" aria-hidden="true">·</span>
+        <p class="ft-copy">The Key to Success</p>
+      </div>
+    </div>
+
+  </div><!-- /ft-container -->
+
+</footer>
+
+<!-- Video Modal -->
+<div id="videoModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:500;align-items:center;justify-content:center;" onclick="this.style.display='none'">
+  <div style="position:relative;width:min(860px,90vw);aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden;">
+    <button onclick="document.getElementById('videoModal').style.display='none'" style="position:absolute;top:12px;right:12px;background:rgba(255,255,255,.15);border:none;color:white;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px;z-index:10;">✕</button>
+    <div style="display:flex;align-items:center;justify-content:center;height:100%;color:rgba(255,255,255,.5);font-size:15px;">Video coming soon</div>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/motion.js"></script>
+<script type="module" src="js/contact.js"></script>
+<script type="module">
+/* ── Featured Courses — Firestore loader ── */
+import { db } from './js/firebase.js';
+import {
+  collection, query, where, orderBy, limit, getDocs
+} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+const grid    = document.getElementById('fcGrid');
+const emptyEl = document.getElementById('fcEmpty');
+if (!grid) throw new Error('fc-grid missing');
+
+/* ── Scroll-reveal observer for cards ── */
+const fcObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('fc-visible');
+      fcObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+/* ── Format price field ── */
+function fmtPrice(price) {
+  if (price === null || price === undefined || price === '') return null;
+  if (typeof price === 'number') {
+    return 'R ' + price.toLocaleString('en-ZA');
+  }
+  return String(price);
+}
+
+/* ── Sanitise text to prevent XSS ── */
+function esc(s) {
+  return String(s ?? '')
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+/* ── Build one card element ── */
+function buildCard(doc, staggerIdx) {
+  const d      = doc.data();
+  const title  = esc(d.title  || 'Untitled Course');
+  const desc   = esc(d.description || d.desc || '');
+  const cat    = esc(d.category || d.cat || '');
+  const slug   = d.slug || doc.id;
+  const image  = d.image || d.imageUrl || '';
+  const priceStr = fmtPrice(d.price);
+  const href   = `contact.html?course=${encodeURIComponent(slug)}`;
+  const delay  = staggerIdx * 80;
+
+  const article = document.createElement('article');
+  article.className = 'fc-card';
+  article.style.transitionDelay = delay + 'ms';
+  article.setAttribute('aria-label', d.title || 'Featured Course');
+
+  article.innerHTML = `
+    <a class="fc-card-link" href="${esc(href)}"
+       aria-label="Explore course: ${title}">
+      <div class="fc-card-img-wrap">
+        ${image
+          ? `<img class="fc-card-img" src="${esc(image)}"
+                  alt="${title}" loading="lazy">`
+          : `<div class="fc-card-img" style="background:#F3F5F9;width:100%;height:100%;"></div>`
+        }
+      </div>
+      <div class="fc-card-body">
+        ${cat ? `<div class="fc-card-cat">${cat}</div>` : ''}
+        <h3 class="fc-card-title">${title}</h3>
+        ${desc ? `<p class="fc-card-desc">${desc}</p>` : ''}
+        <div class="fc-card-foot">
+          ${priceStr
+            ? `<span class="fc-card-price">${esc(priceStr)}</span>`
+            : `<span class="fc-card-price fc-card-price-empty">Contact for pricing</span>`
+          }
+          <div class="fc-card-arr" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="fc-card-accent" aria-hidden="true"></div>
+    </a>`;
+
+  return article;
+}
+
+/* ── Fetch featured courses from Firestore ── */
+async function loadFeatured() {
+  try {
+    let snap;
+    try {
+      /* Try with orderBy first (requires composite index in Firestore) */
+      const q = query(
+        collection(db, 'courses'),
+        where('featured', '==', true),
+        orderBy('order', 'asc'),
+        limit(6)
+      );
+      snap = await getDocs(q);
+    } catch {
+      /* Fallback: no orderBy (works without index) */
+      const q = query(
+        collection(db, 'courses'),
+        where('featured', '==', true),
+        limit(6)
+      );
+      snap = await getDocs(q);
+    }
+
+    /* Clear skeleton */
+    grid.innerHTML = '';
+
+    if (snap.empty) {
+      grid.style.display = 'none';
+      emptyEl.hidden = false;
+      return;
+    }
+
+    snap.forEach((doc, idx) => {
+      const card = buildCard(doc, idx);
+      grid.appendChild(card);
+      /* Slight rAF so CSS transition-delay stagger works */
+      requestAnimationFrame(() => fcObserver.observe(card));
+    });
+
+  } catch (err) {
+    console.warn('Featured courses load failed:', err);
+    /* On any error — show empty state so UX stays clean */
+    grid.innerHTML = '';
+    grid.style.display = 'none';
+    emptyEl.hidden = false;
+  }
+}
+
+loadFeatured();
+</script>
+
+<script>
+/* ⌘K / Ctrl+K platform label */
+(function () {
+  var lbl = document.getElementById('scKbdLabel');
+  if (!lbl) return;
+  var mac = /Mac|iPhone|iPad|iPod/.test(navigator.platform || navigator.userAgent);
+  lbl.textContent = mac ? '⌘ K' : 'Ctrl K';
+})();
+
+/* Course search engine */
+(function () {
+  var COURSES = [
+    { title: 'Foundations of Leadership',              cat: 'Leadership',          img: 'assets/img/03_Leadership_Training.png.png', desc: 'Build the core mindset and practical skills that distinguish effective leaders.' },
+    { title: 'Managing High-Performance Teams',        cat: 'Leadership',          img: 'assets/img/07_About_Team_Meeting.png',        desc: 'Develop the tools to build, lead, and sustain high-performing teams.' },
+    { title: 'Strategic Thinking for Leaders',         cat: 'Leadership',          img: 'assets/img/06_Onsite_Workshop.png',           desc: 'Equip leaders with frameworks for long-term thinking and decision-making.' },
+    { title: 'Customer Experience Excellence',         cat: 'Customer Service',    img: 'assets/img/02_Programs_Desk.png',             desc: 'Transform every customer touchpoint and build lasting customer relationships.' },
+    { title: 'Handling Difficult Customers',           cat: 'Customer Service',    img: 'assets/img/01_Home_Hero_Speaker.png',         desc: 'Master de-escalation, active listening, and resolution skills.' },
+    { title: 'Business Communication Essentials',      cat: 'Communication',       img: 'assets/img/01_Home_Hero_Speaker.png',         desc: 'Sharpen written, verbal, and non-verbal communication across professional contexts.' },
+    { title: 'Presentation Skills Masterclass',        cat: 'Communication',       img: 'assets/img/03_Leadership_Training.png.png',   desc: 'Develop confidence and clarity when presenting to any audience.' },
+    { title: 'Consultative Selling',                   cat: 'Sales',               img: 'assets/img/02_Programs_Desk.png',             desc: 'Build a sales approach that earns trust and uncovers real needs.' },
+    { title: 'Negotiation Skills for Sales Professionals', cat: 'Sales',           img: 'assets/img/06_Onsite_Workshop.png',           desc: 'Master principled negotiation, managing objections, and closing deals.' },
+    { title: 'Project Management Fundamentals',        cat: 'Project Management',  img: 'assets/img/06_Onsite_Workshop.png',           desc: 'Practical frameworks for planning, executing, and closing projects.' },
+    { title: 'Effective Recruitment & Interviewing',   cat: 'HR & People',         img: 'assets/img/07_About_Team_Meeting.png',        desc: 'Design structured hiring processes and conduct bias-aware interviews.' },
+    { title: 'Workplace Health & Safety Essentials',   cat: 'Compliance',          img: 'assets/img/04_Classroom_Training.png',        desc: 'Build a compliance-aware workplace culture covering legislative obligations.' },
+    { title: 'Emotional Intelligence at Work',         cat: 'Personal Development',img: 'assets/img/07_About_Team_Meeting.png',        desc: 'Develop the self-awareness and empathy that underpin every high-performing relationship.' }
+  ];
+
+  var bar      = document.getElementById('scBar');
+  var input    = document.getElementById('scInput');
+  var panel    = document.getElementById('scPanel');
+  var suggs    = document.getElementById('scSuggestions');
+  var resWrap  = document.getElementById('scResultsWrap');
+  var resBox   = document.getElementById('scResults');
+  var emptyEl  = document.getElementById('scEmpty');
+  var clearBtn = document.getElementById('scClear');
+  var viewAll  = document.getElementById('scViewAll');
+  var viewCt   = document.getElementById('scViewAllCt');
+  if (!input) return;
+
+  var activeIdx = -1;
+  var lastQuery = '';
+  var debTimer  = null;
+
+  /* ── Highlight matching text ── */
+  function highlight(text, query) {
+    if (!query) return escHtml(text);
+    var re = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    return escHtml(text).replace(re, '<mark>$1</mark>');
+  }
+  function escHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  /* ── Build result row HTML ── */
+  function resultHtml(course, query, idx) {
+    var delay = idx * 40;
+    var href  = 'courses.html?q=' + encodeURIComponent(query.toLowerCase());
+    return '<a class="sc-result" href="' + href + '" role="option" '
+         + 'style="animation-delay:' + delay + 'ms" tabindex="-1">'
+         + '<div class="sc-result-thumb"><img src="' + course.img + '" alt="" loading="lazy"></div>'
+         + '<div class="sc-result-body">'
+         +   '<div class="sc-result-title">' + highlight(course.title, query) + '</div>'
+         +   '<div class="sc-result-desc">' + escHtml(course.desc) + '</div>'
+         + '</div>'
+         + '<span class="sc-result-tag">' + escHtml(course.cat) + '</span>'
+         + '<svg class="sc-result-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" '
+         +   'stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">'
+         +   '<path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>'
+         + '</a>';
+  }
+
+  /* ── Run search ── */
+  function runSearch(query) {
+    lastQuery = query;
+    var q = query.toLowerCase().trim();
+
+    if (!q) {
+      showSuggestions();
+      return;
+    }
+
+    var matches = COURSES.filter(function (c) {
+      return c.title.toLowerCase().includes(q)
+          || c.cat.toLowerCase().includes(q)
+          || c.desc.toLowerCase().includes(q);
+    });
+
+    suggs.style.display   = 'none';
+    emptyEl.classList.remove('sc-vis');
+    resWrap.style.display = 'block';
+    activeIdx = -1;
+
+    if (matches.length === 0) {
+      resWrap.style.display = 'none';
+      emptyEl.classList.add('sc-vis');
+    } else {
+      resBox.innerHTML = matches.slice(0, 6).map(function (c, i) {
+        return resultHtml(c, q, i);
+      }).join('');
+      var remaining = matches.length - Math.min(matches.length, 6);
+      viewCt.textContent = matches.length + ' course' + (matches.length !== 1 ? 's' : '');
+      viewAll.href = 'courses.html?q=' + encodeURIComponent(q);
+    }
+  }
+
+  /* ── Show suggestions panel ── */
+  function showSuggestions() {
+    suggs.style.display   = '';
+    resWrap.style.display = 'none';
+    emptyEl.classList.remove('sc-vis');
+    activeIdx = -1;
+  }
+
+  /* ── Open / close panel ── */
+  function openPanel() {
+    panel.classList.add('sc-open');
+    bar.classList.add('sc-focused');
+    bar.setAttribute('aria-expanded', 'true');
+    if (!input.value.trim()) showSuggestions();
+  }
+  function closePanel() {
+    panel.classList.remove('sc-open');
+    bar.classList.remove('sc-focused');
+    bar.setAttribute('aria-expanded', 'false');
+    activeIdx = -1;
+  }
+
+  /* ── Keyboard navigation ── */
+  function getResultEls() {
+    return Array.from(resBox.querySelectorAll('.sc-result'));
+  }
+  function setActive(idx) {
+    var els = getResultEls();
+    els.forEach(function (el, i) {
+      el.classList.toggle('sc-active', i === idx);
+    });
+    if (els[idx]) els[idx].scrollIntoView({ block: 'nearest' });
+    activeIdx = idx;
+  }
+
+  input.addEventListener('keydown', function (e) {
+    var els = getResultEls();
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      openPanel();
+      setActive(Math.min(activeIdx + 1, els.length - 1));
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setActive(Math.max(activeIdx - 1, 0));
+    } else if (e.key === 'Enter') {
+      if (activeIdx >= 0 && els[activeIdx]) {
+        els[activeIdx].click();
+      } else if (input.value.trim()) {
+        window.location.href = 'courses.html?q=' + encodeURIComponent(input.value.trim());
+      }
+    } else if (e.key === 'Escape') {
+      closePanel();
+      input.blur();
+    }
+  });
+
+  /* ── Input events ── */
+  input.addEventListener('focus', openPanel);
+  input.addEventListener('input', function () {
+    var val = input.value;
+    clearBtn.classList.toggle('sc-vis', val.length > 0);
+    clearTimeout(debTimer);
+    debTimer = setTimeout(function () { runSearch(val); }, 200);
+  });
+
+  clearBtn.addEventListener('click', function () {
+    input.value = '';
+    clearBtn.classList.remove('sc-vis');
+    showSuggestions();
+    input.focus();
+  });
+
+  /* ── Click outside closes ── */
+  document.addEventListener('mousedown', function (e) {
+    var wrap = document.querySelector('.sc-search-wrap');
+    if (wrap && !wrap.contains(e.target)) closePanel();
+  });
+
+  /* ── ⌘K / Ctrl+K global shortcut ── */
+  document.addEventListener('keydown', function (e) {
+    var mac = /Mac|iPhone|iPad|iPod/.test(navigator.platform || navigator.userAgent);
+    if ((mac ? e.metaKey : e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      var sec = document.getElementById('searchCourses');
+      if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(function () { input.focus(); }, 400);
+    }
+  });
+
+  /* ── Tag / suggestion clicks fill input ── */
+  document.querySelectorAll('.sc-tag, .sc-sug').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      var q = el.getAttribute('data-q');
+      if (q) {
+        e.preventDefault();
+        input.value = q;
+        clearBtn.classList.add('sc-vis');
+        runSearch(q);
+        openPanel();
+      }
+    });
+  });
+})();
+
+/* About AcademeKey — section scroll reveal */
+(function () {
+  var sec = document.querySelector('[data-ab]');
+  if (!sec) return;
+  var obs = new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting) {
+      sec.classList.add('ab-vis');
+      obs.disconnect();
+    }
+  }, { threshold: 0.12 });
+  obs.observe(sec);
+})();
+
+/* Our Mission — section reveal + KP logo moment */
+(function () {
+  var sec = document.querySelector('[data-ms]');
+  if (!sec) return;
+  var obs = new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting) {
+      sec.classList.add('ms-vis');
+      setTimeout(function () { sec.classList.add('ms-kp-fired'); }, 200);
+      obs.disconnect();
+    }
+  }, { threshold: 0.10 });
+  obs.observe(sec);
+})();
+
+
+/* Why Choose AcademeKey — panel scroll reveals */
+(function () {
+  var panels = document.querySelectorAll('[data-wca]');
+  if (!panels.length) return;
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('wca-vis');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.14 });
+  panels.forEach(function (p) { obs.observe(p); });
+})();
+
+/* Homepage hero — one-time sequential reveal */
+(function () {
+  var OFFSET = 540; /* ms after DOMContentLoaded — lets page veil (500ms) finish */
+
+  function r(el, ms) {
+    if (!el) return;
+    setTimeout(function () { el.classList.add('hm-in'); }, OFFSET + ms);
+  }
+  function rAll(sel, ms) {
+    var els = document.querySelectorAll(sel);
+    els.forEach(function (el, i) { r(el, ms + i * 120); });
+  }
+
+  function init() {
+    r(document.querySelector('.hm-label'), 0);
+    rAll('.hm-line', 120);             /* line 1: +120, line 2: +240, line 3: +360 */
+    r(document.querySelector('.hm-sub'), 500);
+    r(document.querySelector('.hm-ctas'), 640);
+    r(document.getElementById('hmComposition'), 160);
+    r(document.getElementById('hmGlassCard'), 820);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>

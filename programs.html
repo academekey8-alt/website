@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programs — AcademeKey</title>
+  <meta name="description" content="Explore AcademeKey's professional development programs: Leadership, Customer Service, Communication, Sales, Project Management, HR, Compliance, and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <style>
+  /* ═══════════════════════════════════════════════════════════════════
+     PROGRAMS PAGE — Premium Editorial Gallery
+     Background palette: White → Light neutral → White → Footer
+  ═══════════════════════════════════════════════════════════════════ */
+
+  /* ── HERO ─────────────────────────────────────────────────────────── */
+  .pg-hero {
+    height: 75vh;
+    min-height: 560px;
+    max-height: 900px;
+    background: #fff;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Left column */
+  .pg-hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 64px 72px 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Knowledge Path hairline — descends through hero */
+  .pg-kp-thread {
+    position: absolute;
+    left: 80px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent 0%, rgba(245,166,35,.18) 40%, rgba(245,166,35,.08) 100%);
+    pointer-events: none;
+  }
+
+  .pg-hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: rgba(11,22,41,.38);
+    margin-bottom: 28px;
+  }
+  .pg-hero-label::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: #F5A623;
+    flex-shrink: 0;
+  }
+
+  .pg-hero-h1 {
+    font-size: clamp(44px, 5.5vw, 80px);
+    font-weight: 900;
+    letter-spacing: -3.5px;
+    line-height: 0.9;
+    color: #0B1629;
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+  .pg-hero-h1-line {
+    display: block;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 800ms cubic-bezier(0.22,1,0.36,1), opacity 500ms ease;
+  }
+  .pg-hero-h1-line.line-revealed {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .pg-hero-h1-line em { color: #F5A623; font-style: normal; }
+
+  .pg-hero-sub {
+    font-size: 16px;
+    color: rgba(11,22,41,.45);
+    line-height: 1.8;
+    max-width: 380px;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 600ms ease 400ms, transform 600ms cubic-bezier(0.22,1,0.36,1) 400ms;
+  }
+  .pg-hero-sub.sub-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Right column — image */
+  .pg-hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+  .pg-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transform: scale(1.06);
+    transition: transform 8000ms cubic-bezier(0.22,1,0.36,1);
+    display: block;
+  }
+  .pg-hero-img.img-zoomed {
+    transform: scale(1.0);
+  }
+
+  /* Image overlay — subtle gradient from left for blend */
+  .pg-hero-right::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(255,255,255,.35) 0%, transparent 30%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Floating geometric accent — Knowledge Path A */
+  .pg-hero-geo {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    width: 120px;
+    height: 120px;
+    opacity: 0.18;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* ── EDITORIAL INTRODUCTION ──────────────────────────────────────── */
+  .pg-intro {
+    background: #fff;
+    padding: 140px 0 120px;
+    position: relative;
+  }
+  .pg-intro-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 80px;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .pg-intro-aside {
+    padding-top: 6px;
+  }
+  .pg-intro-aside-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: rgba(245,166,35,.8);
+    display: block;
+    margin-bottom: 16px;
+  }
+  .pg-intro-aside-rule {
+    width: 32px;
+    height: 1.5px;
+    background: rgba(245,166,35,.35);
+  }
+  .pg-intro-body {
+    max-width: 620px;
+  }
+  .pg-intro-h2 {
+    font-size: clamp(32px, 3.8vw, 52px);
+    font-weight: 800;
+    letter-spacing: -2.5px;
+    color: #0B1629;
+    line-height: 1.0;
+    margin-bottom: 32px;
+  }
+  .pg-intro-text {
+    font-size: 16px;
+    line-height: 1.85;
+    color: rgba(11,22,41,.52);
+  }
+
+  /* ── PROGRAM GALLERY ─────────────────────────────────────────────── */
+  .pg-gallery {
+    background: #F7F6F4;
+    padding: 100px 0 120px;
+    position: relative;
+  }
+
+  /* Subtle KP geometry — large A shape behind gallery at very low opacity */
+  .pg-gallery-geo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 900px;
+    height: 900px;
+    opacity: 0.022;
+    pointer-events: none;
+  }
+
+  .pg-gallery-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* 4-column uniform grid */
+  .pg-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+  }
+
+  /* ── PROGRAM CARD ─────────────────────────────────────────────────── */
+  .pg-card {
+    background: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    box-shadow:
+      0 2px 8px rgba(7,26,51,.04),
+      0 8px 32px rgba(7,26,51,.06);
+    cursor: pointer;
+    /* reveal state */
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 600ms cubic-bezier(0.22,1,0.36,1),
+      transform 600ms cubic-bezier(0.22,1,0.36,1),
+      box-shadow 320ms ease;
+    will-change: transform, opacity;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  .pg-card.card-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Hover — card lift */
+  .pg-card:hover {
+    box-shadow:
+      0 4px 16px rgba(7,26,51,.05),
+      0 20px 56px rgba(7,26,51,.10);
+    transform: translateY(-8px);
+  }
+  .pg-card.card-visible:hover {
+    transform: translateY(-8px);
+  }
+
+  /* Gold top accent line — hidden by default, appears on hover */
+  .pg-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2.5px;
+    background: linear-gradient(90deg, #F5A623 0%, #F5961F 100%);
+    opacity: 0;
+    transition: opacity 240ms ease;
+    z-index: 10;
+  }
+  .pg-card:hover::before { opacity: 1; }
+
+  /* Image area — 70% of card height */
+  .pg-card-img-wrap {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+  }
+  .pg-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 600ms cubic-bezier(0.22,1,0.36,1);
+    display: block;
+  }
+  .pg-card:hover .pg-card-img {
+    transform: scale(1.03);
+  }
+
+  /* Image gradient — bottom fade for readability */
+  .pg-card-img-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(to top, rgba(7,26,51,.18), transparent);
+    pointer-events: none;
+  }
+
+  /* Geometric accent — tiny A-mark in corner */
+  .pg-card-gem {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 28px;
+    height: 28px;
+    opacity: 0.55;
+    transition: opacity 240ms ease;
+  }
+  .pg-card:hover .pg-card-gem { opacity: 0.9; }
+
+  /* Footer area — 30% of card */
+  .pg-card-foot {
+    padding: 22px 24px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .pg-card-title {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+    color: #0B1629;
+    line-height: 1.3;
+    flex: 1;
+  }
+  .pg-card-arrow {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: rgba(11,22,41,.3);
+    transition: transform 280ms cubic-bezier(0.22,1,0.36,1), color 200ms ease;
+  }
+  .pg-card:hover .pg-card-arrow {
+    transform: translateX(5px);
+    color: #F5961F;
+  }
+
+  /* ── EXPLORE MORE ────────────────────────────────────────────────── */
+  .pg-explore {
+    background: #fff;
+    padding: 160px 0 120px;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  /* KP fade — gold thread continues from gallery to footer */
+  .pg-explore-kp {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(245,166,35,.1), rgba(245,166,35,.06) 60%, transparent);
+    pointer-events: none;
+  }
+  .pg-explore-kp-diamond {
+    position: absolute;
+    left: 50%;
+    top: 48px;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .pg-explore-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .pg-explore-h2 {
+    font-size: clamp(28px, 3.5vw, 48px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    color: #0B1629;
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+  .pg-explore-sub {
+    font-size: 16px;
+    color: rgba(11,22,41,.45);
+    line-height: 1.75;
+    margin-bottom: 48px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── RESPONSIVE ──────────────────────────────────────────────────── */
+  @media (max-width: 1200px) {
+    .pg-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 1024px) {
+    .pg-hero {
+      grid-template-columns: 1fr;
+      height: auto;
+      min-height: auto;
+    }
+    .pg-hero-right {
+      height: 52vw;
+      min-height: 320px;
+    }
+    .pg-hero-left {
+      padding: 120px 40px 56px;
+    }
+    .pg-kp-thread { left: 40px; }
+    .pg-intro-inner { grid-template-columns: 1fr; gap: 28px; padding: 0 40px; }
+    .pg-gallery-inner { padding: 0 40px; }
+    .pg-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  }
+  @media (max-width: 640px) {
+    .pg-hero-left { padding: 100px 24px 48px; }
+    .pg-intro-inner { padding: 0 24px; }
+    .pg-gallery-inner { padding: 0 20px; }
+    .pg-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .pg-card-foot { padding: 16px 18px 18px; }
+    .pg-card-title { font-size: 13px; }
+    .pg-intro { padding: 80px 0 72px; }
+    .pg-gallery { padding: 72px 0 80px; }
+    .pg-explore { padding: 100px 0 80px; }
+  }
+  </style>
+</head>
+<body>
+<div id="pageVeil"></div>
+<div id="readProgress"></div>
+
+<!-- ──────────────────────────────────────────────────────────────── -->
+<!-- HEADER                                                           -->
+<!-- ──────────────────────────────────────────────────────────────── -->
+<header id="mainHeader">
+  <div id="navKPath" aria-hidden="true"></div>
+  <div class="nav-floater">
+    <a href="index.html" class="nav-logo" aria-label="AcademeKey — The Key to Success">
+      <div class="nav-logo-mark">
+        <svg width="38" height="38" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <rect width="40" height="40" rx="11" fill="#F5961F"/>
+          <path d="M10 31L20 10L30 31" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="14.5" y1="24.5" x2="25.5" y2="24.5" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="nav-logo-text">
+        <span class="nav-wordmark">Academe<em>Key</em></span>
+        <span class="nav-tagline">The Key to Success</span>
+      </div>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+      <a href="courses.html">Courses</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="courses.html" class="nav-cta-btn" aria-label="Browse our courses">
+      Browse Courses
+      <svg class="cta-arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu" aria-hidden="true">
+  <div class="mob-inner">
+    <div class="mob-header">
+      <div class="nav-logo-mark">
+        <svg width="34" height="34" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <rect width="40" height="40" rx="11" fill="#F5961F"/>
+          <path d="M10 31L20 10L30 31" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="14.5" y1="24.5" x2="25.5" y2="24.5" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+    <nav class="mob-nav" aria-label="Mobile navigation">
+      <a href="index.html" class="mob-link">Home</a>
+      <a href="courses.html" class="mob-link">Courses</a>
+      <a href="about.html" class="mob-link">About</a>
+      <a href="contact.html" class="mob-link">Contact</a>
+    </nav>
+    <div class="mob-cta-wrap">
+      <a href="courses.html" class="mob-cta-btn">
+        Browse Courses
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ──────────────────────────────────────────────────────────────── -->
+<!-- HERO                                                             -->
+<!-- ──────────────────────────────────────────────────────────────── -->
+<section class="pg-hero">
+
+  <!-- KP hairline thread -->
+  <div class="pg-kp-thread" aria-hidden="true"></div>
+
+  <!-- Left — editorial heading -->
+  <div class="pg-hero-left">
+    <span class="pg-hero-label">Programs</span>
+
+    <h1 class="pg-hero-h1" id="pgHeroH1">
+      <span class="pg-hero-h1-line">Professional</span>
+      <span class="pg-hero-h1-line">Development</span>
+      <span class="pg-hero-h1-line"><em>Programs.</em></span>
+    </h1>
+
+    <p class="pg-hero-sub" id="pgHeroSub">
+      Eight program areas. One standard: every participant leaves changed, not just informed.
+    </p>
+  </div>
+
+  <!-- Right — premium image -->
+  <div class="pg-hero-right">
+    <img
+      src="assets/img/02_Programs_Desk.png"
+      alt="Professional development — AcademeKey"
+      class="pg-hero-img"
+      id="pgHeroImg"
+    >
+    <!-- Floating geometric accent -->
+    <div class="pg-hero-geo" aria-hidden="true">
+      <svg viewBox="0 0 120 120" fill="none">
+        <path d="M18 108L60 12L102 108" stroke="#0B1629" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="36" y1="76" x2="84" y2="76" stroke="#0B1629" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="60" cy="60" r="52" stroke="#0B1629" stroke-width="0.8"/>
+        <path d="M8 20 L8 8 L20 8" stroke="#F5A623" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M100 100 L112 100 L112 88" stroke="#F5A623" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────────────────────────────────────────────────────── -->
+<!-- EDITORIAL INTRODUCTION                                           -->
+<!-- ──────────────────────────────────────────────────────────────── -->
+<section class="pg-intro">
+  <div class="pg-intro-inner">
+
+    <div class="pg-intro-aside" data-sr data-sr-delay="0">
+      <span class="pg-intro-aside-label">Programs</span>
+      <div class="pg-intro-aside-rule"></div>
+    </div>
+
+    <div class="pg-intro-body">
+      <h2 class="pg-intro-h2" data-sr data-sr-delay="80">
+        Explore Professional<br>Development
+      </h2>
+      <p class="pg-intro-text" data-sr data-sr-delay="160">
+        AcademeKey offers a carefully curated range of professional development programs designed to build capability at every level of an organization. Each program is delivered by experienced facilitators and grounded in practical application — so participants leave with skills they can use immediately.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ──────────────────────────────────────────────────────────────── -->
+<!-- PROGRAM GALLERY                                                  -->
+<!-- ──────────────────────────────────────────────────────────────── -->
+<section class="pg-gallery">
+
+  <!-- Ambient KP geometry -->
+  <div class="pg-gallery-geo" aria-hidden="true">
+    <svg viewBox="0 0 900 900" fill="none">
+      <path d="M90 810L450 90L810 810" stroke="#0B1629" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="252" y1="567" x2="648" y2="567" stroke="#0B1629" stroke-width="1.2" stroke-linecap="round"/>
+      <circle cx="450" cy="450" r="360" stroke="#0B1629" stroke-width="0.8"/>
+    </svg>
+  </div>
+
+  <div class="pg-gallery-inner">
+    <div class="pg-grid" id="pgGrid">
+
+      <!-- ① Leadership & Management -->
+      <a class="pg-card" href="contact.html?program=leadership" id="leadership" data-pgcard="0">
+        <div class="pg-card-img-wrap">
+          <img class="pg-card-img" src="assets/img/03_Leadership_Training.png.png" alt="Leadership & Management" loading="lazy">
+          <div class="pg-card-img-overlay"></div>
+          <svg class="pg-card-gem" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L26 14L14 26L2 14Z" stroke="rgba(245,166,35,.5)" stroke-width="0.8"/>
+            <path d="M9 20L14 8L19 20" stroke="rgba(245,166,35,.6)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="11.2" y1="16.5" x2="16.8" y2="16.5" stroke="rgba(245,166,35,.6)" stroke-width="1.1" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="pg-card-foot">
+          <span class="pg-card-title">Leadership &amp;<br>Management</span>
+          <span class="pg-card-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- ② Customer Service -->
+      <a class="pg-card" href="contact.html?program=customer-service" id="customer-service" data-pgcard="80">
+        <div class="pg-card-img-wrap">
+          <img class="pg-card-img" src="assets/img/07_About_Team_Meeting.png" alt="Customer Service" loading="lazy">
+          <div class="pg-card-img-overlay"></div>
+          <svg class="pg-card-gem" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L26 14L14 26L2 14Z" stroke="rgba(245,166,35,.5)" stroke-width="0.8"/>
+            <path d="M9 20L14 8L19 20" stroke="rgba(245,166,35,.6)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="11.2" y1="16.5" x2="16.8" y2="16.5" stroke="rgba(245,166,35,.6)" stroke-width="1.1" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="pg-card-foot">
+          <span class="pg-card-title">Customer<br>Service</span>
+          <span class="pg-card-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- ③ Communication -->
+      <a class="pg-card" href="contact.html?program=communication" id="communication" data-pgcard="160">
+        <div class="pg-card-img-wrap">
+          <img class="pg-card-img" src="assets/img/04_Classroom_Training.png" alt="Communication Skills" loading="lazy">
+          <div class="pg-card-img-overlay"></div>
+          <svg class="pg-card-gem" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L26 14L14 26L2 14Z" stroke="rgba(245,166,35,.5)" stroke-width="0.8"/>
+            <path d="M9 20L14 8L19 20" stroke="rgba(245,166,35,.6)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="11.2" y1="16.5" x2="16.8" y2="16.5" stroke="rgba(245,166,35,.6)" stroke-width="1.1" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="pg-card-foot">
+          <span class="pg-card-title">Communication<br>Skills</span>
+          <span class="pg-card-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- ④ Sales -->
+      <a class="pg-card" href="contact.html?program=sales" id="sales" data-pgcard="240">
+        <div class="pg-card-img-wrap">
+          <img class="pg-card-img" src="assets/img/05_Virtual_Sessions.png.png" alt="Sales Training" loading="lazy">
+          <div class="pg-card-img-overlay"></div>
+          <svg class="pg-card-gem" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L26 14L14 26L2 14Z" stroke="rgba(245,166,35,.5)" stroke-width="0.8"/>
+            <path d="M9 20L14 8L19 20" stroke="rgba(245,166,35,.6)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="11.2" y1="16.5" x2="16.8" y2="16.5" stroke="rgba(245,166,35,.6)" stroke-width="1.1" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="pg-card-foot">
+          <span class="pg-card-title">Sales<br>Training</span>
+          <span class="pg-card-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- ⑤ Project Management -->
+      <a class="pg-card" href="contact.html?program=project-management" id="project-management" data-pgcard="0">
+        <div class="pg-card-img-wrap">
+          <img class="pg-card-img" src="assets/img/06_Onsite_Workshop.png" alt="Project Management" loading="lazy">
+          <div class="pg-card-img-overlay"></div>
+          <svg class="pg-card-gem" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L26 14L14 26L2 14Z" stroke="rgba(245,166,35,.5)" stroke-width="0.8"/>
+            <path d="M9 20L14 8L19 20" stroke="rgba(245,166,35,.6)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="11.2" y1="16.5" x2="16.8" y2="16.5" stroke="rgba(245,166,35,.6)" stroke-width="1.1" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="pg-card-foot">
+          <span class="pg-card-title">Project<br>Management</span>
+          <span class="pg-card-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- ⑥ Human Resources -->
+      <a class="pg-card" href="contact.html?program=human-resources" id="human-resources" data-pgcard="80">
+        <div class="pg-card-img-wrap">
+          <img class="pg-card-img" src="assets/img/01_Home_Hero_Speaker.png" alt="Human Resources" loading="lazy">
+          <div class="pg-card-img-overlay"></div>
+          <svg class="pg-card-gem" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L26 14L14 26L2 14Z" stroke="rgba(245,166,35,.5)" stroke-width="0.8"/>
+            <path d="M9 20L14 8L19 20" stroke="rgba(245,166,35,.6)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="11.2" y1="16.5" x2="16.8" y2="16.5" stroke="rgba(245,166,35,.6)" stroke-width="1.1" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="pg-card-foot">
+          <span class="pg-card-title">Human<br>Resources</span>
+          <span class="pg-card-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- ⑦ Workplace Compliance -->
+      <a class="pg-card" href="contact.html?program=compliance" id="compliance" data-pgcard="160">
+        <div class="pg-card-img-wrap">
+          <img class="pg-card-img" src="assets/img/03_Leadership_Training.png.png" alt="Workplace Compliance" loading="lazy" style="object-position: center 20%;">
+          <div class="pg-card-img-overlay"></div>
+          <svg class="pg-card-gem" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L26 14L14 26L2 14Z" stroke="rgba(245,166,35,.5)" stroke-width="0.8"/>
+            <path d="M9 20L14 8L19 20" stroke="rgba(245,166,35,.6)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="11.2" y1="16.5" x2="16.8" y2="16.5" stroke="rgba(245,166,35,.6)" stroke-width="1.1" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="pg-card-foot">
+          <span class="pg-card-title">Workplace<br>Compliance</span>
+          <span class="pg-card-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- ⑧ Other Professional Development Programs -->
+      <a class="pg-card" href="contact.html?program=other" id="other" data-pgcard="240">
+        <div class="pg-card-img-wrap">
+          <img class="pg-card-img" src="assets/img/07_About_Team_Meeting.png" alt="Other Professional Development Programs" loading="lazy" style="object-position: center 30%;">
+          <div class="pg-card-img-overlay"></div>
+          <svg class="pg-card-gem" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L26 14L14 26L2 14Z" stroke="rgba(245,166,35,.5)" stroke-width="0.8"/>
+            <path d="M9 20L14 8L19 20" stroke="rgba(245,166,35,.6)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="11.2" y1="16.5" x2="16.8" y2="16.5" stroke="rgba(245,166,35,.6)" stroke-width="1.1" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="pg-card-foot">
+          <span class="pg-card-title">Other Professional<br>Development</span>
+          <span class="pg-card-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+    </div><!-- /pg-grid -->
+  </div><!-- /pg-gallery-inner -->
+</section>
+
+<!-- ──────────────────────────────────────────────────────────────── -->
+<!-- EXPLORE MORE                                                     -->
+<!-- ──────────────────────────────────────────────────────────────── -->
+<section class="pg-explore">
+  <!-- KP vertical thread -->
+  <div class="pg-explore-kp" aria-hidden="true"></div>
+  <div class="pg-explore-kp-diamond" aria-hidden="true">
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+      <path d="M5 0.5L9.5 5L5 9.5L0.5 5Z" stroke="rgba(245,166,35,.3)" stroke-width="0.8"/>
+    </svg>
+  </div>
+
+  <div class="pg-explore-inner">
+    <span class="ak-label" data-sr data-sr-delay="0">Next Step</span>
+    <h2 class="pg-explore-h2" data-sr data-sr-delay="80">
+      Continue Exploring<br>AcademeKey.
+    </h2>
+    <p class="pg-explore-sub" data-sr data-sr-delay="160">
+      Not sure which program fits your team? Tell us what you need and we'll help you choose — or build something bespoke.
+    </p>
+    <a href="contact.html" class="ak-btn ak-btn--primary" data-sr data-sr-delay="240">
+      Start a Conversation
+      <span class="ak-btn-arrow">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </span>
+    </a>
+  </div>
+</section>
+
+<!-- ──────────────────────────────────────────────────────────────── -->
+<!-- FOOTER TRANSITION                                                -->
+<!-- ──────────────────────────────────────────────────────────────── -->
+<div class="fkp-transition" id="fkpTransition" aria-hidden="true">
+  <div class="fkp-rail">
+    <div class="fkp-arm fkp-arm--left"></div>
+    <div class="fkp-gem">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <path d="M11 1L21 11L11 21L1 11Z" stroke="rgba(245,166,35,.65)" stroke-width="0.8"/>
+        <path d="M8 16L11 8L14 16" stroke="rgba(245,166,35,.65)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="9.2" y1="13.2" x2="12.8" y2="13.2" stroke="rgba(245,166,35,.65)" stroke-width="1" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="fkp-arm fkp-arm--right"></div>
+  </div>
+</div>
+
+<!-- ──────────────────────────────────────────────────────────────── -->
+<!-- FOOTER -->
+<div class="ft-kp-divider" id="ftKpDivider" aria-hidden="true">
+  <div class="ft-kp-line"></div>
+  <span class="ft-kp-gem"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 0.8L15.2 8L8 15.2L0.8 8Z" stroke="rgba(16,185,129,.18)" stroke-width="0.8"/><path d="M8 3.5L12.5 8L8 12.5L3.5 8Z" stroke="rgba(16,185,129,.08)" stroke-width="0.6"/></svg></span>
+  <span class="ft-kp-dot"></span>
+</div>
+<footer class="ft-section" id="siteFooter" aria-label="Site footer">
+  <div class="ft-glow" aria-hidden="true"></div>
+  <div class="ft-container">
+    <div class="ft-main">
+      <div class="ft-brand">
+        <div class="ft-kp-end" aria-hidden="true"></div>
+        <a href="index.html" class="ft-logo-link" aria-label="AcademeKey — home"><img src="assets/img/Academekey logo.png" alt="AcademeKey" class="ft-logo"></a>
+        <p class="ft-tagline">The Key to Success</p>
+      </div>
+      <div class="ft-right">
+        <nav aria-label="Footer navigation"><ul class="ft-nav" role="list">
+          <li><a href="index.html"   class="ft-nav-link">Home</a></li>
+          <li><a href="courses.html" class="ft-nav-link">Courses</a></li>
+          <li><a href="about.html"   class="ft-nav-link">About</a></li>
+          <li><a href="contact.html" class="ft-nav-link">Contact</a></li>
+        </ul></nav>
+        <div class="ft-social" aria-label="Social media">
+          <a href="https://www.linkedin.com/company/academkey/" target="_blank" rel="noopener noreferrer" class="ft-soc" aria-label="AcademeKey on LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="#" class="ft-soc" aria-label="AcademeKey on Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="#" class="ft-soc" aria-label="AcademeKey on Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" class="ft-soc" aria-label="AcademeKey on YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="ft-contact">
+      <div class="ft-contact-item"><span class="ft-contact-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span><span class="ft-contact-text">Email</span></div>
+      <div class="ft-contact-item"><span class="ft-contact-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.16a16 16 0 006.93 6.93l1.42-1.42a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></span><span class="ft-contact-text">Phone</span></div>
+      <div class="ft-contact-item"><span class="ft-contact-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span><span class="ft-contact-text">Address</span></div>
+    </div>
+    <div class="ft-bottom">
+      <div class="ft-bottom-rule"></div>
+      <div class="ft-bottom-row">
+        <p class="ft-copy">&copy; <span id="ftYear">2025</span> AcademeKey</p>
+        <span class="ft-copy-sep" aria-hidden="true">·</span>
+        <p class="ft-copy">The Key to Success</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ──────────────────────────────────────────────────────────────── -->
+<!-- SCRIPTS                                                          -->
+<!-- ──────────────────────────────────────────────────────────────── -->
+<script src="js/main.js"></script>
+
+<script>
+/* Programs page — hero reveal + gallery stagger */
+(function () {
+
+  /* ── Hero heading line-by-line reveal ─────────────────────────── */
+  const lines  = document.querySelectorAll('.pg-hero-h1-line');
+  const sub    = document.getElementById('pgHeroSub');
+  const heroImg = document.getElementById('pgHeroImg');
+
+  requestAnimationFrame(() => {
+    /* Trigger hero image slow zoom */
+    if (heroImg) {
+      setTimeout(() => heroImg.classList.add('img-zoomed'), 80);
+    }
+
+    /* Stagger heading lines */
+    lines.forEach((line, i) => {
+      setTimeout(() => line.classList.add('line-revealed'), 120 + i * 110);
+    });
+
+    /* Sub copy */
+    if (sub) setTimeout(() => sub.classList.add('sub-revealed'), 480);
+  });
+
+  /* ── Gallery card stagger via IntersectionObserver ────────────── */
+  const cards = document.querySelectorAll('.pg-card');
+
+  const NO_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (NO_MOTION) {
+    cards.forEach(c => c.classList.add('card-visible'));
+    return;
+  }
+
+  /* Cards are arranged in two rows of 4.
+     Row 1 cards: delay 0, 80, 160, 240ms
+     Row 2 cards: delay 0, 80, 160, 240ms (reset per row) */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(({ isIntersecting, target }) => {
+      if (!isIntersecting) return;
+      const baseDelay = parseInt(target.dataset.pgcard) || 0;
+      setTimeout(() => target.classList.add('card-visible'), baseDelay);
+      io.unobserve(target);
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
+
+  cards.forEach(c => io.observe(c));
+
+})();
+</script>
+
+<script src="js/motion.js"></script>
+</body>
+</html>
