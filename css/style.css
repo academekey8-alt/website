@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    AcademeKey — Global Stylesheet
    ============================================================ */
 
@@ -84,7 +84,7 @@ body {
 }
 
 /* ── Header shell ── */
-header {
+#mainHeader {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   pointer-events: none;
 }
@@ -136,13 +136,13 @@ header.nav-solid .nav-logo { transform: scale(.95); transform-origin: left cente
   transition: color 400ms ease;
 }
 .nav-wordmark em { color: var(--orange); font-style: normal; }
-header.nav-solid .nav-wordmark { color: var(--navy); }
+header.nav-solid .nav-wordmark, header.nav-light-theme .nav-wordmark { color: var(--navy); }
 .nav-tagline {
   font-size: 10px; font-weight: 500; color: rgba(255,255,255,.42);
   letter-spacing: .38px; line-height: 1;
   transition: color 400ms ease;
 }
-header.nav-solid .nav-tagline { color: rgba(11,22,41,.42); }
+header.nav-solid .nav-tagline, header.nav-light-theme .nav-tagline { color: rgba(11,22,41,.42); }
 
 /* ── Primary nav links (Home Courses About Contact) ── */
 .nav-links {
@@ -170,9 +170,9 @@ header.nav-solid .nav-tagline { color: rgba(11,22,41,.42); }
 .nav-links > a.active::after { transform: scaleX(1); }
 .nav-links > a.active { color: #10B981; }
 /* Scrolled state */
-header.nav-solid .nav-links > a        { color: rgba(11,22,41,.62); }
-header.nav-solid .nav-links > a:hover  { color: #10B981; }
-header.nav-solid .nav-links > a.active { color: #10B981; }
+header.nav-solid .nav-links > a, header.nav-light-theme .nav-links > a { color: rgba(11,22,41,.62); }
+header.nav-solid .nav-links > a:hover, header.nav-light-theme .nav-links > a:hover { color: #10B981; }
+header.nav-solid .nav-links > a.active, header.nav-light-theme .nav-links > a.active { color: #10B981; }
 
 /* ── Primary CTA — Emerald ── */
 .nav-cta-btn {
@@ -226,7 +226,7 @@ header.nav-solid .nav-links > a.active { color: #10B981; }
 .hamburger span:nth-child(1) { width: 24px; margin-bottom: 6px; }
 .hamburger span:nth-child(2) { width: 17px; margin-bottom: 6px; }
 .hamburger span:nth-child(3) { width: 21px; }
-header.nav-solid .hamburger span { background: rgba(11,22,41,.72); }
+header.nav-solid .hamburger span, header.nav-light-theme .hamburger span { background: rgba(11,22,41,.72); }
 /* Open → X morph */
 .hamburger[aria-expanded="true"] span:nth-child(1) {
   width: 22px;
