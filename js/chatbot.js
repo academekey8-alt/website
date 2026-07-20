@@ -57,7 +57,7 @@ Choose based on what page would genuinely help the user next:
   // Inject Chatbot HTML
   const widget = document.createElement('div');
   widget.id = 'akChat';
-  widget.innerHTML = \`
+  widget.innerHTML = `
 <button class="ak-bubble" id="akBubble" aria-label="Chat with us">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28">
     <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
@@ -86,7 +86,7 @@ Choose based on what page would genuinely help the user next:
       </svg>
     </button>
   </div>
-</div>\`;
+</div>`;
   document.body.appendChild(widget);
 
   const bubble  = document.getElementById('akBubble');
