@@ -150,7 +150,9 @@ function renderCourses() {
   
   courses.forEach(course => {
     const tr = document.createElement('tr');
-    const imgUrl = course.image || '../assets/img/Academekey logo.png'; // fallback
+    let imgUrl = course.image || '../assets/img/Academekey logo.png'; // fallback
+    if (imgUrl.startsWith('assets/')) imgUrl = '../' + imgUrl;
+    
     tr.innerHTML = `
       <td><img src="${imgUrl}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;"></td>
       <td><strong>${course.title}</strong></td>
@@ -234,7 +236,9 @@ function openCourseModal(id = null) {
       document.getElementById('courseDesc').value = course.description;
       if (course.image) {
         document.getElementById('courseImageUrl').value = course.image;
-        courseImgPreview.src = course.image;
+        let previewUrl = course.image;
+        if (previewUrl.startsWith('assets/')) previewUrl = '../' + previewUrl;
+        courseImgPreview.src = previewUrl;
         courseImgPreview.style.display = 'block';
       }
     }
