@@ -66,7 +66,7 @@ Choose based on what page would genuinely help the user next:
 <div class="ak-panel" id="akPanel" style="display:none">
   <div class="ak-head">
     <div class="ak-head-info">
-      <img src="assets/img/Academekey logo.png" alt="AcademeKey" class="ak-logo" onerror="this.src='https://placehold.co/40x40?text=AK'"/>
+      <img src="assets/img/logo.png" alt="AcademeKey" class="ak-logo" onerror="this.src='https://placehold.co/40x40?text=AK'"/>
       <div>
         <div class="ak-name">Academe Assistant</div>
         <div class="ak-status"><span class="ak-dot"></span> Online</div>
