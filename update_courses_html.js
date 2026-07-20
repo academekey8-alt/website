@@ -8,29 +8,31 @@ const endIndex = html.indexOf('</div><!-- /co-catalog-inner -->');
 if (startIndex !== -1 && endIndex !== -1) {
   const before = html.substring(0, startIndex + '<div class="co-catalog-inner">'.length);
   const after = html.substring(endIndex);
-  
-  const newContent = `
+
+  let newHtml = before + `
     <div id="coursesLoading" style="text-align: center; padding: 100px 0; color: var(--text-secondary);">
       Loading courses...
     </div>
     <div id="coursesContainer"></div>
-  `;
-  
-  let newHtml = before + newContent + after;
-  
-  const oldScriptStart = newHtml.indexOf('<script type="module">');
-  if (oldScriptStart !== -1) {
-    newHtml = newHtml.substring(0, oldScriptStart);
-  } else {
-    newHtml = newHtml.replace('</body>', '');
-  }
-  
+  ` + after;
+
   const scriptTag = `
   <script type="module">
     import { db } from './js/firebase.js';
     import { collection, getDocs } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
-    const getCatCode = (cat) => {
+    function getCatTag(cat) {
+      if (cat.includes('Leadership')) return 'Leadership';
+      if (cat.includes('Customer')) return 'Customer Service';
+      if (cat.includes('Communication')) return 'Communication';
+      if (cat.includes('Sales')) return 'Sales';
+      if (cat.includes('Project')) return 'Project Management';
+      if (cat.includes('Human')) return 'Human Resources';
+      if (cat.includes('Compliance')) return 'Compliance';
+      return 'Professional Dev.';
+    }
+
+    function getCatCode(cat) {
       if (cat.includes('Leadership')) return 'leadership';
       if (cat.includes('Customer')) return 'customer-service';
       if (cat.includes('Communication')) return 'communication';
@@ -39,29 +41,13 @@ if (startIndex !== -1 && endIndex !== -1) {
       if (cat.includes('Human')) return 'hr';
       if (cat.includes('Compliance')) return 'compliance';
       return 'other';
-    };
-
-    const getCatTag = (cat) => {
-      if (cat.includes('Leadership')) return 'Leadership';
-      if (cat.includes('Customer')) return 'Customer Service';
-      if (cat.includes('Communication')) return 'Communication';
-      if (cat.includes('Sales')) return 'Sales';
-      if (cat.includes('Project')) return 'Project Management';
-      if (cat.includes('Human')) return 'HR';
-      if (cat.includes('Compliance')) return 'Compliance';
-      return 'Professional Dev.';
-    };
+    }
 
     async function loadCourses() {
       try {
         const snapshot = await getDocs(collection(db, 'courses'));
         const container = document.getElementById('coursesContainer');
         const loading = document.getElementById('coursesLoading');
-        
-        if (snapshot.empty) {
-          loading.innerHTML = 'No courses found. Please seed the database or add courses via the Admin Panel.';
-          return;
-        }
 
         loading.style.display = 'none';
         
@@ -80,8 +66,18 @@ if (startIndex !== -1 && endIndex !== -1) {
           html += \`
             <div class="co-category" data-category="\${catCode}" id="\${catCode}">
               <div class="co-cat-header">
-                <h2 class="co-cat-title">\${category}</h2>
-                <div class="co-cat-count">\${courses.length} \${courses.length === 1 ? 'Course' : 'Courses'}</div>
+                <div class="co-cat-title-wrap">
+                  <svg class="co-cat-gem" viewBox="0 0 28 28" fill="none">
+                    <path d="M14 2L26 14L14 26L2 14Z" stroke="rgba(245,166,35,.6)" stroke-width="0.9"/>
+                    <path d="M9 20L14 8L19 20" stroke="rgba(245,166,35,.7)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="11.2" y1="16.5" x2="16.8" y2="16.5" stroke="rgba(245,166,35,.7)" stroke-width="1.2" stroke-linecap="round"/>
+                  </svg>
+                  <h2 class="co-cat-name">\${category}</h2>
+                </div>
+                <a href="programs.html#\${catCode}" class="co-cat-see-all">
+                  View program
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
               </div>
               <div class="co-grid">
           \`;
@@ -153,10 +149,17 @@ if (startIndex !== -1 && endIndex !== -1) {
   </script>
 </body>`;
 
-  newHtml = newHtml + scriptTag;
+  // Remove old script if exists
+  const oldScriptStart = newHtml.indexOf('<script type="module">');
+  if (oldScriptStart !== -1) {
+    newHtml = newHtml.substring(0, oldScriptStart);
+  } else {
+    newHtml = newHtml.replace('</body>', '');
+  }
   
+  newHtml = newHtml + scriptTag;
   fs.writeFileSync('courses.html', newHtml);
-  console.log("courses.html updated with original styles successfully!");
+  console.log('courses.html updated successfully!');
 } else {
-  console.log("Could not find co-catalog-inner block.");
+  console.log('Could not find catalog inner');
 }
