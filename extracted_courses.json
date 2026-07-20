@@ -1,0 +1,106 @@
+[
+  {
+    "title": "Foundations of Leadership",
+    "category": "Leadership & Management",
+    "image": "assets/img/03_Leadership_Training.png.png",
+    "description": "Build the core mindset and practical skills that distinguish effective leaders. Covers vision, communication, accountability, and team dynamics.",
+    "duration": "8-hour session",
+    "format": "In-Person"
+  },
+  {
+    "title": "Managing High-Performance Teams",
+    "category": "Leadership & Management",
+    "image": "assets/img/07_About_Team_Meeting.png",
+    "description": "Develop the tools to build, lead, and sustain high-performing teams â€” covering motivation, delegation, feedback, and conflict resolution.",
+    "duration": "5-hour session",
+    "format": "Virtual Live"
+  },
+  {
+    "title": "Strategic Thinking for Leaders",
+    "category": "Leadership & Management",
+    "image": "assets/img/06_Onsite_Workshop.png",
+    "description": "Equip leaders with frameworks for long-term thinking, decision-making under uncertainty, and translating strategy into team action.",
+    "duration": "8-hour session",
+    "format": "On-Site"
+  },
+  {
+    "title": "Customer Experience Excellence",
+    "category": "Customer Service",
+    "image": "assets/img/07_About_Team_Meeting.png",
+    "description": "Transform every customer touchpoint. Learn techniques for service recovery, emotional intelligence in service, and building lasting customer relationships.",
+    "duration": "5-hour session",
+    "format": "In-Person"
+  },
+  {
+    "title": "Handling Difficult Customers",
+    "category": "Customer Service",
+    "image": "assets/img/01_Home_Hero_Speaker.png",
+    "description": "Master de-escalation, active listening, and resolution skills for navigating challenging interactions with professionalism and calm.",
+    "duration": "5-hour session",
+    "format": "Virtual Live"
+  },
+  {
+    "title": "Business Communication Essentials",
+    "category": "Communication Skills",
+    "image": "assets/img/04_Classroom_Training.png",
+    "description": "Sharpen written, verbal, and non-verbal communication across professional contexts â€” from emails to executive presentations.",
+    "duration": "8-hour session",
+    "format": "In-Person"
+  },
+  {
+    "title": "Presentation Skills Masterclass",
+    "category": "Communication Skills",
+    "image": "assets/img/01_Home_Hero_Speaker.png",
+    "description": "From structure to delivery â€” develop confidence and clarity when presenting to any audience, in any room or on any platform.",
+    "duration": "5-hour session",
+    "format": "Group Session"
+  },
+  {
+    "title": "Consultative Selling",
+    "category": "Sales Training",
+    "image": "assets/img/05_Virtual_Sessions.png.png",
+    "description": "Move from product-pushing to problem-solving. Build a sales approach that earns trust, uncovers real needs, and creates long-term client relationships.",
+    "duration": "8-hour session",
+    "format": "In-Person"
+  },
+  {
+    "title": "Negotiation Skills for Sales Professionals",
+    "category": "Sales Training",
+    "image": "assets/img/06_Onsite_Workshop.png",
+    "description": "Master the art of principled negotiation â€” creating value, managing objections, and closing deals that both parties walk away from confident.",
+    "duration": "5-hour session",
+    "format": "Group Session"
+  },
+  {
+    "title": "Project Management Fundamentals",
+    "category": "Project Management",
+    "image": "assets/img/06_Onsite_Workshop.png",
+    "description": "From scope to delivery â€” practical frameworks for planning, executing, and closing projects on time, within budget, and to standard.",
+    "duration": "8-hour session",
+    "format": "In-Person"
+  },
+  {
+    "title": "Effective Recruitment & Interviewing",
+    "category": "Human Resources",
+    "image": "assets/img/07_About_Team_Meeting.png",
+    "description": "Design structured hiring processes, conduct bias-aware interviews, and make confident selection decisions that bring the right people in.",
+    "duration": "5-hour session",
+    "format": "In-Person"
+  },
+  {
+    "title": "Workplace Health & Safety Essentials",
+    "category": "Workplace Compliance",
+    "image": "assets/img/03_Leadership_Training.png.png",
+    "description": "Build a compliance-aware workplace culture. Covers legislative obligations, hazard identification, incident reporting, and staff responsibilities.",
+    "duration": "5-hour session",
+    "format": "On-Site"
+  },
+  {
+    "title": "Emotional Intelligence at Work",
+    "category": "Other Professional Development",
+    "image": "assets/img/02_Programs_Desk.png",
+    "description": "Understand and develop the self-awareness, empathy, and relational skills that underpin every high-performing professional relationship.",
+    "duration": "5-hour session",
+    "format": "Virtual Live"
+  }
+]
