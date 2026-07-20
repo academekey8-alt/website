@@ -12,7 +12,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: var(--primary-dark);
+  background: var(--navy);
   color: #fff;
   border: none;
   box-shadow: 0 8px 24px rgba(7, 26, 51, 0.2);
@@ -26,7 +26,7 @@
 .ak-bubble:hover {
   transform: scale(1.05);
   box-shadow: 0 12px 28px rgba(7, 26, 51, 0.25);
-  background: var(--primary-gold);
+  background: var(--orange);
 }
 
 .ak-bubble svg {
@@ -63,7 +63,7 @@
 
 /* Chat Header */
 .ak-head {
-  background: var(--primary-dark);
+  background: var(--navy);
   color: #fff;
   padding: 16px 20px;
   display: flex;
@@ -160,7 +160,7 @@
 
 .ak-msg.bot {
   background: #fff;
-  color: var(--text-color);
+  color: var(--text);
   border: 1px solid rgba(7, 26, 51, 0.05);
   align-self: flex-start;
   border-bottom-left-radius: 4px;
@@ -168,8 +168,8 @@
 }
 
 .ak-msg.user {
-  background: var(--primary-gold);
-  color: var(--primary-dark);
+  background: var(--orange);
+  color: var(--navy);
   align-self: flex-end;
   border-bottom-right-radius: 4px;
   box-shadow: 0 2px 8px rgba(197, 168, 128, 0.2);
@@ -224,14 +224,14 @@
 
 #akInput:focus {
   background: #fff;
-  border-color: var(--primary-gold);
+  border-color: var(--orange);
 }
 
 #akSend {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: var(--primary-dark);
+  background: var(--navy);
   color: #fff;
   border: none;
   cursor: pointer;
@@ -242,7 +242,7 @@
 }
 
 #akSend:hover {
-  background: var(--primary-gold);
+  background: var(--orange);
 }
 
 #akSend:disabled {
@@ -261,7 +261,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--primary-dark);
+  background: var(--navy);
   color: #fff !important;
   padding: 8px 16px;
   border-radius: 20px;
@@ -273,8 +273,8 @@
 }
 
 .ak-goto:hover {
-  background: var(--primary-gold);
-  color: var(--primary-dark) !important;
+  background: var(--orange);
+  color: var(--navy) !important;
   transform: translateY(-2px);
 }
 
