@@ -46,7 +46,7 @@ if (pgridStart !== -1 && pgridEnd !== -1) {
          return;
       }
 
-      let html = '<div class="pg-grid" id="pgGrid">';
+      let html = '<style>.pg-card { opacity: 1 !important; transform: none !important; }</style><div class="pg-grid" id="pgGrid">';
       let i = 0;
       
       for (const [name, catData] of Object.entries(categories)) {

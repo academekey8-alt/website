@@ -165,7 +165,7 @@ if (pgridStart !== -1 && pgridEnd !== -1) {
          container.innerHTML = "No programs available.";
          return;
       }
-      let html = '<div class="pg-grid">';
+      let html = '<style>.pcard { opacity: 1 !important; transform: none !important; }</style><div class="pg-grid">';
       
       let i = 0;
       snapshot.forEach(doc => {

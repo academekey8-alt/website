@@ -59,7 +59,7 @@ if (startIndex !== -1 && endIndex !== -1) {
           categories[course.category].push(course);
         });
 
-        let html = '';
+        let html = '<style>.co-card { opacity: 1 !important; transform: none !important; }</style>';
         for (const [category, courses] of Object.entries(categories)) {
           const catCode = getCatCode(category);
           

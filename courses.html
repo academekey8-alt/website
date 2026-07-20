@@ -961,7 +961,6 @@
 
 </html>
 
-  
   <script type="module">
     import { db } from './js/firebase.js';
     import { collection, getDocs } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
@@ -1004,7 +1003,7 @@
           categories[course.category].push(course);
         });
 
-        let html = '';
+        let html = '<style>.co-card { opacity: 1 !important; transform: none !important; }</style>';
         for (const [category, courses] of Object.entries(categories)) {
           const catCode = getCatCode(category);
           
