@@ -242,7 +242,15 @@
           </div>
           <div style="flex: 1;">
             <label>Format</label>
-            <input type="text" id="courseFormat" class="admin-input" placeholder="e.g. Classroom / Virtual" required>
+            <select id="courseFormat" class="admin-input" required>
+              <option value="" disabled selected>Select a format</option>
+              <option value="In-person / Classroom">In-person / Classroom</option>
+              <option value="Virtual live ( Online )">Virtual live ( Online )</option>
+              <option value="1 on 1 Session">1 on 1 Session</option>
+              <option value="Onsite Training">Onsite Training</option>
+              <option value="Private Corporate Training">Private Corporate Training</option>
+              <option value="Hybrid Training">Hybrid Training</option>
+            </select>
           </div>
         </div>
 
