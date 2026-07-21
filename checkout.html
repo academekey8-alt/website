@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Checkout â€” AcademeKey</title>
+  <meta name="description" content="Get in touch with AcademeKey to design a professional development program for your team.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    /* â”€â”€ PAGE LAYOUT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .ct-page { min-height:100vh; background:#fff; display:grid; grid-template-rows:auto 1fr auto; }
+
+    /* â”€â”€ HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .ct-hero { background:#071A33; padding:180px 0 100px; position:relative; overflow:hidden; }
+    .ct-hero-geo { position:absolute; right:0; top:0; width:560px; height:560px; opacity:0.018; pointer-events:none; }
+    .ct-hero-geo svg { width:100%; height:100%; }
+    .ct-hero-inner { max-width:1320px; margin:0 auto; padding:0 40px; position:relative; z-index:1; }
+    .ct-hero-label { display:inline-flex; align-items:center; gap:14px; font-size:10px; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; color:rgba(245,166,35,.72); margin-bottom:28px; }
+    .ct-hero-label::before { content:''; width:28px; height:1px; background:rgba(245,166,35,.4); }
+    .ct-hero-h1 { font-size:clamp(44px,5.5vw,80px); font-weight:900; letter-spacing:-3.5px; line-height:0.9; color:#fff; max-width:640px; }
+    .ct-hero-h1 em { color:#F5A623; font-style:normal; }
+    .ct-hero-sub { font-size:17px; color:rgba(255,255,255,.42); line-height:1.75; max-width:480px; margin-top:28px; }
+
+    /* â”€â”€ MAIN BODY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .ct-body { background:#fff; padding:160px 0 160px; }
+    .ct-body-inner { max-width:640px; margin:0 auto; padding:0 40px; }
+
+    /* â”€â”€ LEFT â€” INFO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .ct-info-eyebrow { font-size:10px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(245,166,35,.7); margin-bottom:20px; }
+    .ct-info-h2 { font-size:clamp(28px,3vw,42px); font-weight:800; letter-spacing:-1.5px; color:#0B1629; line-height:1.05; margin-bottom:24px; }
+    .ct-info-text { font-size:15px; line-height:1.85; color:rgba(11,22,41,.55); margin-bottom:48px; max-width:440px; }
+    .ct-channels { display:flex; flex-direction:column; gap:4px; margin-bottom:56px; }
+    .ct-channel { display:flex; align-items:center; gap:18px; padding:20px 24px; border:1.5px solid rgba(11,22,41,.07); border-radius:16px; transition:border-color 240ms ease, background 240ms ease; }
+    .ct-channel:hover { border-color:rgba(245,150,31,.25); background:rgba(245,150,31,.03); }
+    .ct-ch-icon { width:40px; height:40px; background:rgba(245,150,31,.08); border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#F5961F; }
+    .ct-ch-label { font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(11,22,41,.3); margin-bottom:3px; }
+    .ct-ch-value { font-size:15px; font-weight:500; color:#0B1629; }
+    .ct-programs-label { font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(11,22,41,.3); margin-bottom:16px; }
+    .ct-prog-pills { display:flex; flex-wrap:wrap; gap:8px; }
+    .ct-prog-pill { background:#F4F4F2; border-radius:100px; padding:7px 15px; font-size:12px; font-weight:500; color:rgba(11,22,41,.55); }
+
+    /* â”€â”€ RIGHT â€” FORM â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .ct-form-card { background:#fff; border:1.5px solid rgba(11,22,41,.07); border-radius:28px; padding:52px 48px; box-shadow:0 8px 40px rgba(7,26,51,.06); position:sticky; top:120px; }
+    .ct-form-title { font-size:20px; font-weight:700; letter-spacing:-0.5px; color:#0B1629; margin-bottom:6px; }
+    .ct-form-subtitle { font-size:13px; color:rgba(11,22,41,.42); margin-bottom:36px; line-height:1.6; }
+    .ct-field { margin-bottom:18px; }
+    .ct-label { display:block; font-size:12px; font-weight:600; letter-spacing:0.04em; color:rgba(11,22,41,.45); margin-bottom:8px; }
+    .ct-input, .ct-textarea, .ct-select { width:100%; box-sizing:border-box; height:52px; border:1.5px solid rgba(11,22,41,.1); border-radius:12px; padding:0 16px; font-family:inherit; font-size:15px; color:#0B1629; background:#fff; outline:none; transition:border-color 200ms ease, box-shadow 200ms ease; appearance:none; }
+    .ct-input::placeholder, .ct-textarea::placeholder { color:rgba(11,22,41,.28); }
+    .ct-input:focus, .ct-textarea:focus, .ct-select:focus { border-color:#F5961F; box-shadow:0 0 0 4px rgba(245,150,31,.1); }
+    .ct-textarea { height:120px; padding:14px 16px; resize:none; }
+    .ct-select-wrap { position:relative; }
+    .ct-select-wrap::after { content:''; position:absolute; right:14px; top:50%; transform:translateY(-50%); width:10px; height:10px; border-right:1.5px solid rgba(11,22,41,.4); border-bottom:1.5px solid rgba(11,22,41,.4); transform:translateY(-65%) rotate(45deg); pointer-events:none; }
+    .ct-select { cursor:pointer; }
+    .ct-submit { width:100%; height:56px; border-radius:14px; border:none; background:linear-gradient(135deg,#F5961F,#F5A623); color:#fff; font-family:inherit; font-size:15px; font-weight:700; letter-spacing:0.02em; cursor:pointer; margin-top:24px; display:flex; align-items:center; justify-content:center; gap:10px; transition:transform 180ms ease, box-shadow 180ms ease; }
+    .ct-submit:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(245,150,31,.35); }
+    .ct-submit:active { transform:translateY(0) scale(0.98); }
+    .ct-form-note { font-size:11px; color:rgba(11,22,41,.3); text-align:center; margin-top:16px; line-height:1.6; }
+    .ct-success { display:none; text-align:center; padding:40px 0; }
+    .ct-success-icon { width:56px; height:56px; background:rgba(245,150,31,.1); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; color:#F5961F; }
+    .ct-success-title { font-size:20px; font-weight:700; letter-spacing:-0.4px; color:#0B1629; margin-bottom:8px; }
+    .ct-success-text { font-size:14px; color:rgba(11,22,41,.5); line-height:1.75; }
+
+    @media (max-width:1024px) {
+      .ct-body-inner { grid-template-columns:1fr; gap:60px; }
+      .ct-form-card { position:static; }
+    }
+    @media (max-width:640px) {
+      .ct-hero { padding:140px 0 80px; }
+      .ct-form-card { padding:32px 24px; }
+    }
+  </style>
+  <link rel="stylesheet" href="css/chatbot.css">
+</head>
+<body>
+<div id="pageVeil"></div>
+<div id="readProgress"></div>
+
+<!-- HEADER -->
+<header id="mainHeader">
+  <div id="navKPath" aria-hidden="true"></div>
+  <div class="nav-floater">
+    <a href="index.html" class="nav-logo" aria-label="AcademeKey â€” The Key to Success">
+      <img src="assets/img/logo.png" alt="AcademeKey" style="height:45px; width:auto; margin-right:8px;">
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+      <a href="courses.html">Courses</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="courses.html" class="nav-cta-btn" aria-label="Browse our courses">Browse Courses <svg class="cta-arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
+    <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu" aria-hidden="true">
+  <div class="mob-inner">
+    <div class="mob-header"><img src="assets/img/logo.png" alt="AcademeKey" style="height:35px; width:auto;"></div>
+    <nav class="mob-nav" aria-label="Mobile navigation">
+      <a href="index.html" class="mob-link">Home</a>
+      <a href="courses.html" class="mob-link">Courses</a>
+      <a href="about.html" class="mob-link">About</a>
+      <a href="contact.html" class="mob-link">Contact</a>
+    </nav>
+    <div class="mob-cta-wrap">
+      <a href="courses.html" class="mob-cta-btn">Browse Courses <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- BODY -->
+<section class="ct-body">
+  <div class="ct-body-inner">
+
+    <!-- RIGHT â€” FORM -->
+    <div data-sr data-sr-delay="100">
+      <div class="ct-form-card">
+        <h3 class="ct-form-title">Secure Checkout</h3>
+        <p class="ct-form-subtitle">Complete your registration for AcademeKey courses.</p>
+
+        <form id="contactForm" novalidate>
+          <div class="ct-field">
+            <label class="ct-label" for="ct-program">Program of interest</label>
+            <div class="ct-select-wrap">
+              <select class="ct-select" id="ct-program" name="program">
+                <option value="" disabled selected>Select a program</option>
+                <option>Leadership &amp; Management</option>
+                <option>Customer Service</option>
+                <option>Communication Skills</option>
+                <option>Sales Training</option>
+                <option>Project Management</option>
+                <option>Human Resources</option>
+                <option>Workplace Compliance</option>
+                <option>Not sure yet â€” need a recommendation</option>
+                <option>Custom / multiple programs</option>
+              </select>
+            </div>
+          </div>
+          <div class="ct-field">
+            <label class="ct-label" for="ct-format">Preferred format</label>
+            <div class="ct-select-wrap">
+              <select class="ct-select" id="ct-format" name="format" required>
+                <option value="" disabled selected>Select a format</option>
+                <option>In-person / Classroom</option>
+                <option>Virtual live ( Online )</option>
+                <option>1 on 1 Session</option>
+                <option>Onsite Training</option>
+                <option>Private Corporate Training</option>
+                <option>Hybrid Training</option>
+                <option>Group</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="ct-field">
+            <label class="ct-label" for="ct-date">Date of booking</label>
+            <div class="ct-select-wrap">
+              <select class="ct-select" id="ct-date" name="date" required>
+                <option value="" disabled selected>Select an available date</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="ct-field" id="pricing-container" style="display:none; margin-top:24px;">
+            <label class="ct-label">Select Pricing Tier</label>
+            <div id="pricing-options" style="display:flex; flex-direction:column; gap:10px; margin-top:10px;">
+            </div>
+          </div>
+          <div class="ct-field">
+            <label class="ct-label" for="ct-people">No. of people</label>
+            <input class="ct-input" type="number" id="ct-people" name="people" min="1" placeholder="e.g. 1" required>
+            <div style="font-size:12px; color:rgba(11,22,41,.55); margin-top:8px;"><em>Special offer: 4+1 free (Pay for 4, get 5)</em></div>
+          </div>
+          
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+            <div class="ct-field">
+              <label class="ct-label" for="ct-fname">First name</label>
+              <input class="ct-input" type="text" id="ct-fname" name="firstName" placeholder="Sarah" required autocomplete="given-name">
+            </div>
+            <div class="ct-field">
+              <label class="ct-label" for="ct-lname">Last name</label>
+              <input class="ct-input" type="text" id="ct-lname" name="lastName" placeholder="Johnson" required autocomplete="family-name">
+            </div>
+          </div>
+          <div class="ct-field">
+            <label class="ct-label" for="ct-email">Work email</label>
+            <input class="ct-input" type="email" id="ct-email" name="email" placeholder="sarah@company.com" required autocomplete="email">
+          </div>
+          <button type="submit" class="ct-submit" id="ctSubmit">
+            <span id="ctBtnText">Complete Registration</span>
+            <svg id="ctBtnArrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          
+          <div id="ctError" style="display:none;margin-top:14px;padding:12px 16px;background:rgba(220,50,50,.07);border:1px solid rgba(220,50,50,.2);border-radius:10px;font-size:13px;color:#c0392b;"></div>
+        </form>
+
+        
+        <div class="ct-success" id="ctSuccess">
+          <div class="ct-success-icon" style="background:#fff7ed; color:#ea580c;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+          <h4 class="ct-success-title">Registration saved.</h4>
+          <p class="ct-success-text" style="margin-bottom:24px;">Your registration details have been saved. Please click below to complete your checkout and secure your spot.</p>
+          <a href="#" class="btn btn-orange" style="width:100%; display:inline-flex; justify-content:center; padding:16px;">Checkout</a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER TRANSITION -->
+<div class="fkp-transition" id="fkpTransition" aria-hidden="true">
+  <div class="fkp-rail">
+    <div class="fkp-arm fkp-arm--left"></div>
+    <div class="fkp-gem"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 1L21 11L11 21L1 11Z" stroke="rgba(245,166,35,.65)" stroke-width="0.8"/><path d="M8 16L11 8L14 16" stroke="rgba(245,166,35,.65)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><line x1="9.2" y1="13.2" x2="12.8" y2="13.2" stroke="rgba(245,166,35,.65)" stroke-width="1" stroke-linecap="round"/></svg></div>
+    <div class="fkp-arm fkp-arm--right"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="ft-kp-divider" id="ftKpDivider" aria-hidden="true">
+  <div class="ft-kp-line"></div>
+  <span class="ft-kp-gem"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 0.8L15.2 8L8 15.2L0.8 8Z" stroke="rgba(16,185,129,.18)" stroke-width="0.8"/><path d="M8 3.5L12.5 8L8 12.5L3.5 8Z" stroke="rgba(16,185,129,.08)" stroke-width="0.6"/></svg></span>
+  <span class="ft-kp-dot"></span>
+</div>
+<footer class="ft-section" id="siteFooter" aria-label="Site footer">
+  <div class="ft-glow" aria-hidden="true"></div>
+  <div class="ft-container">
+    <div class="ft-main">
+      <div class="ft-brand">
+        <div class="ft-kp-end" aria-hidden="true"></div>
+        <a href="index.html" class="ft-logo-link" aria-label="AcademeKey â€” home"><img src="assets/img/logo.png" alt="AcademeKey" class="ft-logo"></a>
+        <p class="ft-tagline">The Key to Success</p>
+      </div>
+      <div class="ft-right">
+        <nav aria-label="Footer navigation"><ul class="ft-nav" role="list">
+          <li><a href="index.html"   class="ft-nav-link">Home</a></li>
+          <li><a href="courses.html" class="ft-nav-link">Courses</a></li>
+          <li><a href="about.html"   class="ft-nav-link">About</a></li>
+          <li><a href="contact.html" class="ft-nav-link">Contact</a></li>
+        </ul></nav>
+        <div class="ft-social" aria-label="Social media">
+          <a href="https://www.linkedin.com/company/academkey/" target="_blank" rel="noopener noreferrer" class="ft-soc" aria-label="AcademeKey on LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="#" class="ft-soc" aria-label="AcademeKey on Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="#" class="ft-soc" aria-label="AcademeKey on Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" class="ft-soc" aria-label="AcademeKey on YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="ft-contact">
+      <div class="ft-contact-item"><span class="ft-contact-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span><span class="ft-contact-text">hello@academekey.com</span></div>
+      <div class="ft-contact-item"><span class="ft-contact-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.16a16 16 0 006.93 6.93l1.42-1.42a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></span><span class="ft-contact-text">+1 (000) 000-0000</span></div>
+      <div class="ft-contact-item"><span class="ft-contact-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span><span class="ft-contact-text">Available nationwide</span></div>
+    </div>
+    <div class="ft-bottom">
+      <div class="ft-bottom-rule"></div>
+      <div class="ft-bottom-row">
+        <p class="ft-copy">&copy; <span id="ftYear">2025</span> AcademeKey</p>
+        <span class="ft-copy-sep" aria-hidden="true">Â·</span>
+        <p class="ft-copy">The Key to Success</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/motion.js"></script>
+<script src="js/firebase.js" type="module"></script>
+<script>
+/* Contact form â€” graceful submit with Firebase fallback to mailto */
+(function () {
+  const form = document.getElementById('contactForm');
+  const btn  = document.getElementById('ctSubmit');
+  const btnText = document.getElementById('ctBtnText');
+  const success = document.getElementById('ctSuccess');
+  const errBox  = document.getElementById('ctError');
+  if (!form) return;
+
+  
+  btnText.textContent = 'Checkout';
+  
+  function updateBillSummary() {
+      const people = parseInt(form.querySelector('#ct-people').value, 10);
+      const pricing = (form.querySelector('input[name="pricing"]:checked') || {}).value || '';
+      
+      const existingSummary = document.getElementById('bill-summary');
+      if (existingSummary) existingSummary.remove();
+      
+      if (isNaN(people) || people < 1 || !pricing) {
+          return;
+      }
+
+      let basePrice = 0;
+      let total = 0;
+      let discountDesc = '';
+      
+      if (pricing.includes('$649')) basePrice = 649;
+      else if (pricing.includes('$749')) basePrice = 749;
+      else if (pricing.includes('$499')) basePrice = 499;
+      else if (pricing.includes('$549')) basePrice = 549;
+      else if (pricing.includes('$699')) basePrice = 699;
+      
+      // AUTOMATIC BUY 4 GET 1 FREE LOGIC FOR ALL FORMATS
+      const freeParticipants = Math.floor(people / 5);
+      const paidPeople = people - freeParticipants;
+      
+      if (freeParticipants > 0) {
+          discountDesc = `Buy 4 Get 1 Free offer applied (${freeParticipants} free)!`;
+      }
+      
+      if (basePrice > 0) {
+          total = paidPeople * basePrice;
+          const originalTotal = people * basePrice;
+          const discountAmount = originalTotal - total;
+          
+          let summaryHtml = `
+          <div id="bill-summary" style="background: #f0f4f8; padding: 20px; border-radius: 12px; margin-bottom: 24px; border: 1px solid #d1d9e6;">
+            <h4 style="margin-top:0; color:#0b1629; font-size:18px;">Bill Summary</h4>
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+              <span>Number of persons:</span>
+              <strong>${people}</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+              <span>Original Price (${people} x ${basePrice}):</span>
+              <strong>${originalTotal}</strong>
+            </div>
+            ${discountDesc ? `<div style="display:flex; justify-content:space-between; margin-bottom:8px; color: #10b981;">
+              <span>Discount (${discountDesc}):</span>
+              <strong>-${discountAmount}</strong>
+            </div>` : ''}
+            <div style="display:flex; justify-content:space-between; margin-top:16px; padding-top:16px; border-top: 1px solid #d1d9e6; font-size:18px; font-weight:bold; color: #0b1629;">
+              <span>Total Bill Amount:</span>
+              <span>${total}</span>
+            </div>
+          </div>
+          `;
+          
+          btn.parentElement.insertAdjacentHTML('beforebegin', summaryHtml);
+      }
+  }
+
+  form.addEventListener('input', updateBillSummary);
+  form.addEventListener('change', updateBillSummary);
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    errBox.style.display = 'none';
+
+
+    const data = {
+      firstName:    form.querySelector('#ct-fname').value.trim(),
+      lastName:     form.querySelector('#ct-lname').value.trim(),
+      email:        form.querySelector('#ct-email').value.trim(),
+      
+      program:      form.querySelector('#ct-program').value,
+      format:       form.querySelector('#ct-format').value,
+      date:         form.querySelector('#ct-date').value,
+      people:       form.querySelector('#ct-people').value,
+      pricing:      (form.querySelector('input[name="pricing"]:checked') || {}).value || '',
+      submittedAt:  new Date().toISOString(),
+    };
+
+    if (!data.firstName || !data.email) {
+      errBox.textContent = 'Please fill in your name and email before sending.';
+      errBox.style.display = 'block';
+      return;
+    }
+
+    btn.disabled = true;
+    btnText.textContent = 'Sendingâ€¦';
+
+    try {
+      /* Try Firebase if available */
+      if (window.submitContactForm) {
+        await window.submitContactForm(data);
+      }
+      form.style.display = 'none';
+      success.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      btn.disabled = false;
+      btnText.textContent = 'Checkout';
+      errBox.textContent = 'Something went wrong. Please email us directly at hello@academkey.com';
+      errBox.style.display = 'block';
+    }
+  });
+
+  const dateSelect = document.getElementById('ct-date');
+  if (dateSelect) {
+      const today = new Date();
+      // We want dates from today up to 3 months ahead
+      const maxDate = new Date();
+      maxDate.setMonth(today.getMonth() + 3);
+      
+      let currentMonth = today.getMonth();
+      let currentYear = today.getFullYear();
+      const validDates = [];
+      
+      for (let i = 0; i < 4; i++) { // check up to 4 months
+          let year = currentYear;
+          let month = currentMonth + i;
+          if (month > 11) {
+              month -= 12;
+              year++;
+          }
+          
+          for (let day = 1; day <= 31; day++) {
+              if ((day >= 8 && day <= 14) || (day >= 22 && day <= 28)) {
+                  let d = new Date(year, month, day);
+                  if (d.getMonth() === month) {
+                      let dayOfWeek = d.getDay();
+                      if (dayOfWeek === 3 || dayOfWeek === 5) { // Wed=3, Fri=5
+                          if (d >= today && d <= maxDate) {
+                              validDates.push(d);
+                          }
+                      }
+                  }
+              }
+          }
+      }
+      
+      validDates.sort((a, b) => a - b);
+      validDates.forEach(d => {
+          let opt = document.createElement('option');
+          const y = d.getFullYear();
+          const m = String(d.getMonth() + 1).padStart(2, '0');
+          const dayNum = String(d.getDate()).padStart(2, '0');
+          opt.value = `${y}-${m}-${dayNum}`;
+          opt.textContent = d.toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
+          dateSelect.appendChild(opt);
+      });
+  }
+
+  const formatSelect = document.getElementById('ct-format');
+  const dateSelectEl = document.getElementById('ct-date');
+  const pricingContainer = document.getElementById('pricing-container');
+  const pricingOptions = document.getElementById('pricing-options');
+
+  if (formatSelect && pricingContainer && pricingOptions && dateSelectEl) {
+      function updatePricingOptions() {
+          const val = formatSelect.value;
+          
+          if (val === 'Group') {
+              window.location.href = 'contact.html';
+              return;
+          }
+          
+          pricingOptions.innerHTML = '';
+          
+          let options = [];
+          
+          if (val === 'Virtual live ( Online )') {
+              options = [
+                  { label: 'Virtual live early-bird fee $499', val: 'Virtual live early-bird fee $499', earlyBird: true },
+                  { label: 'Virtual Live standard fee $549', val: 'Virtual Live standard fee $549', earlyBird: false }
+              ];
+          } else if (val === 'Onsite Training') {
+              options = [
+                  { label: 'Onsite training $699 (No additional fee for travel/accommodation)', val: 'Onsite training $699', earlyBird: false }
+              ];
+          } else {
+              options = [
+                  { label: 'Individual early-bird fee $649', val: 'Individual early-bird fee $649', earlyBird: true },
+                  { label: 'Standard fee $749', val: 'Standard fee $749', earlyBird: false }
+              ];
+          }
+          
+          // Check date restriction
+          const selectedDateStr = dateSelectEl.value;
+          if (selectedDateStr) {
+              const selectedDateObj = new Date(selectedDateStr);
+              const todayObj = new Date();
+              todayObj.setHours(0,0,0,0);
+              const diffTime = Math.abs(selectedDateObj - todayObj);
+              const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+              
+              if (diffDays < 7) {
+                  // Filter out early bird offers
+                  options = options.filter(opt => !opt.earlyBird);
+              }
+          }
+          
+          if (options.length > 0) {
+              options.forEach((opt, idx) => {
+                  const div = document.createElement('div');
+                  div.style.cssText = 'background: #f9f9fa; border: 1.5px solid rgba(11,22,41,.1); border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: border-color 0.2s;';
+                  
+                  const input = document.createElement('input');
+                  input.type = 'radio';
+                  input.name = 'pricing';
+                  input.value = opt.val;
+                  input.id = 'pricing-' + idx;
+                  input.style.cursor = 'pointer';
+                  if (idx === 0) input.checked = true; // select first by default
+                  
+                  const label = document.createElement('label');
+                  label.htmlFor = 'pricing-' + idx;
+                  label.textContent = opt.label;
+                  label.style.cssText = 'cursor: pointer; font-size: 14px; font-weight: 500; color: #0B1629; flex: 1; margin: 0;';
+                  
+                  div.onclick = () => { input.checked = true; };
+                  
+                  div.appendChild(input);
+                  div.appendChild(label);
+                  pricingOptions.appendChild(div);
+              });
+              pricingContainer.style.display = 'block';
+          } else {
+              pricingContainer.style.display = 'none';
+          }
+      }
+      
+      formatSelect.addEventListener('change', updatePricingOptions);
+      dateSelectEl.addEventListener('change', updatePricingOptions);
+  }
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const courseParam = urlParams.get('book');
+  if (courseParam) {
+    const programSelect = document.getElementById('ct-program');
+    if (programSelect) {
+        let found = false;
+        for(let i=0; i<programSelect.options.length; i++) {
+            if(programSelect.options[i].text.toLowerCase() === courseParam.toLowerCase() || programSelect.options[i].value.toLowerCase() === courseParam.toLowerCase()) {
+                programSelect.selectedIndex = i;
+                found = true;
+                break;
+            }
+        }
+        if(!found) {
+            const newOption = document.createElement('option');
+            newOption.text = courseParam;
+            newOption.value = courseParam;
+            programSelect.add(newOption);
+            programSelect.value = courseParam;
+        }
+    }
+  }
+})();
+</script>
+  <script src="js/chatbot.js"></script>
+</body>
+</html>

@@ -101,10 +101,22 @@ if (startIndex !== -1 && endIndex !== -1) {
                 \${course.duration}
               </span>
             </div>
+            <div style="display: flex; gap: 8px;">
+            <div style="display: flex; gap: 8px;">
             <a href="contact.html?course=\${encodeURIComponent(course.title)}" class="co-enrol-btn">
               Enquire
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
+            <a href="checkout.html?book=\${encodeURIComponent(course.title)}" class="co-enrol-btn" style="background: var(--text); color: white;">
+              Book
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            </div>
+            <a href="checkout.html?book=\${encodeURIComponent(course.title)}" class="co-enrol-btn" style="background: var(--text); color: white;">
+              Book
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            </div>
           </div>
         </div>
             \`;
