@@ -173,8 +173,8 @@ if (scriptEnd !== -1) {
       function updatePricingOptions() {
           const val = formatSelect.value;
           
-          if (val === 'Group') {
-              alert('Please contact the administrator for Group training inquiries.');
+          if (val === 'Group' || val === '1 on 1 Session' || val === 'Private Corporate Training' || val === 'Hybrid Training') {
+              alert('Please contact the administrator for ' + val + ' inquiries.');
               window.location.href = 'contact.html';
               return;
           }
