@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
             onClick: function(data, actions) {
                 // Validate form before starting PayPal popup
                 if (!form.checkValidity()) {
+                    errBox.innerHTML = '<strong>Validation Error:</strong> Please fill out all required fields above (Name, Email, Format, Date, etc).';
+                    errBox.style.display = 'block';
                     form.reportValidity();
                     return actions.reject();
                 }
@@ -34,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const people = parseInt(form.querySelector('#ct-people').value, 10);
                 const pricing = (form.querySelector('input[name="pricing"]:checked') || {}).value || '';
                 if (isNaN(people) || people < 1 || !pricing) {
-                    errBox.textContent = 'Please select a valid pricing tier and number of participants.';
+                    errBox.innerHTML = '<strong>Pricing Error:</strong> Please select a valid Training Format and Pricing Tier first.';
                     errBox.style.display = 'block';
                     return actions.reject();
                 }
