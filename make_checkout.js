@@ -66,6 +66,7 @@ if (formStart !== -1 && formEnd !== -1) {
                 <option>Private Corporate Training</option>
                 <option>Hybrid Training</option>
                 <option>Group</option>
+                <option>Trial Session</option>
               </select>
             </div>
           </div>
@@ -191,6 +192,10 @@ if (scriptEnd !== -1) {
           } else if (val === 'Onsite Training') {
               options = [
                   { label: 'Onsite training $699 No additional fee (Trainer travel allowance accomodation taking care of AcademeKey)', val: 'Onsite training $699', earlyBird: false }
+              ];
+          } else if (val === 'Trial Session') {
+              options = [
+                  { label: 'Trial Session for just $1', val: 'Trial Session for $1', earlyBird: false }
               ];
           } else {
               options = [

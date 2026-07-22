@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 else if (pricing.includes('$499')) basePrice = 499;
                 else if (pricing.includes('$549')) basePrice = 549;
                 else if (pricing.includes('$699')) basePrice = 699;
+                else if (pricing.includes('$1')) basePrice = 1;
                 
                 let freeParticipants = Math.floor(people / 5);
                 
