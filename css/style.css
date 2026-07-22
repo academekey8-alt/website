@@ -2230,3 +2230,12 @@ footer {
   .wwa-heading { font-size: clamp(36px, 7vw, 52px); }
   .wwa-body { font-size: 17px; }
 }
+
+/* Fix Logo Visibility */
+.nb-logo img, .ft-logo, .mob-header img, img[alt="AcademeKey"] {
+  background-color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  display: inline-block;
+}

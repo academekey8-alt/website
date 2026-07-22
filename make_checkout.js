@@ -174,6 +174,7 @@ if (scriptEnd !== -1) {
           const val = formatSelect.value;
           
           if (val === 'Group') {
+              alert('Please contact the administrator for Group training inquiries.');
               window.location.href = 'contact.html';
               return;
           }
