@@ -378,7 +378,7 @@ if (submitLogicStart !== -1) {
 
 // Inject PayPal SDK and custom checkout script
 const paypalScripts = `
-<script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AddZ-YMIoDeMJpR4Ul9BB0IIHKP-iWLOl6rC7rRTBMlojO5hZAahPSYfyvvfcDZvmy8iY7pKsqc96SfL&currency=USD"></script>
 <script type="module" src="js/checkout.js"></script>
 </head>
 `;
