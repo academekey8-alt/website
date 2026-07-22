@@ -87,7 +87,7 @@ if (formStart !== -1 && formEnd !== -1) {
           <div class="ct-field">
             <label class="ct-label" for="ct-people">No. of people</label>
             <input class="ct-input" type="number" id="ct-people" name="people" min="1" placeholder="e.g. 1" required>
-            <div style="font-size:12px; color:rgba(11,22,41,.55); margin-top:8px;"><em>Special offer: 4+1 free (Pay for 4, get 5)</em></div>
+            <div id="offer-note" style="font-size:12px; color:rgba(11,22,41,.55); margin-top:8px;"><em>Special offer: 4+1 free (Pay for 4, get 5)</em></div>
           </div>
           
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
@@ -190,7 +190,7 @@ if (scriptEnd !== -1) {
               ];
           } else if (val === 'Onsite Training') {
               options = [
-                  { label: 'Onsite training $699 (No additional fee for travel/accommodation)', val: 'Onsite training $699', earlyBird: false }
+                  { label: 'Onsite training $699 No additional fee (Trainer travel allowance accomodation taking care of AcademeKey)', val: 'Onsite training $699', earlyBird: false }
               ];
           } else {
               options = [
@@ -241,6 +241,15 @@ if (scriptEnd !== -1) {
               pricingContainer.style.display = 'block';
           } else {
               pricingContainer.style.display = 'none';
+          }
+          
+          const offerNote = document.getElementById('offer-note');
+          if (offerNote) {
+              if (val === 'Onsite Training') {
+                  offerNote.innerHTML = '<em>Special offer: 4+1 free. Plus: Above 20 participants get up to 5 free! Above 30 get up to 10 free!</em>';
+              } else {
+                  offerNote.innerHTML = '<em>Special offer: 4+1 free (Pay for 4, get 5)</em>';
+              }
           }
       }
       

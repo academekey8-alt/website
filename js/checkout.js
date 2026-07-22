@@ -56,8 +56,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 else if (pricing.includes('$549')) basePrice = 549;
                 else if (pricing.includes('$699')) basePrice = 699;
                 
-                const freeParticipants = Math.floor(people / 5);
-                const paidPeople = people - freeParticipants;
+                let freeParticipants = Math.floor(people / 5);
+                
+                // Special rules for Onsite Training
+                if (pricing.includes('Onsite')) {
+                    if (people > 30) {
+                        freeParticipants = 10;
+                    } else if (people > 20) {
+                        freeParticipants = 5;
+                    }
+                }
+                
+                const paidPeople = Math.max(0, people - freeParticipants);
                 const total = paidPeople * basePrice;
                 
                 return actions.order.create({
