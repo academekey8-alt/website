@@ -376,6 +376,14 @@ if (submitLogicStart !== -1) {
     html = html.replace(/form\.addEventListener\('submit', async function \(e\) \{\s*e\.preventDefault\(\);\s*errBox\.style\.display = 'none';/, replacement);
 }
 
+// Inject PayPal SDK and custom checkout script
+const paypalScripts = `
+<script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+<script type="module" src="js/checkout.js"></script>
+</head>
+`;
+html = html.replace('</head>', paypalScripts);
+
 fs.writeFileSync('checkout.html', html, 'utf8');
 
 // Also update add_book.js to link to checkout.html instead of contact.html

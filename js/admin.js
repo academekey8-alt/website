@@ -49,6 +49,7 @@ onAuthStateChanged(auth, (user) => {
     dashboardDiv.style.display = 'block';
     loadEnquiries();
     loadCourses();
+    loadPayments();
   } else {
     loginDiv.style.display = 'block';
     dashboardDiv.style.display = 'none';
@@ -115,6 +116,41 @@ async function loadEnquiries() {
   } catch (err) {
     console.error("Error loading enquiries:", err);
     tbody.innerHTML = `<tr><td colspan="5" style="color:red">Error: ${err.message}. Make sure Firestore rules allow read access for authenticated users.</td></tr>`;
+  }
+}
+
+// --- PAYMENTS ---
+async function loadPayments() {
+  const tbody = document.querySelector('#paymentsTable tbody');
+  if (!tbody) return;
+  tbody.innerHTML = '<tr><td colspan="5">Loading...</td></tr>';
+  
+  try {
+    const q = query(collection(db, 'payments'), orderBy('timestamp', 'desc'));
+    const snapshot = await getDocs(q);
+    
+    if (snapshot.empty) {
+      tbody.innerHTML = '<tr><td colspan="5">No payments found.</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = '';
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      const date = data.timestamp ? data.timestamp.toDate().toLocaleDateString() + ' ' + data.timestamp.toDate().toLocaleTimeString() : 'Unknown';
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${date}</td>
+        <td><strong>${data.payerName || data.firstName + ' ' + data.lastName}</strong><br><small><a href="mailto:${data.payerEmail || data.email}">${data.payerEmail || data.email}</a></small></td>
+        <td>${data.program || 'Course Registration'}<br><small>${data.format || ''}</small><br><small>Participants: ${data.people || 1}</small></td>
+        <td><strong style="color: #10B981;">${data.currency || 'USD'} ${data.amount || '0.00'}</strong></td>
+        <td>${data.paypalOrderId || 'N/A'}<br><small style="color: #64748b;">${data.status || 'COMPLETED'}</small></td>
+      `;
+      tbody.appendChild(tr);
+    });
+  } catch (err) {
+    console.error("Error loading payments:", err);
+    tbody.innerHTML = `<tr><td colspan="5" style="color:red">Error: ${err.message}</td></tr>`;
   }
 }
 
