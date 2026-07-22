@@ -1,0 +1,9 @@
+node_modules/
+.git/
+.wrangler/
+package.json
+package-lock.json
+wrangler.jsonc
+make_checkout.js
+update_courses_html.js
+add_book.js
