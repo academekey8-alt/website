@@ -7,10 +7,11 @@ function replaceInFile(filePath) {
     let original = content;
 
     // Handle programs/*.html Enquire buttons
-    const programBtnRegex = /<a href="\.\.\/contact\.html" class="btn btn-orange btn-sm">Enquire<\/a>/g;
+    const programBtnRegex = /<div style="display: flex; gap: 8px;"><div style="display: flex; gap: 8px;"><a href="\.\.\/contact\.html" class="btn btn-orange btn-sm">Enquire<\/a><a href="\.\.\/checkout\.html" class="btn btn-outline-dark btn-sm">Book<\/a><\/div><a href="\.\.\/checkout\.html" class="btn btn-outline-dark btn-sm">Book<\/a><\/div>/g;
     content = content.replace(programBtnRegex, `<div style="display: flex; gap: 8px;"><div style="display: flex; gap: 8px;"><a href="../contact.html" class="btn btn-orange btn-sm">Enquire</a><a href="../checkout.html" class="btn btn-outline-dark btn-sm">Book</a></div><a href="../checkout.html" class="btn btn-outline-dark btn-sm">Book</a></div>`);
-
-    // Handle courses.html and downloaded_courses.html Enquire buttons
+    
+    const programBtnRegex2 = /<a href="\.\.\/contact\.html" class="btn btn-orange btn-sm">Enquire<\/a>/g;
+    content = content.replace(programBtnRegex2, `<div style="display: flex; gap: 8px;"><div style="display: flex; gap: 8px;"><a href="../contact.html" class="btn btn-orange btn-sm">Enquire</a><a href="../checkout.html" class="btn btn-outline-dark btn-sm">Book</a></div><a href="../checkout.html" class="btn btn-outline-dark btn-sm">Book</a></div>`);
     const courseBtnRegex = /<a href="(contact\.html\?course=[^"]+)" class="co-enrol-btn">\s*Enquire\s*<svg[^>]+>.*?<\/svg>\s*<\/a>/gs;
     content = content.replace(courseBtnRegex, (match, url) => {
         const bookUrl = url.replace('contact.html?course=', 'checkout.html?book=');
