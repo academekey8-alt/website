@@ -9,19 +9,14 @@ files.forEach(file => {
     let filePath = path.join(dir, file);
     let content = fs.readFileSync(filePath, 'utf8');
     
-    // Replace the mangled or em-dash characters in titles with a simple hyphen
-    content = content.replace(/AcademeKey â€“/g, 'AcademeKey -');
-    content = content.replace(/AcademeKey –/g, 'AcademeKey -');
-    content = content.replace(/AcademeKey \?"/g, 'AcademeKey -');
-    content = content.replace(/AcademeKey â€"/g, 'AcademeKey -');
+    // Replace any mojibake "â€" followed by another character with a simple hyphen
+    content = content.replace(/â€./g, '-');
     
-    // Also a global replace just in case
-    content = content.replace(/â€“/g, '-');
-    content = content.replace(/â€"/g, '-');
+    // Replace any remaining weird dashes
     content = content.replace(/–/g, '-'); // en-dash
     content = content.replace(/—/g, '-'); // em-dash
 
     fs.writeFileSync(filePath, content, 'utf8');
-    console.log(`Fixed title in ${file}`);
+    console.log(`Cleaned encoding in ${file}`);
   }
 });
