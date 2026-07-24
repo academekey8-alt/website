@@ -3,8 +3,7 @@ const fs = require('fs');
 let html = fs.readFileSync('checkout.html', 'utf8');
 
 // 1. Change <title>
-html = html.replace('<title>Contact AcademeKey â€” Start a Conversation</title>', '<title>Secure Checkout â€” AcademeKey</title>');
-html = html.replace('<title>Contact AcademeKey — Start a Conversation</title>', '<title>Secure Checkout — AcademeKey</title>');
+html = html.replace('<title>Contact AcademeKey - Start a Conversation</title>', '<title>Secure Checkout - AcademeKey</title>');
 
 // 2. Change grid layout to be centered and add padding
 html = html.replace('.ct-body-inner { max-width:1320px; margin:0 auto; padding:0 40px; display:grid; grid-template-columns:1fr 520px; gap:100px; align-items:start; }', '.ct-body-inner { max-width:640px; margin:0 auto; padding:0 40px; }');
