@@ -115,55 +115,54 @@ if (formStart !== -1 && formEnd !== -1) {
 }
 
 // 6. Add Date validation and Pre-select logic to JS
+const today = new Date();
+const maxDate = new Date();
+maxDate.setMonth(today.getMonth() + 3);
+
+let currentMonth = today.getMonth();
+let currentYear = today.getFullYear();
+const validDates = [];
+
+for (let i = 0; i < 4; i++) { // check up to 4 months
+    let year = currentYear;
+    let month = currentMonth + i;
+    if (month > 11) {
+        month -= 12;
+        year++;
+    }
+    
+    for (let day = 1; day <= 31; day++) {
+        if ((day >= 8 && day <= 14) || (day >= 22 && day <= 28)) {
+            let d = new Date(year, month, day);
+            if (d.getMonth() === month) {
+                let dayOfWeek = d.getDay();
+                if (dayOfWeek === 3 || dayOfWeek === 5) { // Wed=3, Fri=5
+                    if (d >= today && d <= maxDate) {
+                        validDates.push(d);
+                    }
+                }
+            }
+        }
+    }
+}
+
+validDates.sort((a, b) => a - b);
+let dateOptionsHtml = '<option value="" disabled selected>Select an available date</option>\n';
+validDates.forEach(d => {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const dayNum = String(d.getDate()).padStart(2, '0');
+    const val = `${y}-${m}-${dayNum}`;
+    const text = d.toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
+    dateOptionsHtml += `                <option value="${val}">${text}</option>\n`;
+});
+
+// Inject the options directly into the HTML
+html = html.replace('<option value="" disabled selected>Select an available date</option>', dateOptionsHtml);
+
 const scriptEnd = html.indexOf('})();');
 if (scriptEnd !== -1) {
     const extraLogic = `
-  const dateSelect = document.getElementById('ct-date');
-  if (dateSelect) {
-      const today = new Date();
-      // We want dates from today up to 3 months ahead
-      const maxDate = new Date();
-      maxDate.setMonth(today.getMonth() + 3);
-      
-      let currentMonth = today.getMonth();
-      let currentYear = today.getFullYear();
-      const validDates = [];
-      
-      for (let i = 0; i < 4; i++) { // check up to 4 months
-          let year = currentYear;
-          let month = currentMonth + i;
-          if (month > 11) {
-              month -= 12;
-              year++;
-          }
-          
-          for (let day = 1; day <= 31; day++) {
-              if ((day >= 8 && day <= 14) || (day >= 22 && day <= 28)) {
-                  let d = new Date(year, month, day);
-                  if (d.getMonth() === month) {
-                      let dayOfWeek = d.getDay();
-                      if (dayOfWeek === 3 || dayOfWeek === 5) { // Wed=3, Fri=5
-                          if (d >= today && d <= maxDate) {
-                              validDates.push(d);
-                          }
-                      }
-                  }
-              }
-          }
-      }
-      
-      validDates.sort((a, b) => a - b);
-      validDates.forEach(d => {
-          let opt = document.createElement('option');
-          const y = d.getFullYear();
-          const m = String(d.getMonth() + 1).padStart(2, '0');
-          const dayNum = String(d.getDate()).padStart(2, '0');
-          opt.value = \`\${y}-\${m}-\${dayNum}\`;
-          opt.textContent = d.toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
-          dateSelect.appendChild(opt);
-      });
-  }
-
   const formatSelect = document.getElementById('ct-format');
   const dateSelectEl = document.getElementById('ct-date');
   const pricingContainer = document.getElementById('pricing-container');

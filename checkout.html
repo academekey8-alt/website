@@ -245,6 +245,18 @@
             <div class="ct-select-wrap">
               <select class="ct-select" id="ct-date" name="date" required>
                 <option value="" disabled selected>Select an available date</option>
+                <option value="2026-08-12">Wed, Aug 12, 2026</option>
+                <option value="2026-08-14">Fri, Aug 14, 2026</option>
+                <option value="2026-08-26">Wed, Aug 26, 2026</option>
+                <option value="2026-08-28">Fri, Aug 28, 2026</option>
+                <option value="2026-09-09">Wed, Sep 9, 2026</option>
+                <option value="2026-09-11">Fri, Sep 11, 2026</option>
+                <option value="2026-09-23">Wed, Sep 23, 2026</option>
+                <option value="2026-09-25">Fri, Sep 25, 2026</option>
+                <option value="2026-10-09">Fri, Oct 9, 2026</option>
+                <option value="2026-10-14">Wed, Oct 14, 2026</option>
+                <option value="2026-10-23">Fri, Oct 23, 2026</option>
+
               </select>
             </div>
           </div>
@@ -474,52 +486,6 @@
       errBox.style.display = 'block';
     }
   });
-
-  const dateSelect = document.getElementById('ct-date');
-  if (dateSelect) {
-      const today = new Date();
-      // We want dates from today up to 3 months ahead
-      const maxDate = new Date();
-      maxDate.setMonth(today.getMonth() + 3);
-      
-      let currentMonth = today.getMonth();
-      let currentYear = today.getFullYear();
-      const validDates = [];
-      
-      for (let i = 0; i < 4; i++) { // check up to 4 months
-          let year = currentYear;
-          let month = currentMonth + i;
-          if (month > 11) {
-              month -= 12;
-              year++;
-          }
-          
-          for (let day = 1; day <= 31; day++) {
-              if ((day >= 8 && day <= 14) || (day >= 22 && day <= 28)) {
-                  let d = new Date(year, month, day);
-                  if (d.getMonth() === month) {
-                      let dayOfWeek = d.getDay();
-                      if (dayOfWeek === 3 || dayOfWeek === 5) { // Wed=3, Fri=5
-                          if (d >= today && d <= maxDate) {
-                              validDates.push(d);
-                          }
-                      }
-                  }
-              }
-          }
-      }
-      
-      validDates.sort((a, b) => a - b);
-      validDates.forEach(d => {
-          let opt = document.createElement('option');
-          const y = d.getFullYear();
-          const m = String(d.getMonth() + 1).padStart(2, '0');
-          const dayNum = String(d.getDate()).padStart(2, '0');
-          opt.value = `${y}-${m}-${dayNum}`;
-          opt.textContent = d.toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
-          dateSelect.appendChild(opt);
-      });
-  }
 
   const formatSelect = document.getElementById('ct-format');
   const dateSelectEl = document.getElementById('ct-date');
