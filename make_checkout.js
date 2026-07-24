@@ -10,14 +10,9 @@ html = html.replace('.ct-body-inner { max-width:1320px; margin:0 auto; padding:0
 html = html.replace('.ct-body { background:#fff; padding:100px 0 160px; }', '.ct-body { background:#fff; padding:160px 0 160px; }');
 
 // 3. Remove the left panel
-const leftStart = html.indexOf('<!-- LEFT -->');
-const leftEnd = html.indexOf('<!-- RIGHT â€” FORM -->');
-if(leftEnd === -1) {
-    const leftEnd2 = html.indexOf('<!-- RIGHT — FORM -->');
-    if (leftStart !== -1 && leftEnd2 !== -1) {
-        html = html.substring(0, leftStart) + html.substring(leftEnd2);
-    }
-} else if (leftStart !== -1 && leftEnd !== -1) {
+const leftStart = html.lastIndexOf('<!-- LEFT -->');
+const leftEnd = html.indexOf('<!-- RIGHT - FORM -->');
+if (leftStart !== -1 && leftEnd !== -1) {
     html = html.substring(0, leftStart) + html.substring(leftEnd);
 }
 
